@@ -68,14 +68,16 @@ class JinZhongMap extends Component {
       myChart.setOption(op, true)
     })
     myChart.on('click', function (params) {
-      router.push('/video')
+      if (params.componentType === 'series' && params.data.status === 1) {
+        router.push('/video?id=' + params.data.id)
+      }
     })
   }
   convertData = (data, status) => {
     const filterData = []
     for (let i = 0; i < data.length; i++) {
-      if (data[i].stauts === status) {
-        data[i].value = data[i].latlon.concat(data[i].stauts)
+      if (data[i].status === status) {
+        data[i].value = data[i].latlon.concat(data[i].status)
         data[i].label = {
           normal: {
             show: false,
@@ -119,11 +121,11 @@ class JinZhongMap extends Component {
       type: 'effectScatter',
       coordinateSystem: 'geo',
       showEffectOn: 'render',
-      symbolSize: 6,
+      symbolSize: 9,
       rippleEffect: {
         period: 4,
-        scale: 4,
-        brushType: 'fill'
+        scale: 5,
+        brushType: 'stroke'
       },
       z: 1,
       data: filterData,
