@@ -13,8 +13,8 @@ class JinZhongMap extends Component {
       title: false,
       tooltip: false,
       legend: {
-        top: 50,
-        left: 50,
+        top: 30,
+        left: 30,
         show: true,
         orient: 'vertical'
       },
@@ -36,6 +36,7 @@ class JinZhongMap extends Component {
           }
         },
         roam: true,
+        zoom: 1.2,
         itemStyle: {
           normal: {
             areaColor: '#3d91d0 ',
