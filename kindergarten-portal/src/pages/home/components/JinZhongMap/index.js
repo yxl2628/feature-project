@@ -7,7 +7,7 @@ class JinZhongMap extends Component {
   componentDidMount() {
     const jinzhongGeoJson = require('./jinzhong.json')
     echarts.registerMap('jinzhong', jinzhongGeoJson)
-    const youeryuanData = require('./data.json')
+    const youeryuanData = require('../../../../assets/data.json')
     const myChart = echarts.init(document.getElementById('map'))
     myChart.setOption({
       title: false,

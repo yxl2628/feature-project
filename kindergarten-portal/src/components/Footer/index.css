@@ -1,6 +1,7 @@
 .footer {
-  height: 125px;
-  line-height: 125px;
+  font-size: 12px;
+  height: 80px;
+  line-height: 80px;
   text-align: center;
   color: rgba(172,173,175,.55);
 }
