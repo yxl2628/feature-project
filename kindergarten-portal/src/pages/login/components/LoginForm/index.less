@@ -1,0 +1,47 @@
+.form {
+  margin-top: 20px;
+  :global(.ant-form-item) {
+    & label{
+      font-size: 16px;
+      color: #303c5f;
+      line-height: 45px;
+      &:before {
+        content: ''
+      }
+      &:after {
+        content: '';
+        margin-right: 20px;
+      }
+    }
+  }
+  :global(.ant-form-item-with-help) {
+    margin-bottom: 24px;
+  }
+  :global(.ant-input){
+    height: 45px;
+    font-size: 16px;
+    color: #303c5f;
+  }
+  :global(.ant-form-explain){
+    position: absolute;
+    margin-top: -32.5px;
+    margin-left: 100%;
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+  }
+}
+.btn {
+  width: 100%;
+  background-color: #fa5343;
+  color: #ffffff;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 10px;
+  &:hover,&:focus,&:active {
+    color: #ffffff;
+    background-color: #fa5343;
+    border: 0;
+    box-shadow: 0;
+  }
+}

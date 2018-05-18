@@ -1,0 +1,16 @@
+.login {
+  width: 500px;
+  margin: 180px auto 230px;
+  text-align: center;
+}
+.title {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 60px;
+  background: url(../../assets/login-logo.png) no-repeat 0 center;
+  background-size: 40px 40px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #303c5f;
+}
