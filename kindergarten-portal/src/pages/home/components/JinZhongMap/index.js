@@ -114,11 +114,12 @@ class JinZhongMap extends Component {
         filterData.push(data[i])
       }
     }
+    const type = status === 0 ? 'effectScatter' : 'effectScatter'
     const name = status === 0 ? '未开通幼儿园' : '已开通幼儿园'
     const color = status === 0 ? '#e0593e' : '#60d222'
     const series = {
       name: name,
-      type: 'effectScatter',
+      type: type,
       coordinateSystem: 'geo',
       showEffectOn: 'render',
       symbolSize: 9,
