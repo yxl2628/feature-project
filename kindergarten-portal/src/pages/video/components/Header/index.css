@@ -1,0 +1,22 @@
+.content {
+  text-align: center;
+}
+.title {
+  font-size: 22px;
+}
+.type {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: inline-flex;
+}
+.item {
+  display: inline-block;
+  width: 200px;
+}
+.item:first-child {
+  margin-right: 20px;
+}
+.item img{
+  width: 200px;
+  cursor: pointer;
+}
