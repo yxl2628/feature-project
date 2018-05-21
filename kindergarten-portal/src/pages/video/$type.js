@@ -17,7 +17,7 @@ export default function(props) {
         <Header current={current} type={type} />
         <div className={styles.main}>
         {
-          type === 'jk' ? <JianKong current={current} /> : <Tongji />
+          type === 'jk' ? <JianKong /> : <Tongji />
         }
         </div>
       </div>

@@ -13,3 +13,6 @@ npm-debug.log*
 # umi
 .umi
 .umi-production
+
+# big video
+/src/static/video

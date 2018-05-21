@@ -1,4 +1,35 @@
 .content {
-  width: 100%;
+  width: 85%;
+  margin: 0 auto;
   background-color: #ffffff;
+}
+.list {
+  width: 100%;
+  margin-top: 20px;
+}
+.item {
+  display: inline-block;
+  position: relative;
+  width: 33.3333%;
+  box-sizing: border-box;
+}
+.item img {
+  display: block;
+  width: 95%;
+  text-align: center;
+  font-size: 0;
+}
+.title {
+  position: absolute;
+  text-align: center;
+  width: 95%;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  line-height: 40px;
+  background-color: rgba(0,0,0,.6);
+  color: #ffffff;
+}
+.video {
+  display: none;
 }

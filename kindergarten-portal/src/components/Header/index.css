@@ -9,9 +9,9 @@
 }
 .logo {
   float: left;
-  width: 180px;
+  width: 275px;
   background: url(../../assets/logo.png) no-repeat center center;
-  background-size: 160px 40px;
+  background-size: 275px 45px;
   font-size: 0;
 }
 .info {

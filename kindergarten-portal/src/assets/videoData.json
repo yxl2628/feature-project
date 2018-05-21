@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "室内监控1",
+    "url": "http://218.205.169.222:8070/live/635.stream/playlist.m3u8"
+  },
+  {
+    "id": 2,
+    "name": "室内监控2",
+    "url": "http://218.205.169.222:8070/live/636.stream/playlist.m3u8"
+  },
+  {
+    "id": 3,
+    "name": "室内监控3",
+    "url": "monitor_jiaoshibiaoyan.mp4"
+  },
+  {
+    "id": 4,
+    "name": "室内监控4",
+    "url": "monitor_luzhi.mp4"
+  },
+  {
+    "id": 5,
+    "name": "门厅监控1",
+    "url": "monitor_luzhi2.mp4"
+  },
+  {
+    "id": 6,
+    "name": "室外操场监控1",
+    "url": "monitor_luzhi3.mp4"
+  },
+  {
+    "id": 7,
+    "name": "室外操场监控2",
+    "url": "monitor_shiwaihuodong.mp4"
+  },
+  {
+    "id": 8,
+    "name": "学校入口监控1",
+    "url": "monitor_wurenqu.mp4"
+  },
+  {
+    "id": 9,
+    "name": "室内监控3",
+    "url": "monitor_jiaoshibiaoyan.mp4"
+  }
+]

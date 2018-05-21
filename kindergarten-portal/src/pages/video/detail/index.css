@@ -1,0 +1,35 @@
+.content {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px 100px;
+  text-align: center;
+}
+.title {
+  font-size: 18px;
+  text-align: left;
+}
+.video {
+  width: 100%;
+  margin-top: 20px;
+}
+.relevant {
+  font-size: 18px;
+  border-bottom: 1px solid #cccccc;
+  margin-top: 30px;
+  line-height: 30px;
+  text-align: left;
+  position: relative;
+}
+.relevant:after {
+  content: ' ';
+  display: inline-block;
+  background-color: #3992d6;
+  width: 80px;
+  height: 2px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+.relevantList {
+
+}
