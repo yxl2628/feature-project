@@ -10,9 +10,11 @@ function Login({ dispatch, loading }) {
     })
   }
   return (
-    <div className={styles.login}>
-      <div className={styles.title}>账号登录</div>
-      <LoginForm onOk={login} loading={loading} />
+    <div className={styles.content}>
+      <div className={styles.login}>
+        <div className={styles.title}>账号登录</div>
+        <LoginForm onOk={login} loading={loading} />
+      </div>
     </div>
   )
 }

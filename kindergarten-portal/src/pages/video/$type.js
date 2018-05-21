@@ -15,9 +15,11 @@ export default function(props) {
     return (
       <div className={styles.content}>
         <Header current={current} type={type} />
+        <div className={styles.main}>
         {
           type === 'jk' ? <JianKong current={current} /> : <Tongji />
         }
+        </div>
       </div>
     )
   } else {
