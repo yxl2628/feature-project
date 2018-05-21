@@ -13,7 +13,9 @@
   margin-top: 20px;
 }
 .relevant {
-  font-size: 18px;
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
   border-bottom: 1px solid #cccccc;
   margin-top: 30px;
   line-height: 30px;
@@ -24,12 +26,57 @@
   content: ' ';
   display: inline-block;
   background-color: #3992d6;
-  width: 80px;
+  width: 75px;
   height: 2px;
   position: absolute;
   top: 30px;
   left: 0;
 }
 .relevantList {
-
+  text-align: left;
+  font-size: 12px;
+}
+.relevantList .year{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+}
+.monthItem {
+  display: inline-block;
+  line-height: 25px;
+  padding: 0 20px;
+  background-color: #f0f0f0;
+  color: #000000;
+  border-radius: 8px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.monthActive {
+  display: inline-block;
+  line-height: 25px;
+  padding: 0 20px;
+  background-color: #3992d6;
+  color: #ffffff;
+  border-radius: 8px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.date {
+  margin-top: 15px;
+}
+.dateItem {
+  width: 8.33333%;
+  display: inline-block;
+  line-height: 35px;
+  color: #000000;
+  cursor: pointer;
+}
+.dateActive {
+  width: 8.33333%;
+  display: inline-block;
+  line-height: 35px;
+  color: #3992d6;
+  cursor: pointer;
 }

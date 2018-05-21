@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './index.css'
 import router from 'umi/router'
+import Link from 'umi/link'
 
 function Header ({ location: { pathname } }){
   function logout () {
@@ -10,7 +11,7 @@ function Header ({ location: { pathname } }){
   return (
     <div className={styles.header}>
       <div className={styles.banner}>
-        <div className={styles.logo}>掌上幼儿园</div>
+        <Link to="/home" className={styles.logo}>掌上幼儿园</Link>
         <div className={styles.info}>
           {
             pathname === '/login' ? '欢迎加入我们' : (

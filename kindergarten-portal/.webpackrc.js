@@ -8,7 +8,7 @@ export default {
   'copy': [
     {
       'from': 'src/static',
-      'to': '.'
+      'to': 'static'
     }
   ]
 }

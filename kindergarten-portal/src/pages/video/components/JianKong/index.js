@@ -58,7 +58,7 @@ class JianKong extends Component {
           }
         </div>
         <div className={styles.video}>
-          <ReactPlayer ref="video" url={this.state.url} playing={this.state.playing} onReady={this.onReady}/>
+          <ReactPlayer ref="video" url={this.state.url} playing={this.state.playing} onReady={this.onReady} muted={true}/>
         </div>
       </div>
     )
