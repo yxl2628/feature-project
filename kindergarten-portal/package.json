@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "umi dev",
-    "build": "rm -rf dist/&&rm -rf kindergarten/&&SET BASE_URL=/kindergarten&& umi build&mv dist/ kindergarten/",
+    "build": "SET BASE_URL=/kindergarten&& umi build",
     "lint": "eslint --ext .js src test",
     "precommit": "npm run lint"
   },
