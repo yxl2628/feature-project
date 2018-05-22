@@ -5,6 +5,7 @@ import ReactPlayer from 'react-player'
 import router from 'umi/router'
 import Link from 'umi/link'
 import { Breadcrumb } from 'antd'
+import { connect } from 'dva'
 
 class VideoDetail extends Component {
   constructor (props){
@@ -120,4 +121,11 @@ class VideoDetail extends Component {
     )
   }
 }
-export default VideoDetail
+
+function mapStateToProps(state) {
+  return {
+    vcms: state.vcms
+  }
+}
+
+export default connect(mapStateToProps)(VideoDetail)

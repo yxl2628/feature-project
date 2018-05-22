@@ -1,4 +1,5 @@
 import errorCode from './error'
+import CryptoJS from 'crypto-js'
 /**
  * 获取字符串的字节码
  * @param  {String} _str
@@ -19,5 +20,19 @@ export function getBytes(_str){
 export function handleError(code){
   if (code) {
     return errorCode[code]
+  }
+}
+/**
+ * 获取info信息
+ * @return {Object}
+ */
+export function getInfo(){
+  const _info = sessionStorage.getItem('_info')
+  if (_info) {
+    const bytes = CryptoJS.AES.decrypt(_info.toString(), 'startimes ott')
+    const info = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+    return info
+  } else {
+    return null
   }
 }

@@ -1,6 +1,7 @@
 module.exports = {
-  baseURL: 'http://192.168.32.249:10080',
+  baseURL: window.baseURL,
   api: {
-    systemUserLogin: '/system-service/v1/users/login'
+    systemUserLogin: '/system-service/v1/users/login',
+    getEpgList: '/vcms-service/v1/contents/channels/*/programs'
   }
 }
