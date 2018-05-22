@@ -44,7 +44,7 @@ class JinZhongMap extends Component {
         itemStyle: {
           normal: {
             areaColor: '#3d91d0 ',
-            borderColor: '#7ecbf7',
+            borderColor: '#7ecbf7'
           },
           emphasis: {
             areaColor: '#3d91d0',
@@ -97,19 +97,20 @@ class JinZhongMap extends Component {
             borderRadius: 4,
             shadowColor: 'rgba(117, 171, 208, 0.3)',
             shadowBlur: 30,
-            padding: 30,
+            padding: 20,
             lineHeight: 20,
             rich: {
               name: {
                 color: '#5a656f',
-                fontSize: 16
+                fontSize: 14,
+                lineHeight: 30
               },
               tel: {
-                color: '#5a656f',
+                color: '#cccccc',
                 fontSize: 12
               },
               address: {
-                color: '#5a656f',
+                color: '#cccccc',
                 fontSize: 12
               }
             }
