@@ -49,7 +49,7 @@ class JianKong extends Component {
           {
             data.map(video => {
               return (
-                <Link key={video.id} to={`/video/detail?id=${video.id}`} className={styles.item}>
+                <Link key={video.id} to={`/video/detail/?id=${video.id}`} className={styles.item}>
                   <img id={`img_${video.id}`} src={video.src ? video.src : this.state.default} alt={video.name} />
                   <div className={styles.title}>{video.name}</div>
                 </Link>

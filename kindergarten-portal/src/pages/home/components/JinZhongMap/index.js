@@ -73,7 +73,7 @@ class JinZhongMap extends Component {
     })
     myChart.on('click', function (params) {
       if (params.componentType === 'series' && params.data.status === 1) {
-        router.push('/video?id=' + params.data.id + '&type=jk')
+        router.push('/video/?id=' + params.data.id + '&type=jk')
       }
     })
   }

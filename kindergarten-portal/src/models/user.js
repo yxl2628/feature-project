@@ -17,7 +17,7 @@ export default {
         const _info = CryptoJS.AES.encrypt(_res, 'startimes ott')
         sessionStorage.setItem('_info', _info)
         yield put({ type: 'setUser', payload: result })
-        router.push('/home')
+        router.push('/home/')
       }
     },
   },

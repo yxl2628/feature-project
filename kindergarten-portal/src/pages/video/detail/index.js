@@ -60,7 +60,7 @@ class VideoDetail extends Component {
       current: current,
       currentday: query[1] + '-' + query[2]
     })
-    router.push({path: '/video/detail', query: {id: current.id, t: query.join('-')}})
+    router.push({path: '/video/detail/', query: {id: current.id, t: query.join('-')}})
   }
   getDataUrl = (_now, _query, current) => {
     const _temp = data[Math.floor((Math.random()*data.length))].url
@@ -97,8 +97,8 @@ class VideoDetail extends Component {
     return (
       <div>
         <Breadcrumb className={styles.breadcrumb}>
-          <Breadcrumb.Item><Link to="/home">首页</Link></Breadcrumb.Item>
-          <Breadcrumb.Item><Link to={`/video?id=${current.id}`}>监控设备</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/home/">首页</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to={`/video/?id=${current.id}`}>监控设备</Link></Breadcrumb.Item>
           <Breadcrumb.Item>{current.name}</Breadcrumb.Item>
         </Breadcrumb>
         <div className={styles.content}>
