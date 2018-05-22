@@ -44,7 +44,7 @@ class JinZhongMap extends Component {
         itemStyle: {
           normal: {
             areaColor: '#3d91d0 ',
-            borderColor: '#6ab9eb',
+            borderColor: '#7ecbf7',
           },
           emphasis: {
             areaColor: '#3d91d0',
