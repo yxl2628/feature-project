@@ -3,6 +3,8 @@ import styles from './index.css'
 import data from '../../../assets/videoData.json'
 import ReactPlayer from 'react-player'
 import router from 'umi/router'
+import Link from 'umi/link'
+import { Breadcrumb } from 'antd'
 
 class VideoDetail extends Component {
   constructor (props){
@@ -26,7 +28,7 @@ class VideoDetail extends Component {
       current: current,
       now: nowTime,
       query: queryTime,
-      currentday: queryTime[1] + '-' + queryTime[2]
+      currentday: ''
     }
   }
   getCurrent = (id) => {
@@ -91,21 +93,27 @@ class VideoDetail extends Component {
       }
       return dateArray
     }
-
     return (
-      <div className={styles.content}>
-        <div className={styles.title}>{current.name}</div>
-        <div id="videoDetail" className={styles.video}>
-          <ReactPlayer url={current.tempUlr} playing={true} width={this.state.width} height={this.state.height}/>
-        </div>
-        <div className={styles.relevant}>相关视频</div>
-        <div className={styles.relevantList}>
-          <div className={styles.year}>{query[0]}年</div>
-          <div className={styles.month}>
-            {renderMonth(now[1], query[1])}
+      <div>
+        <Breadcrumb className={styles.breadcrumb}>
+          <Breadcrumb.Item><Link to="/home">首页</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to={`/video?id=${current.id}`}>监控设备</Link></Breadcrumb.Item>
+          <Breadcrumb.Item>{current.name}</Breadcrumb.Item>
+        </Breadcrumb>
+        <div className={styles.content}>
+          <div className={styles.title}><span>{current.name}</span><span className={styles.stauts}>{currentday === '' ? '直播中' : '回看'}</span></div>
+          <div id="videoDetail" className={styles.video}>
+            <ReactPlayer url={current.tempUlr} playing={true} width={this.state.width} height={this.state.height} controls={currentday === '' ? false : true}/>
           </div>
-          <div className={styles.date}>
-            {renderDate(now, query)}
+          <div className={styles.relevant}>回看视频</div>
+          <div className={styles.relevantList}>
+            <div className={styles.year}>{query[0]}年</div>
+            <div className={styles.month}>
+              {renderMonth(now[1], query[1])}
+            </div>
+            <div className={styles.date}>
+              {renderDate(now, query)}
+            </div>
           </div>
         </div>
       </div>

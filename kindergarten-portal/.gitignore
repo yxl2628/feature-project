@@ -5,6 +5,7 @@
 
 # production
 /kindergarten
+/dist
 
 # misc
 .DS_Store

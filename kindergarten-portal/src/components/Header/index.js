@@ -11,11 +11,11 @@ function Header ({ location: { pathname } }){
   return (
     <div className={styles.header}>
       <div className={styles.banner}>
-        <Link to="/home" className={styles.logo}>掌上幼儿园</Link>
+        <Link to="/home" className={styles.logo}>幼儿园统一监管系统</Link>
         <div className={styles.info}>
           {
-            pathname === '/login' ? '欢迎加入我们' : (
-              <a onClick={logout} className={styles.logout}>登出</a>
+            pathname.indexOf('/login') >= 0 ? '欢迎加入我们' : (
+              <a onClick={logout} className={styles.logout}>退出</a>
             )
           }
         </div>

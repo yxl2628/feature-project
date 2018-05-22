@@ -21,7 +21,7 @@ function LoginForm ({ onOk, loading, form: { validateFields, getFieldDecorator }
         <FormItem {...formItemLayout} hasFeedback label="账号">
           {
             getFieldDecorator('account', {
-              // initialValue: '313@20180516.E',
+              initialValue: '313@20180516.E',
               rules: [{ required: true, message: '请输入您的账号!' }]
             })(<Input placeholder="请输入账号" size="large" />)
           }

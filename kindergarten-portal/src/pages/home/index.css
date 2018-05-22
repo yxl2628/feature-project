@@ -1,11 +1,15 @@
 .content {
   background-color: #ffffff;
-  padding: 20px 30px;
+  padding: 20px 20px 0;
   text-align: center;
 }
 .title {
-  font-size: 22px;
+  font-size: 18px;
 }
 .subTitle {
-  font-size: 16px;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
 }

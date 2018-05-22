@@ -14,9 +14,13 @@ class JinZhongMap extends Component {
       tooltip: false,
       legend: {
         top: 30,
-        left: 30,
+        left: 60,
         show: true,
-        orient: 'vertical'
+        orient: 'vertical',
+        textStyle: {
+          fontSize: 11,
+          color: '#303c5f'
+        }
       },
       geo: {
         show: true,
@@ -35,7 +39,7 @@ class JinZhongMap extends Component {
             }
           }
         },
-        roam: true,
+        roam: false,
         zoom: 1.2,
         itemStyle: {
           normal: {

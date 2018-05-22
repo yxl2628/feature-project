@@ -10,7 +10,7 @@ export default ({ render, ...rest }) => {
       {...rest}
       render={props =>
         loginStatus ? (
-          <div>
+          <div style={{absolute:'relative'}}>
             { render(props) }
           </div>
         ) : (

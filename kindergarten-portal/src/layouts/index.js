@@ -6,7 +6,7 @@ import styles from './index.css'
 
 function Layout({ children, location }) {
   return (
-    <div>
+    <div className={styles.body}>
       <Header location={location} />
       <div className={styles.content}>
         {children}

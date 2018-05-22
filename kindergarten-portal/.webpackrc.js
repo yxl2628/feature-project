@@ -1,5 +1,5 @@
 export default {
-  'publicPath': '/dist/static/',
+  'publicPath': '/kindergarten/static/',
   // 'outputPath': 'kindergarten',
   'theme': {
     'primary-color': '#303c5f',
@@ -9,7 +9,7 @@ export default {
   'copy': [
     {
       'from': 'src/static/',
-      'to': 'static'
+      'to': '.'
     }
   ]
 }

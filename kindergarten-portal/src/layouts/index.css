@@ -1,6 +1,16 @@
+.body {
+  position: relative;
+}
 .content {
   /* background-color: #ffffff; */
   border-radius: 5px;
-  margin: 30px auto;
+  margin: 20px auto 0;
   max-width: 1225px;
+  position: relative;
+}
+
+@media (max-width:1440px) {
+  .content {
+    max-width: 1199px;
+  }
 }

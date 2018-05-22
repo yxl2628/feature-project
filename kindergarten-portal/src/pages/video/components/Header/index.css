@@ -2,21 +2,25 @@
   text-align: center;
 }
 .title {
-  font-size: 22px;
+  font-size: 18px;
 }
 .type {
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 10px;
   display: inline-flex;
 }
 .item {
   display: inline-block;
-  width: 200px;
+  width: 180px;
 }
 .item:first-child {
   margin-right: 20px;
 }
 .item img{
-  width: 200px;
+  width: 180px;
   cursor: pointer;
+}
+.breadcrumb {
+  width: 100%;
+  text-align: left;
 }

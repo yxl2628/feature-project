@@ -9,7 +9,7 @@ class Tongji extends Component {
       title: {
         text: '园区人数统计',
         textStyle: {
-          fontSize: 20,
+          fontSize: 16,
           color: '#5a656f',
           textAlign: 'center'
         },
@@ -24,7 +24,7 @@ class Tongji extends Component {
       legend: {
         data: ['班级个数', '教师人数', '学生人数', '家长人数'],
         align: 'left',
-        top: 45,
+        top: 37,
         left: '35%'
       },
       xAxis: [{
