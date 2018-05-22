@@ -4,7 +4,7 @@
 /node_modules
 
 # production
-/dist
+/kindergarten
 
 # misc
 .DS_Store
@@ -14,5 +14,8 @@ npm-debug.log*
 .umi
 .umi-production
 
+
 # big video
 /src/static/video
+
+yarn-error.log*

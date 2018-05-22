@@ -9,7 +9,7 @@ export default function(props) {
   const current = youeryuanData.find(value => {
     return `${value.id}` === props.location.query.id
   })
-  const type = props.match.params.type
+  const type = props.location.query.type ? props.location.query.type : 'jk'
 
   if (current) {
     return (
