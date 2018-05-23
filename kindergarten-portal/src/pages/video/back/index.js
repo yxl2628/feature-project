@@ -2,26 +2,37 @@ import { Component } from 'react'
 import styles from '../detail/index.css'
 import data from '../../../assets/videoData.json'
 import ReactPlayer from 'react-player'
+import router from 'umi/router'
 import Link from 'umi/link'
 import { Breadcrumb } from 'antd'
 import { connect } from 'dva'
 
-class VideoDetail extends Component {
+class VideoBackDetail extends Component {
   constructor (props){
     super(props)
-    const current = this.getCurrent(this.props.location.query.id)
+    let queryTime = this.props.location.query.t
+    const id = this.props.location.query.id
+    const name = this.props.location.query.name
     const now = new Date()
     const year = now.getFullYear().toString()
     const month = now.getMonth() + 1 < 10 ? ('0' + (now.getMonth() + 1)) : (now.getMonth() + 1).toString()
     const date = now.getDate() < 10 ? ('0' + now.getDate()) : now.getDate().toString()
     const nowTime = [year, month, date]
+    let currentday = ''
+    if (queryTime) {
+      queryTime = queryTime.split('-')
+      currentday = queryTime[1] + '-' + queryTime[2]
+    } else {
+      queryTime = [year, month, date]
+    }
     this.state = {
       width: 0,
       height: 0,
-      current: current,
+      id: id,
+      name: name,
       now: nowTime,
-      query: [year, month, date],
-      currentday: ''
+      query: queryTime,
+      currentday: currentday
     }
   }
   getCurrent = (id) => {
@@ -30,7 +41,7 @@ class VideoDetail extends Component {
     })
   }
   componentDidMount() {
-    const width = document.getElementById('videoDetail').offsetWidth
+    const width = document.getElementById('VideoBackDetail').offsetWidth
     this.setState({
       width: width,
       height: width*9/16
@@ -43,15 +54,27 @@ class VideoDetail extends Component {
       query: query
     })
   }
-
+  changeDate = (date) => {
+    const {query, id, name} = this.state
+    query[2] = date.toString()
+    this.setState({
+      query: query,
+      currentday: query[1] + '-' + query[2]
+    })
+    router.push({path: '/video/back/', query: {id: id, name: name, t: query.join('-')}})
+  }
+  getDataUrl = () => {
+    const _temp = data[Math.floor((Math.random()*data.length))].url
+    return _temp
+  }
   render () {
-    const { now, query, current, currentday } = this.state
-    const { exist } = this.props.vcms
+    const { now, query, id, name, currentday } = this.state
+    const { exist, list } = this.props.vcms
     const renderMonth = (_nowMonth, _queryMonth) => {
       const monthArray = []
       for (let i = 1; i <= _nowMonth; i++) {
         const month = i < 10 ? ('0' + i) : i.toString()
-        if (current.id === 1) {
+        if (id === '1') {
           if (exist && exist.indexOf(month) >= 0) {
             monthArray.push(<span key={i} onClick={() => {this.changeMonth(month)}} className={month === _queryMonth ? styles.monthActive : styles.monthItem}>{month}月</span>)
           }
@@ -70,30 +93,35 @@ class VideoDetail extends Component {
       for (let i = 1; i <= max; i++) {
         const day = i < 10 ? ('0' + i) : i
         const today = currentday === (_query[1] + '-' + day)
-        if (current.id === 1) {
+        if (id === '1') {
           if (exist && exist.indexOf(_query[1] + '-' + day) >= 0) {
-            dateArray.push(<Link key={i} to={`/video/back/?id=${current.id}&name=${current.name}&t=${_query[0]}-${_query[1]}-${day}`} className={today ? styles.dateActive : styles.dateItem}>{_query[1]}月{day}日</Link>)
+            dateArray.push(<span key={i} onClick={()=>{this.changeDate(day)}} className={today ? styles.dateActive : styles.dateItem}>{_query[1]}月{day}日</span>)
           }
         } else {
-          dateArray.push(<Link key={i} to={`/video/back/?id=${current.id}&name=${current.name}&t=${_query[0]}-${_query[1]}-${day}`} className={today ? styles.dateActive : styles.dateItem}>{_query[1]}月{day}日</Link>)
+          dateArray.push(<span key={i} onClick={()=>{this.changeDate(day)}} className={today ? styles.dateActive : styles.dateItem}>{_query[1]}月{day}日</span>)
         }
       }
       return dateArray
     }
+    let url = this.getDataUrl()
+    if (id === '1' && list && list[currentday] && list[currentday][0]) {
+      url = list[currentday][0].url
+    }
+
     return (
       <div>
         <Breadcrumb className={styles.breadcrumb}>
           <Breadcrumb.Item><Link to="/home/">首页</Link></Breadcrumb.Item>
-          <Breadcrumb.Item><Link to={`/video/?id=${current.id}`}>监控设备</Link></Breadcrumb.Item>
-          <Breadcrumb.Item>{current.name}</Breadcrumb.Item>
+          <Breadcrumb.Item><Link to={`/video/?id=${id}`}>监控设备</Link></Breadcrumb.Item>
+          <Breadcrumb.Item>{name}</Breadcrumb.Item>
         </Breadcrumb>
         <div className={styles.content}>
           <div className={styles.title}>
-            <span>{current.name}</span>
-            <span className={styles.stauts}>直播中</span>
+            <span>{name}</span>
+            <Link to={`/video/detail/?id=${id}`}>切换到直播</Link>
           </div>
-          <div id="videoDetail" className={styles.video}>
-            <ReactPlayer url={current.url} playing={true} width={this.state.width} height={this.state.height} controls={currentday === '' ? false : true}/>
+          <div id="VideoBackDetail" className={styles.video}>
+            <ReactPlayer url={url} playing={true} width={this.state.width} height={this.state.height} controls={currentday === '' ? false : true}/>
           </div>
           <div className={styles.relevant}>回看视频</div>
           <div className={styles.relevantList}>
@@ -117,4 +145,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(VideoDetail)
+export default connect(mapStateToProps)(VideoBackDetail)

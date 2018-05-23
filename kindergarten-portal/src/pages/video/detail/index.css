@@ -21,6 +21,11 @@
   height: 20px;
   line-height: 20px;
 }
+.title a {
+  color: #fa5343;
+  margin-left: 10px;
+  font-size: 12px;
+}
 .video {
   width: 100%;
   margin-top: 20px;

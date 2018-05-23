@@ -14,6 +14,7 @@ export function getEpgList({ start_time_from, start_time_to }) {
     method: 'GET',
     params:{
       token: info.token,
+      record_type: 'CATCHUP_RECORD',
       start_time_from,
       start_time_to
     }
