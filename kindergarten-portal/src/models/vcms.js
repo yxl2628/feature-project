@@ -15,7 +15,8 @@ export default {
   effects: {
     *getEpgList({ payload: {start_time_from, start_time_to} }, { call, put }) {
       const result = yield call(vcmsService.getEpgList, { start_time_from, start_time_to })
-      yield put({type: 'setEpgList', payload: result})
+      const resultStr = JSON.stringify(result).replace(/\d+\.\d+\.\d+\.\d+/gi, '218.205.169.222')
+      yield put({type: 'setEpgList', payload: JSON.parse(resultStr)})
     },
   },
   reducers: {

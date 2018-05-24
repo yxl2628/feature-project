@@ -104,7 +104,7 @@ class VideoBackDetail extends Component {
     }
     let url = this.getDataUrl()
     if (id === '1' && list && list[currentday] && list[currentday][0]) {
-      url = list[currentday][0].url.replace('218.205.169.222', '218.205.169.222')
+      url = list[currentday][0].url
     }
 
     return (
