@@ -30,6 +30,7 @@ class VideoBackDetail extends Component {
       height: 0,
       id: id,
       name: name,
+      url: '',
       now: nowTime,
       query: queryTime,
       currentday: currentday
@@ -45,6 +46,19 @@ class VideoBackDetail extends Component {
     this.setState({
       width: width,
       height: width*9/16
+    })
+  }
+  UNSAFE_componentWillReceiveProps (newProps) {
+    const { id, currentday } = this.state
+    const { list } = newProps.vcms
+    let url = ''
+    if (id === '1' && list && list[currentday] && list[currentday][0]) {
+      url = list[currentday][0]
+    } else {
+       url = this.getDataUrl()
+    }
+    this.setState({
+      url: url
     })
   }
   changeMonth = (month) => {
@@ -66,9 +80,25 @@ class VideoBackDetail extends Component {
   getDataUrl = () => {
     return this.getCurrent(this.state.id).url
   }
+  onEnded = (url) => {
+    // const { id, currentday } = this.state
+    // const { list } = this.props.vcms
+    // if (id === '1' && list && list[currentday] && list[currentday][0]) {
+    //   const index = list[currentday].indexOf(url)
+    //   let nextUrl = ''
+    //   if (list[currentday][index + 1]) {
+    //     nextUrl = list[currentday][index + 1]
+    //   } else {
+    //     nextUrl = list[currentday][0]
+    //   }
+    //   this.setState({
+    //     url: nextUrl
+    //   })
+    // }
+  }
   render () {
-    const { now, query, id, name, currentday } = this.state
-    const { exist, list } = this.props.vcms
+    const { now, query, id, name, url, currentday } = this.state
+    const { exist, mapList } = this.props.vcms
     const renderMonth = (_nowMonth, _queryMonth) => {
       const monthArray = []
       for (let i = 1; i <= _nowMonth; i++) {
@@ -102,9 +132,16 @@ class VideoBackDetail extends Component {
       }
       return dateArray
     }
-    let url = this.getDataUrl()
-    if (id === '1' && list && list[currentday] && list[currentday][0]) {
-      url = list[currentday][list[currentday].length - 1].url
+    const renderTime = (_id, _mapList, _currentday) => {
+      if (_id === '1' && _mapList !== undefined) {
+        if (_mapList[_currentday]) {
+          const timeArray = []
+          _mapList[_currentday].forEach((item, index) => {
+            timeArray.push(<span key={index} className={this.state.url === item.url ? styles.timeActive : styles.timeItem} onClick={() => {this.setState({url:item.url})}}>{item.start_time} - {item.end_time}</span>)
+          })
+          return <div className={styles.timeList}>监控时间：{timeArray}</div>
+        }
+      }
     }
     return (
       <div>
@@ -119,7 +156,8 @@ class VideoBackDetail extends Component {
             <Link to={`/video/detail/?id=${id}`}>切换到直播</Link>
           </div>
           <div id="VideoBackDetail" className={styles.video}>
-            <ReactPlayer url={url} playing={true} width={this.state.width} height={this.state.height} controls={currentday === '' ? false : true}/>
+            <ReactPlayer ref="player" url={url} playing={true} onEnded={() => {this.onEnded(url)}} width={this.state.width} height={this.state.height} controls={currentday === '' ? false : true}/>
+            {renderTime(id, mapList, currentday)}
           </div>
           <div className={styles.relevant}>回看视频</div>
           <div className={styles.relevantList}>

@@ -98,3 +98,21 @@
   color: #3992d6;
   cursor: pointer;
 }
+.timeList {
+  text-align: left;
+  margin-top: 20px;
+}
+.timeItem {
+  display: inline-block;
+  line-height: 35px;
+  margin-right: 20px;
+  color: #000000;
+  cursor: pointer;
+}
+.timeActive {
+  display: inline-block;
+  line-height: 35px;
+  margin-right: 20px;
+  color: #3992d6;
+  cursor: pointer;
+}

@@ -24,6 +24,7 @@ export default {
   reducers: {
     setEpgList(state, { payload }) {
       const list = {}
+      const mapList = {}
       const exist = []
       payload.forEach(item => {
         const date = moment(item.start_time).format('MM-DD')
@@ -31,15 +32,19 @@ export default {
         exist.push(month,date)
         item.streams.forEach(stream => {
           if(stream.status === 'RECORDING_SUCCESS') {
+            stream.start_time = moment(item.start_time).format('HH:mm:ss')
+            stream.end_time = moment(item.end_time).format('HH:mm:ss')
             if (list[date] === undefined) {
-              list[date] = [stream]
+              list[date] = [stream.url]
+              mapList[date] = [stream]
             } else {
-              list[date].push(stream)
+              list[date].push(stream.url)
+              mapList[date].push(stream)
             }
           }
         })
       })
-      return { ...state, exist, list }
+      return { ...state, exist, list, mapList }
     }
   },
 }
