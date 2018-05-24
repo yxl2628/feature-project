@@ -64,8 +64,7 @@ class VideoBackDetail extends Component {
     router.push({path: '/video/back/', query: {id: id, name: name, t: query.join('-')}})
   }
   getDataUrl = () => {
-    const _temp = data[Math.floor((Math.random()*data.length))].url
-    return _temp
+    return this.getCurrent(this.state.id).url
   }
   render () {
     const { now, query, id, name, currentday } = this.state
@@ -105,7 +104,7 @@ class VideoBackDetail extends Component {
     }
     let url = this.getDataUrl()
     if (id === '1' && list && list[currentday] && list[currentday][0]) {
-      url = list[currentday][0].url
+      url = list[currentday][0].url.replace('218.205.169.222', '218.205.169.222')
     }
 
     return (

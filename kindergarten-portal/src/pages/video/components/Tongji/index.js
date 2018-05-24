@@ -44,7 +44,7 @@ class Tongji extends Component {
       series: [{
         name: '班级个数',
         type: 'bar',
-        data: [1, 1, 2],
+        data: [6, 6, 9],
         itemStyle: {
           normal: {
               color: '#28c1c3'
@@ -53,7 +53,7 @@ class Tongji extends Component {
       }, {
         name: '教师人数',
         type: 'bar',
-        data: [10, 8, 12],
+        data: [12, 12, 18],
         itemStyle: {
           normal: {
               color: '#ad98da'
@@ -62,7 +62,7 @@ class Tongji extends Component {
       }, {
         name: '学生人数',
         type: 'bar',
-        data: [20, 12, 31],
+        data: [90, 120, 145],
         itemStyle: {
           normal: {
               color: '#50a9ed'
@@ -71,7 +71,7 @@ class Tongji extends Component {
       }, {
         name: '家长人数',
         type: 'bar',
-        data: [29, 18, 39],
+        data: [104, 143, 169],
         itemStyle: {
           normal: {
               color: '#ffb075'

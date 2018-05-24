@@ -30,7 +30,7 @@ function LoginForm ({ onOk, loading, form: { validateFields, getFieldDecorator }
           {
             getFieldDecorator('password', {
               rules: [{ required: true, message: '请输入您的密码!' }]
-            })(<Input placeholder="请输入密码" size="large" />)
+            })(<Input type="password" placeholder="请输入密码" size="large" />)
           }
         </FormItem>
         <Col offset={6} span={14}>

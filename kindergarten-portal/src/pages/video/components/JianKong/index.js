@@ -44,7 +44,7 @@ class JianKong extends Component {
   render () {
     return (
       <div className={styles.content}>
-        园区共计视频{data.length}个，正在直播中
+        园区共计视频{data.length}个
         <div className={styles.list}>
           {
             data.map(video => {
