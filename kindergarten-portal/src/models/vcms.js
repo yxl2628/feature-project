@@ -28,7 +28,7 @@ export default {
         const month = item.start_time.substring(5,7)
         exist.push(month,date)
         if (list[date]) {
-          list[date].concat(item.streams)
+          list[date].concat(list[date], item.streams)
         } else {
           list[date] = item.streams
         }

@@ -104,9 +104,8 @@ class VideoBackDetail extends Component {
     }
     let url = this.getDataUrl()
     if (id === '1' && list && list[currentday] && list[currentday][0]) {
-      url = list[currentday][0].url
+      url = list[currentday][list[currentday].length - 1].url
     }
-
     return (
       <div>
         <Breadcrumb className={styles.breadcrumb}>
