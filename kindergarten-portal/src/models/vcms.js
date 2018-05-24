@@ -26,14 +26,18 @@ export default {
       const list = {}
       const exist = []
       payload.forEach(item => {
-        const date = item.start_time.substring(5,10)
-        const month = item.start_time.substring(5,7)
+        const date = moment(item.start_time).format('MM-DD')
+        const month = moment(item.start_time).format('MM')
         exist.push(month,date)
-        if (list[date]) {
-          list[date].concat(list[date], item.streams)
-        } else {
-          list[date] = item.streams
-        }
+        item.streams.forEach(stream => {
+          if(stream.status === 'RECORDING_SUCCESS') {
+            if (list[date] === undefined) {
+              list[date] = [stream]
+            } else {
+              list[date].push(stream)
+            }
+          }
+        })
       })
       return { ...state, exist, list }
     }
