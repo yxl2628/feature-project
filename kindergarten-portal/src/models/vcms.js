@@ -1,4 +1,5 @@
 import * as vcmsService from '../services/vcms'
+import moment from 'moment-timezone'
 
 export default {
   namespace: 'vcms',
@@ -7,7 +8,8 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/video/detail/' || pathname === '/video/back/') {
-          dispatch({type: 'getEpgList', payload: {start_time_from: '2018-01-01T00:00:00.000Z', start_time_to: '2018-05-22T07:45:44.999Z'}})
+          const now =  moment().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z'
+          dispatch({type: 'getEpgList', payload: {start_time_from: '2018-01-01T00:00:00.000Z', start_time_to:now}})
         }
       });
     },
