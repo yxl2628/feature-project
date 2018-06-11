@@ -8,7 +8,7 @@ import Link from 'umi/link'
 export default function(props) {
   const name = decodeURIComponent(props.location.query.name)
   const areaList = youeryuanData.filter(value => {
-    if (value.area === name) {
+    if (value.area === name && value.status === 1) {
       return value
     } else {
       return null
@@ -21,7 +21,6 @@ export default function(props) {
         <Breadcrumb className={styles.breadcrumb}>
           <Breadcrumb.Item><Link to="/home/">首页</Link></Breadcrumb.Item>
           <Breadcrumb.Item>区县数据统计</Breadcrumb.Item>
-          <Breadcrumb.Item>{name}</Breadcrumb.Item>
         </Breadcrumb>
         <div className={styles.main}>
         <Tongji name={name} list={areaList}/>
