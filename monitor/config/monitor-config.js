@@ -4,22 +4,17 @@ var countryList = [
     enName: 'AWS',
     timezone: 'Europe/Dublin',
     hasService: ['BOSS', 'OTT']
-  },{
-    name: '埃塞俄比亚',
-    enName: 'Ethiopia',
-    timezone: 'Africa/Nairobi',
-    hasService: ['BOSS', 'OTT']
+  },
+  {
+    name: '北京',
+    enName: 'StarTimes',
+    timezone: 'Asia/Shanghai',
+    hasService: ['BOSS', 'OTT', '大数据']
   },
   {
     name: '尼日利亚',
     enName: 'Nigeria',
     timezone: 'Africa/Lagos',
-    hasService: ['BOSS', 'OTT']
-  },
-  {
-    name: '肯尼亚',
-    enName: 'Kenya',
-    timezone: 'Africa/Nairobi',
     hasService: ['BOSS', 'OTT']
   },
   {
@@ -29,9 +24,33 @@ var countryList = [
     hasService: ['BOSS', 'OTT']
   },
   {
+    name: '肯尼亚',
+    enName: 'Kenya',
+    timezone: 'Africa/Nairobi',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
     name: '乌干达',
     enName: 'Uganda',
     timezone: 'Africa/Nairobi',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
+    name: '赞比亚',
+    enName: 'Zambia',
+    timezone: 'Africa/Maputo',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
+    name: '刚果金',
+    enName: 'congo',
+    timezone: 'Africa/Lagos',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
+    name: '南非',
+    enName: 'SouthAfrica',
+    timezone: 'Africa/Johannesburg',
     hasService: ['BOSS', 'OTT']
   },
   {
@@ -47,27 +66,9 @@ var countryList = [
     hasService: ['BOSS', 'OTT']
   },
   {
-    name: '刚果金',
-    enName: 'congo',
-    timezone: 'Africa/Lagos',
-    hasService: ['BOSS', 'OTT']
-  },
-  {
     name: '几内亚',
     enName: 'Guinea',
     timezone: 'Africa/Abidjan',
-    hasService: ['BOSS', 'OTT']
-  },
-  {
-    name: '布隆迪',
-    enName: 'Burundi',
-    timezone: 'Africa/Maputo',
-    hasService: ['BOSS', 'OTT']
-  },
-  {
-    name: '刚果布',
-    enName: 'congo-B',
-    timezone: 'Africa/Lagos',
     hasService: ['BOSS', 'OTT']
   },
   {
@@ -83,21 +84,21 @@ var countryList = [
     hasService: ['BOSS', 'OTT']
   },
   {
+    name: '布隆迪',
+    enName: 'Burundi',
+    timezone: 'Africa/Maputo',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
     name: '马达',
     enName: 'Madagascar',
     timezone: 'Africa/Nairobi',
     hasService: ['BOSS', 'OTT']
   },
   {
-    name: '南非',
-    enName: 'SouthAfrica',
-    timezone: 'Africa/Johannesburg',
-    hasService: ['BOSS', 'OTT']
-  },
-  {
-    name: '利比里亚',
-    enName: 'Liberia',
-    timezone: 'Africa/Monrovia',
+    name: '刚果布',
+    enName: 'congo-B',
+    timezone: 'Africa/Lagos',
     hasService: ['BOSS', 'OTT']
   },
   {
@@ -107,9 +108,9 @@ var countryList = [
     hasService: ['BOSS', 'OTT']
   },
   {
-    name: '赞比亚',
-    enName: 'Zambia',
-    timezone: 'Africa/Maputo',
+    name: '塞拉利昂',
+    enName: 'SierraLeone',
+    timezone: 'Africa/Abidjan',
     hasService: ['BOSS', 'OTT']
   },
   {
@@ -125,14 +126,26 @@ var countryList = [
     hasService: ['BOSS', 'OTT']
   },
   {
+    name: '埃塞俄比亚',
+    enName: 'Ethiopia',
+    timezone: 'Africa/Nairobi',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
+    name: '利比里亚',
+    enName: 'Liberia',
+    timezone: 'Africa/Monrovia',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
     name: '喀麦隆',
     enName: 'Cameroon',
     timezone: 'Africa/Lagos',
     hasService: ['BOSS', 'OTT']
   },
   {
-    name: '塞拉利昂',
-    enName: 'SierraLeone',
+    name: '马里',
+    enName: 'Mali',
     timezone: 'Africa/Abidjan',
     hasService: ['BOSS', 'OTT']
   },
@@ -140,12 +153,6 @@ var countryList = [
     name: '莱索托',
     enName: 'Lesotho',
     timezone: 'Africa/Johannesburg',
-    hasService: ['BOSS', 'OTT']
-  },
-  {
-    name: '马里',
-    enName: 'Mali',
-    timezone: 'Africa/Abidjan',
     hasService: ['BOSS', 'OTT']
   }
 ]
