@@ -118,6 +118,7 @@ $(document).ready(function() {
           var _groupid = 'g-' + groupid
           if (item.hosts[0].name.indexOf('STR') >= 0) {
             if (item.key_.indexOf('enp3s0f1') >= 0 || item.key_.indexOf('p2p1') >= 0) {
+              // console.log('贷款异常错误排查：', item.hosts, item.key_, item.lastvalue)
               if (_countObj[_groupid] === undefined) {
                 _countObj[_groupid] = {
                   realValue: parseInt(item.lastvalue),
@@ -358,7 +359,7 @@ $(document).ready(function() {
           aws_error = 0
         for (var i = 0, resLen = result.length; i < resLen; i++) {
           var groupName = result[i].groups[0].name
-          if (groupName === '0701_AWS_研究院') {
+          if (groupName === '0701_AWS_研究院' || groupName === '研究院测试组' || groupName === '国内_研究院_Aws_Openvpn_server') {
             aws_error += 1
             if (result[i].priority > 3) {
               aws_error += 6
@@ -397,7 +398,6 @@ $(document).ready(function() {
     }, function(res) {
       if (res.result != undefined) {
         res.result.forEach(function(item) {
-          console.log(item.name, item.lastvalue)
           // 播放成功率
           if (item.name === 'playing_play_success_all') {
             $('#appplay').text((item.lastvalue * 10000 / 100).toFixed(2) + '%').css('color', getColor('good'))

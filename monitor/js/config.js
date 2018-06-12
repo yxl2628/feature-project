@@ -71,7 +71,7 @@ var pack_loss_probability = [
 // 南非OS组id、南非ott上云组id、gslb的主机id、app相关数据所在主机id
 var groupid_ott = 55, group_os = 54, gslb_manage_hostid = 10600, app_hostid = 10554
 // 需要监控的主机组
-var error_group_list = ['0701_AWS_研究院', '南非上云_OTT', '南非os组', '国内_总部机房', '国内_研究院_Aws_Openvpn_server']
+var error_group_list = ['0701_AWS_研究院', '南非上云_OTT', '南非os组', '国内_总部机房', '国内_研究院_Aws_Openvpn_server', '研究院测试组']
 // 获取统一的状态色
 var getColor = function(type) {
   if (type == 'none') {
