@@ -9,56 +9,99 @@
     <div class="content">
       <div class="item">
         <img src="./img/devops/1.jpg" />
-        <div class="status"><img src="./img/devops/success.png" />日志的内容：巴拉巴拉巴拉日志的内容</div>
+        <div class="status"></div>
       </div>
-      <div class="split">
-        <div class="line"></div>
+      <div class="split left">
+        <div class="line"><div class="arrow"></div></div>
       </div>
       <div class="item">
         <img src="./img/devops/2.jpg" />
-        <div class="status"><img src="./img/devops/success.png" />日志的内容：巴拉巴拉巴拉</div>
+        <div class="status"></div>
       </div>
-      <div class="split">
-        <div class="line"></div>
+      <div class="split left">
+        <div class="line"><div class="arrow"></div></div>
       </div>
       <div class="item">
         <img src="./img/devops/3.jpg" />
-        <div class="status"><img src="./img/devops/success.png" />日志的内容：巴拉巴拉巴拉日志的内容</div>
+        <div class="status"></div>
       </div>
-      <div class="split">
-        <div class="line"></div>
+      <div class="split left">
+        <div class="line"><div class="arrow"></div></div>
       </div>
       <div class="item">
         <img src="./img/devops/4.jpg" />
-        <div class="status"><img src="./img/devops/success.png" />日志的内容：巴拉巴拉巴拉</div>
+        <div class="status"></div>
       </div>
     </div>
-    <div class="content">
+    <div class="content down clear">
+      <div class="split down">
+        <div class="line"><div class="arrow"></div></div>
+      </div>
+    </div>
+    <div class="content" style="direction: rtl">
       <div class="item">
         <img src="./img/devops/5.jpg" />
-        <div class="status"><img src="./img/devops/wait.png" />日志的内容：巴拉巴拉巴拉</div>
+        <div class="status" style="direction:ltr"></div>
       </div>
-      <div class="split">
-        <div class="line"></div>
+      <div class="split right">
+        <div class="line"><div class="arrow"></div></div>
       </div>
       <div class="item">
         <img src="./img/devops/6.jpg" />
-        <div class="status"><img src="./img/devops/wait.png" />日志的内容：巴拉巴拉巴拉</div>
+        <div class="status" style="direction:ltr"></div>
       </div>
-      <div class="split">
-        <div class="line"></div>
+      <div class="split right">
+        <div class="line"><div class="arrow"></div></div>
       </div>
       <div class="item">
         <img src="./img/devops/7.jpg" />
-        <div class="status"><img src="./img/devops/wait.png" />日志的内容：巴拉巴拉巴拉</div>
+        <div class="status" style="direction:ltr"></div>
       </div>
-      <div class="split">
-        <div class="line"></div>
+      <div class="split right">
+        <div class="line"><div class="arrow"></div></div>
       </div>
       <div class="item">
         <img src="./img/devops/8.jpg" />
-        <div class="status"><img src="./img/devops/error.png" />日志的内容：巴拉巴拉巴拉</div>
+        <div class="status" style="direction:ltr"></div>
       </div>
     </div>
+    <script src="./js/jquery.min.js?version=1528769604144" charset="utf-8"></script>
+    <script src="./js/zabbix.js?version=1528769604144" charset="utf-8"></script>
+    <script type="text/javascript">
+    var zabbix_server = new $.jqzabbix()
+    // 先登录获取zabbix的auth
+    zabbix_server.userLogin()
+    zabbix_server.queryData('item.get', {
+      // 'groupids': [groupid],
+      'application': 'Network', // 只查询Network的应用集
+      'selectGroups': ['name'], // 同时查出所属的主机组信息
+      'selectHosts': ['name'], // 同时查出所属主机的信息
+      'search': {
+        'name': 'Outgoing',
+      },
+      'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
+    }, function(res) {
+      updateLog(1, 'git代码已提交', 'success')
+      updateLog(2, '自动化构建执行已成功', 'success')
+      updateLog(3, '自动化测试执行已成功', 'success')
+      updateLog(4, '测试出现bug', 'error')
+      updateLog(5, '等待第四步执行完成', 'wait')
+      updateLog(6, '等待第五步执行完成', 'wait')
+      updateLog(7, '等待第六步执行完成', 'wait')
+      updateLog(8, '等待第七步执行完成', 'wait')
+    })
+    function updateLog(step, log, type) {
+      $('.item').each(function(index){
+        if (step == index + 1) {
+          $(this).find('.status').html('<img src="./img/devops/' + type + '.png" />' + log)
+          var $nextSplit = index === 3 ? $(this).parent().next() : $(this).next()
+          if ($nextSplit) {
+            $nextSplit.find('.line').attr('class', 'line ' + type)
+            $nextSplit.find('.arrow').attr('class', 'arrow ' + type)
+          }
+        }
+      })
+    }
+    </script>
   </body>
 </html>

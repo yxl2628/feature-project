@@ -210,7 +210,7 @@ $(document).ready(function() {
         totalNetwork += item.realValue
         networkList.push({
           name: item.name,
-          value: item.realValue / 1000000
+          value: Math.ceil(item.realValue / 1000000)
         })
       }
     })
@@ -240,19 +240,15 @@ $(document).ready(function() {
       color: ['#30af81', '#d1d41a', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42'],
       grid: {
         top: 10,
-        left: 110,
-        right: 0,
+        left: 0,
+        right: 180,
         bottom: 10
       },
       yAxis: [{
         type: 'category',
         data: networkList.map(function(item) {
           return item.name
-        }),
-        axisLabel: {
-          color: '#b9b9b9',
-          fontSize: 12
-        }
+        })
       }],
       xAxis: [{
         type: 'value',
@@ -271,7 +267,15 @@ $(document).ready(function() {
       series: [{
         name: '占用带宽（Mbps）',
         type: 'bar',
-        data: networkList
+        data: networkList,
+        label: {
+          normal: {
+            show: true,
+            formatter: '{b0} : {c0}Mbps',
+            color: '#b9b9b9',
+            position: 'right'
+          }
+        }
       }]
     }, true)
     $('#partner').html(template('ledTpl', {
@@ -405,7 +409,7 @@ $(document).ready(function() {
           aws_error = 0
         for (var i = 0, resLen = result.length; i < resLen; i++) {
           var groupName = result[i].groups[0].name
-          if (groupName === '0701_AWS_研究院' || groupName === '研究院测试组' || groupName === '国内_研究院_Aws_Openvpn_server') {
+          if (groupName === '0701_AWS_研究院' || groupName === '研究院测试组') {
             aws_error += 1
             if (result[i].priority > 3) {
               aws_error += 6
