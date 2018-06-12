@@ -1,0 +1,72 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'PingFang HK Regular', 'PingFang HK','Roboto','Helvetica','Arial','sans-serif';
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ffffff;
+  background-color: #333333;
+  overflow: hidden;
+}
+.title {
+  position: relative;
+  background-color: #151515;
+  line-height: 45px;
+  text-align: center;
+}
+.list {
+  margin: 0;
+  padding: 0 10px;
+}
+.list li {
+  list-style: none;
+  width: 100%;
+  text-align: left;
+  line-height: 40px;
+}
+.list div {
+  display: inline-block;
+  text-align: center;
+}
+.list .icon {
+  width: 35px;
+  vertical-align: middle;
+}
+.list .icon img {
+  display: block;
+  font-size: 0;
+}
+.list .name {
+  width: 70px;
+}
+.list .time {
+  width:40px;
+}
+.list .service .status {
+  margin-right: 5px;
+  padding: 3px 6px;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #525252;
+  color: #ffffff;
+}
+.list .service .status.good {
+  background-color: #30af81;
+}
+.list .service .status.well {
+  background-color: #d1d41a;
+}
+.list .service .status.bad {
+  background-color: #ff1d04;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  background-color: #333333;
+}

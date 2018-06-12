@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>监控汇总</title>
+    <link rel="stylesheet" href="./css/monitor.css?version=1528450098964">
+    <script src="./js/jquery.min.js?version=1528450098964" charset="utf-8"></script>
+    <script src="./js/zabbix.js?version=1528450098964" charset="utf-8"></script>
+    <script src="./js/template-web.js?version=1528450098964" charset="utf-8"></script>
+    <script src="./js/moment.js?version=1528450098964" charset="utf-8"></script>
+    <script src="./js/moment-timezone-with-data.min.js?version=1528450098964" charset="utf-8"></script>
+    <script src="./config/monitor-config.js?version=1528450098964" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="countryList"></div>
+    <script id="countryTpl" type="text/html">
+      <div class="title">服务状态监控</div>
+      <ul id="listScroll" class="list">
+        {{each list}}
+        <li>
+          <div class="icon"><img src="./img/country/{{$value.enName}}.jpg" width="30px"/></div>
+          <div class="name">{{$value.name}}</div>
+          <div class="time" data-timezone="{{$value.timezone}}"></div>
+          <div class="service">
+            {{each $value.service service}}
+            <span class="status {{service.status}}" id="{{service.name}}-{{$value.enName}}">{{service.name}}</span>
+            {{/each}}
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var zabbix_server = new $.jqzabbix()
+        // 先登录获取zabbix的auth
+        zabbix_server.userLogin()
+        init()
+        $('#countryList').html(template('countryTpl', {list: countryList}))
+        task()
+        setInterval(function(){scrollCountry($('#listScroll'))}, 2000)
+        setInterval(task(), 60000)
+        function task() {
+          updateTime()
+          getBossData()
+        }
+        function init() {
+          countryList.forEach(function(item){
+            item.service = {}
+            item.hasService.forEach(function(service) {
+              item.service[service] = {
+                name: service,
+                status: ''
+              }
+            })
+          })
+        }
+        function updateTime() {
+          $('.time').each(function(index){
+            var timezone = $(this).attr('data-timezone')
+            $(this).html(moment().tz(timezone).format('HH:mm'))
+          })
+        }
+        function getBossData() {
+          var aws_groupids = ['43', '46'], boss_groupids = [], boss_error = {}
+          zabbix_server.queryData('hostgroup.get', {
+            output: ['gourpid', 'name']
+          }, function(res) {
+            if (res.result !== undefined) {
+              res.result.forEach(function(item) {
+                if (item.name.search(/^海外_(\w)+_BOSS$/ig) >= 0) {
+                  var countryName = item.name.replace('海外_', '').replace('_BOSS', '')
+                  boss_error[countryName] = 0
+                  boss_groupids.push(item.groupid)
+                }
+              })
+              zabbix_server.queryData('trigger.get', {
+                'groupids': boss_groupids,
+                'only_true': 1, // 仅返回最近处于问题状态的触发器
+                'monitored': 1, //属于受监控主机的已启用触发器
+                'min_severity': 2,
+                'active': 1, // 只返回属于受监控主机的启用的触发器
+                'selectHosts': ['name'], // 同时查出所属的主机信息
+                'selectGroups': ['name'], // 同时查出所属的主机组信息
+                'filter': {
+                  'value': '1'
+                },
+                'output': ['description', 'hosts', 'groups', 'lastchange', 'priority']
+              }, function(res) {
+                if (res.result !== undefined) {
+                  res.result.forEach(function(item) {
+                    var countryName = item.groups[0].name.replace('海外_', '').replace('_BOSS', '')
+                    boss_error[countryName] += 1
+                  })
+                  updateServiceStatus(boss_error, 'BOSS')
+                }
+              })
+              zabbix_server.queryData('application.get', {
+                'groupids': aws_groupids,
+                'output': ['applicationid', 'name']
+              }, function(res) {
+                if (res.result !== undefined) {
+                  var applicationIds = []
+                  res.result.forEach(function(item) {
+                    if (item.name.search(/(\w)+_BOSS$/ig) >= 0) {
+                      applicationIds.push(item.applicationid)
+                    }
+                  })
+                  console.log(applicationIds)
+                }
+                // boss_error['AWS'] = res.result.length
+                // updateServiceStatus(boss_error, 'BOSS')
+              })
+            }
+          })
+        }
+        function updateServiceStatus(error_data, type) {
+          for (var x in error_data) {
+            var className = error_data[x] == 0 ? 'good': error_data[x] > 5 ? 'bad' : 'well'
+            $('#' + type + '-' + x).attr('class', 'status ' + className)
+          }
+        }
+        function scrollCountry(obj){
+          var $first =obj.find('li:first')
+          var height = $first.height()
+          $first.animate({
+            marginTop: -height + 'px'
+          }, 1000, function() {
+          $first.css('marginTop', 0).appendTo(obj)
+          })
+        }
+      })
+    </script>
+  </body>
+</html>
