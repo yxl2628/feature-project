@@ -66,7 +66,37 @@ html, body {
 }
 .swiper-slide {
   text-align: center;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
-  background-color: #333333;
+}
+.swiper-container-vertical>.swiper-pagination-bullets{
+  top: 450px;
+  right: 20px;
+}
+.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
+  display: block;
+  margin: 8px 4px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  color:#ffffff;
+  opacity: 1;
+  background: #525252;
+}
+.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet-active {
+  color:#fff;
+  background: #30af81;
 }
