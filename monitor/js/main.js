@@ -281,6 +281,14 @@ $(document).ready(function() {
           show: false
         }
       }],
+      tooltip: {
+        trigger: 'item',
+        textStyle: {
+          'fontSize': 12
+        },
+        position: 'right',
+        formatter: '{b0} : {c0}Mbps'
+      },
       series: [{
         name: '占用带宽（Mbps）',
         type: 'bar',
