@@ -216,7 +216,7 @@ $(document).ready(function() {
     })
     networkList = networkList.sort(function(a, b) {
       return b.value - a.value
-    }).slice(0, 5).reverse()
+    }).slice(0, 10).reverse()
     if (totalNetwork < 10000000) {
       totalNetwork = totalNetwork / 1000
       type = 'K'

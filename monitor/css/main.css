@@ -19,7 +19,7 @@ html, body {
 .total {
   position: absolute;
   left: 20px;
-  bottom: 30px;
+  bottom: 10px;
 }
 
 .total .item {
