@@ -6,6 +6,12 @@ var countryList = [
     hasService: ['BOSS', 'OTT']
   },
   {
+    name: '阿里云',
+    enName: 'AliYun',
+    timezone: 'Asia/Shanghai',
+    hasService: ['BOSS', 'OTT']
+  },
+  {
     name: '北京',
     enName: 'StarTimes',
     timezone: 'Asia/Shanghai',
