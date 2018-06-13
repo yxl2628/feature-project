@@ -208,10 +208,12 @@ $(document).ready(function() {
     cache_list.forEach(function(item) {
       if (item.realValue != undefined) {
         totalNetwork += item.realValue
-        networkList.push({
-          name: item.name,
-          value: Math.ceil(item.realValue / 1000000)
-        })
+        if (item.realValue > 1000000) {
+          networkList.push({
+            name: item.name,
+            value: parseFloat(item.realValue / 1000000).toFixed(2)
+          })
+        }
       }
     })
     networkList = networkList.sort(function(a, b) {
@@ -256,14 +258,14 @@ $(document).ready(function() {
           show: false
         }
       }],
-      tooltip: {
-        trigger: 'item',
-        textStyle: {
-          'fontSize': 12
-        },
-        position: 'right',
-        formatter: '{b0} : {c0}Mbps'
-      },
+      // tooltip: {
+      //   trigger: 'item',
+      //   textStyle: {
+      //     'fontSize': 12
+      //   },
+      //   position: 'right',
+      //   formatter: '{b0} : {c0}Mbps'
+      // },
       series: [{
         name: '占用带宽（Mbps）',
         type: 'bar',

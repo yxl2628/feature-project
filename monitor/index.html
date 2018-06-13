@@ -64,7 +64,7 @@
       <div class="content">
         <div class="title">四达CDN总带宽(<span id="networdUnit"></span>bit/s)</div>
         <div id="network" class="number"></div>
-        <div class="title" style="margin-top:30px;">带宽占比Top5</div>
+        <div class="title" style="margin-top:30px;">带宽占比Top10</div>
         <div id="networkTop5" style="width:350px;height:250px;"></div>
       </div>
     </div>
@@ -128,21 +128,24 @@
             show: true,
             constantSpeed: 30,
             symbol: 'arrow',
-            symbolSize: 6,
+            // symbol: footballPath,
+            symbolSize: 5,
             trailLength: 0,
           },
           data: []
         },
         {
           name: 'cache节点告警',
+          // type: 'scatter',
           type: 'effectScatter',
           coordinateSystem: 'geo',
           zlevel: 2,
+          // symbol: footballPath,
           symbolSize: 12,
           showEffectOn: 'render',
           rippleEffect: {
             period: 4,
-            scale: 4,
+            scale: 3,
             brushType: 'stroke'
           },
           data: []
