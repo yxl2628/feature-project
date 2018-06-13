@@ -333,25 +333,28 @@ $(document).ready(function() {
 
         $('#' + id).text((total - error) + '/' + total)
         var colortype = error < 1 ? 'good' : error < 10 ? 'well' : 'bad'
-        var path = serverPath
-        if ($('#radar').html().indexOf('data-type="well"') >= 0) {
-          path = serverBadPath
-        }
-        if ($('#radar').html().indexOf('data-type="bad"') >= 0) {
-          path = serverErrorPath
-        }
-        var _option = myChart.getOption()
-        _option.series.forEach(function(item) {
-          if (item.name === '地点') {
-            item.data.forEach(function(value) {
-              if (value.name === '上云站机房') {
-                value.symbol = path
-              }
-            })
-          }
-        })
-        myChart.setOption(_option, true)
         $('#' + id).css('color', getColor(colortype)).attr('data-type', colortype)
+
+        setTimeout(function() {
+          var path = serverPath
+          if ($('#radar').html().indexOf('data-type="well"') >= 0) {
+            path = serverBadPath
+          }
+          if ($('#radar').html().indexOf('data-type="bad"') >= 0) {
+            path = serverErrorPath
+          }
+          var _option = myChart.getOption()
+          _option.series.forEach(function(item) {
+            if (item.name === '地点') {
+              item.data.forEach(function(value) {
+                if (value.name === '上云站机房') {
+                  value.symbol = path
+                }
+              })
+            }
+          })
+          myChart.setOption(_option, true)
+        }, 500)
       }
     })
   }
