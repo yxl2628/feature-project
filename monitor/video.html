@@ -132,14 +132,14 @@
   }
 
   function createFrame(index, name, frameW, frameH) {
-    console.log('开始加载frame页面', index);
+    // console.log('开始加载frame页面', index);
     var html = '';
     html += '<div style="width:' + frameW + 'px;height:' + frameH + 'px;">';
     html += '<iframe name="frame' + index + '" src="./video-player.html?index=' + index + '" width="100%" height="100%"  frameborder="0" scrolling="no" /></iframe>';
     html += '</div>';
     html += '<div class="chnl">';
     html += '<div class="title">';
-    // html += '<button id="error'+index+'" class="light green"></button>'+name+'';
+    html += '<button id="error'+index+'" class="light green"></button>'+name+'';
     html += '</div>';
     html += '<div class="volum">';
     html += '<span><i id="volum' + index + '" class="icon iconfont icon-jingyin" onclick="changeVolum(\'' + index + '\')"></i></span>';
