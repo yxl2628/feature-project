@@ -4,8 +4,8 @@ html, body {
   font-family: 'PingFang HK Regular', 'PingFang HK','Roboto','Helvetica','Arial','sans-serif';
   font-size: 14px;
   line-height: 1.5;
-  color: #000000;
-  background-color: #ffffff;
+  color: #b9b9b9;
+  background-color: #333333;
   overflow: hidden;
   padding: 20px;
 }
@@ -109,7 +109,7 @@ html, body {
 .split.down .line{
   position: absolute;
   top: 0;
-  left: 40%;
+  left: 60%;
   display: block;
   content: 'line';
   font-size: 0;
