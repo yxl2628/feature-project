@@ -129,6 +129,22 @@
       document.getElementById('app').style.marginTop = height + "px";
     }, (videoData.col * videoData.row - 1) * 5000);
 
+    setInterval(function() {
+      for (var j = 0; j < videoData.col * videoData.row; j++) {
+        console.log('页面' + j + '每隔2分钟更改心跳状态...');
+        videoData.videoList[j].status = false;
+        (function(b) {
+          setTimeout(function() {
+            if (!videoData.videoList[b].status) {
+              console.log('页面' + b + '失去心跳，重新加载...');
+              showError(b, "red");
+              var frame = window.frames["frame" + b];
+              frame.location.reload();
+            }
+          }, 10 * 1000);
+        })(j);
+      }
+    }, 2 * 60 * 1000);
   }
 
   function createFrame(index, name, frameW, frameH) {
@@ -139,7 +155,7 @@
     html += '</div>';
     html += '<div class="chnl">';
     html += '<div class="title">';
-    html += '<button id="error'+index+'" class="light green"></button>'+name+'';
+    html += '<button id="error' + index + '" class="light green"></button>' + name + '';
     html += '</div>';
     html += '<div class="volum">';
     html += '<span><i id="volum' + index + '" class="icon iconfont icon-jingyin" onclick="changeVolum(\'' + index + '\')"></i></span>';
