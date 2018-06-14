@@ -36,7 +36,7 @@ var geoCoordMap = {
 var cache_list = [
   {name: '尼日利亚_MTN', groupid: '', url: ''},
   {name: '尼日利亚_Glo', groupid: '61', url: 'http://10.0.224.100:3000/d/0MiACYVmz/cachezhan-dian-ni-ri-glo?refresh=1m&orgId=1'},
-  {name: '肯尼亚_Safaricom', groupid: '', url: ''},
+  {name: '肯尼亚_Safaricom', groupid: '69', url: ''},
   {name: '坦桑_Tigo', groupid: '70', url: 'http://10.0.224.100:3000/d/qLpLYTIiz/cachezhan-dian-tan-sang-tigo?refresh=1m&orgId=1'},
   {name: '坦桑_Airtel', groupid: '', url: ''},
   {name: '坦桑_Hallotel', groupid: '66', url: 'http://10.0.224.100:3000/d/jPMBLoSmk/cachezhan-dian-tan-sang-hallotel?refresh=1m&orgId=1'},
@@ -50,14 +50,14 @@ var cache_list = [
   {name: '科特迪瓦_MTN', groupid: '90', url: 'http://10.0.224.100:3000/d/3Sf4p1Iik/cachezhan-dian-ke-te-mtn?refresh=1m&orgId=1'},
   {name: '塞内加尔_Orange', groupid: '', url: ''},
   {name: '莫桑比克_Vodacom', groupid: '', url: ''},
-  {name: '刚果布_Airtel', groupid: '67', url: 'http://10.0.224.100:3000/d/Dn_sLoIik/cachezhan-dian-gang-guo-bu-airtel?refresh=1m&orgId=1'},
+  {name: '刚果布_Airtel', groupid: '', url: 'http://10.0.224.100:3000/d/Dn_sLoIik/cachezhan-dian-gang-guo-bu-airtel?refresh=1m&orgId=1'},
   {name: '卢旺达', groupid: '', url: ''},
   {name: '马达', groupid: '', url: ''},
   {name: '刚果金_Africell', groupid: '', url: ''},
   {name: '刚果金_Vodacom', groupid: '', url: ''},
   {name: '刚果金_Orange', groupid: '', url: ''},
   {name: '喀麦隆', groupid: '', url: ''},
-  {name: '几内亚_MTN', groupid: '86', url: 'http://10.0.224.100:3000/d/SlAoLoSmz/cachezhan-dian-ji-nei-ya-mtn?refresh=1m&orgId=1'},
+  {name: '几内亚_MTN', groupid: '', url: 'http://10.0.224.100:3000/d/SlAoLoSmz/cachezhan-dian-ji-nei-ya-mtn?refresh=1m&orgId=1'},
   {name: '布隆迪_LEO', groupid: '88', url: 'http://10.0.224.100:3000/d/oXbEYTSiz/cachezhan-dian-bu-long-di-leo?refresh=1m&orgId=1'}
 ]
 // 各个cache节点对应的grafana子页面地址
