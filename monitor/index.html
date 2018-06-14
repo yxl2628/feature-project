@@ -133,11 +133,11 @@
         },
         {
           name: 'cache节点告警',
-          // type: 'scatter',
-          type: 'effectScatter',
+          type: 'scatter',
+          // type: 'effectScatter',
           coordinateSystem: 'geo',
           zlevel: 2,
-          // symbol: footballPath,
+          symbol: footballPath,
           symbolSize: 12,
           showEffectOn: 'render',
           rippleEffect: {
@@ -156,19 +156,17 @@
     radarImg = '<img src="' + radarPath +'" style="position:absolute;top:' + radarPix[1] + 'px;left:' + radarPix[0] + 'px;width:45px;height:45px;" />'
     $('#main').after(satelliteImg).after(radarImg)
     myChart.on('click', function (params) {
-      if (params.seriesType && params.seriesType === 'effectScatter') {
-        if (params.data.url) {
-          goto('./cache.html#' + params.data.groupid)
-        } else {
-          alert(params.data.name + '的grafana子页面未配置')
-        }
-      } else if (params.seriesType && params.seriesType === 'scatter'){
+      if (params.seriesType && (params.seriesType === 'effectScatter' || params.seriesType === 'scatter')) {
         switch (params.name) {
           case '北京':
             goto('http://10.0.224.100:3000/d/Qb7BQ5Siz/cachezhan-dian-ce-shi-zu?refresh=1m&orgId=1')
             break;
           default:
-            console.log(params.name)
+            if (params.data.url) {
+              goto('./cache.html#' + params.data.groupid)
+            } else {
+              alert(params.data.name + '的grafana子页面未配置')
+            }
         }
       }
     })
