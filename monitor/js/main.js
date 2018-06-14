@@ -218,6 +218,7 @@ $(document).ready(function() {
       value: totalUser.toString()
     }))
     $('#networdUnit').text(type)
+    $('#networktop').text(networkList.length)
     $('#network').html(template('ledTpl', {
       value: totalNetwork.toFixed(0)
     }))
