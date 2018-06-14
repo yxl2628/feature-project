@@ -442,35 +442,49 @@ $(document).ready(function() {
     }, function(res) {
       if (res.result != undefined) {
         res.result.forEach(function(item) {
+          var appplay_val = item.lastvalue * 10000 / 100
+          var typeColor = getColor('good')
           // 播放成功率
           if (item.name === 'playing_play_success_all') {
-            $('#appplay').text((item.lastvalue * 10000 / 100).toFixed(2) + '%').css('color', getColor('good'))
+            if (appplay_val < 60) {
+              typeColor = getColor('bad')
+            }
+            $('#appplay').text(appplay_val.toFixed(2) + '%').css('color', typeColor)
           }
           // 首页打开成功率
           if (item.name === 'playing_home_page_success_all') {
-            $('#apphome').text((item.lastvalue * 10000 / 100).toFixed(2) + '%').css('color', getColor('good'))
+            if (appplay_val < 90) {
+              typeColor = getColor('bad')
+            }
+            $('#apphome').text(appplay_val.toFixed(2) + '%').css('color', typeColor)
           }
           // 登录成功率
           if (item.name === 'playing_user_login_success_all') {
-            $('#applogin').text((item.lastvalue * 10000 / 100).toFixed(2) + '%').css('color', getColor('good'))
+            if (appplay_val < 90) {
+              typeColor = getColor('bad')
+            }
+            $('#applogin').text(appplay_val.toFixed(2) + '%').css('color', typeColor)
           }
           // 注册转化成功率
           if (item.name === 'playing_user_register_success_all') {
-            $('#appregister').text((item.lastvalue * 10000 / 100).toFixed(2) + '%').css('color', getColor('good'))
+            if (appplay_val < 80) {
+              typeColor = getColor('bad')
+            }
+            $('#appregister').text(appplay_val.toFixed(2) + '%').css('color', typeColor)
           }
           // 订到成功率
           if (item.name === 'playing_order_success_all') {
-            $('#apporder').text((item.lastvalue * 10000 / 100).toFixed(2) + '%').css('color', getColor('good'))
+            if (appplay_val < 60) {
+              typeColor = getColor('bad')
+            }
+            $('#apporder').text(appplay_val.toFixed(2) + '%').css('color', typeColor)
           }
           // 支付成功率
           if (item.name === 'playing_payment_success_all') {
-            $('#apppay').text((item.lastvalue * 10000 / 100).toFixed(2) + '%').css('color', getColor('good'))
-          }
-          // app在线用户数
-          if (item.name === 'playing_play_count_all') {
-            $('#apponline').html(template('ledTpl', {
-              value: parseInt(item.lastvalue).toString()
-            }))
+            if (appplay_val < 60) {
+              typeColor = getColor('bad')
+            }
+            $('#apppay').text(appplay_val.toFixed(2) + '%').css('color', typeColor)
           }
         })
       }
