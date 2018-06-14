@@ -48,31 +48,27 @@
     <div class="item"><label>订单：</label><p id="apporder"></p></div>
     <div class="item"><label>支付：</label><p id="apppay"></p></div>
   </div>
-  <div class="total">
-    <div class="item" style="display:none">
-      <div class="content">
-        <div class="title">StarTimesAPP在线用户数</div>
-        <div id="apponline" class="number"></div>
-      </div>
-    </div>
+  <div class="total user">
     <div class="item">
       <div class="content">
         <div class="title">四达CDN在线用户数</div>
         <div id="user" class="number"></div>
       </div>
     </div>
+  </div>
+  <div class="total network">
     <div class="item">
       <div class="content">
         <div class="title">四达CDN总带宽(<span id="networdUnit"></span>bit/s)</div>
         <div id="network" class="number"></div>
-        <div class="title" style="margin-top:30px;">带宽占比Top10</div>
-        <div id="networkTop5" style="width:350px;height:250px;"></div>
       </div>
     </div>
-    <div class="item" style="display:none">
+  </div>
+  <div class="total top10">
+    <div class="item">
       <div class="content">
-        <div class="title">合作运营商数</div>
-        <div id="partner" class="number"></div>
+        <div class="title">带宽占比Top10</div>
+        <div id="networkTop5" style="width:350px;height:250px;"></div>
       </div>
     </div>
   </div>
@@ -90,7 +86,7 @@
         roam: true,
         zoom: 1.1,
         top: '10%',
-        left: '25%',
+        left: '28%',
         itemStyle: {
           areaColor: '#151515',
           borderColor: '#555555'

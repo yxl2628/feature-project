@@ -16,12 +16,21 @@ html, body {
   height: 100%;
 }
 
-.total {
+.total.user {
+  position: absolute;
+  left: 20px;
+  bottom: 460px;
+}
+.total.network {
+  position: absolute;
+  left: 20px;
+  bottom: 325px;
+}
+.total.top10 {
   position: absolute;
   left: 20px;
   bottom: 10px;
 }
-
 .total .item {
   /* background-color: rgba(255, 255, 255, 0.05); */
   /* border-radius: 5px; */
