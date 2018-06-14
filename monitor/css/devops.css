@@ -4,8 +4,8 @@ html, body {
   font-family: 'PingFang HK Regular', 'PingFang HK','Roboto','Helvetica','Arial','sans-serif';
   font-size: 14px;
   line-height: 1.5;
-  color: #ffffff;
-  background-color: #333333;
+  color: #000000;
+  background-color: #ffffff;
   overflow: hidden;
   padding: 20px;
 }
@@ -35,7 +35,6 @@ html, body {
 .item .status {
   padding: 10px 0;
   font-size: 14px;
-  color: #ffffff;
   line-height: 20px;
   display: inline-flex;
   align-items: center;

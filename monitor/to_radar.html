@@ -71,7 +71,8 @@
           'groupids': groupid_ott,
           'application': jieshou,
           'filter': {
-            'status': '0'
+            'status': '0',
+            'state': '0'
           },
           'output': ['lastvalue', 'name']
         }, function(jieshouRes) {
@@ -79,6 +80,7 @@
             jieshouRes.result.forEach(function(item) {
               var name = getName(item.name, 'jieshou')
               var value = parseInt(item.lastvalue)
+
               if (chanelResData[name] === undefined) {
                 chanelResData[name] = {
                   name: name,
@@ -103,13 +105,17 @@
           'groupids': group_os,
           'application': zhuanma,
           'filter': {
-            'status': '0'
+            'status': '0',
+            'state': '0'
           },
-          'output': ['lastvalue', 'name']
+          // 'output': ['lastvalue', 'name']
         }, function(zhuanmaRes) {
           if (zhuanmaRes.result) {
             zhuanmaRes.result.forEach(function(item) {
               var name = getName(item.name, 'zhuanma')
+              if (name === 'SUNNA_TV' || name === 'CCTV_1'){
+                console.log(name, item)
+              }
               var value = parseInt(item.lastvalue)
               if (chanelResData[name] === undefined) {
                 chanelResData[name] = {
@@ -124,6 +130,7 @@
                 chanelResData[name].zhuanma[1] += 1
               }
               if (value === 0) {
+
                 chanelResData[name].zhuanma[0] -= 1
               }
             })
@@ -135,7 +142,8 @@
           'groupids': group_os,
           'application': qiepian,
           'filter': {
-            'status': '0'
+            'status': '0',
+            'state': '0'
           },
           'output': ['lastvalue', 'name']
         }, function(qiepianRes) {
@@ -167,7 +175,8 @@
           'groupids': group_os,
           'application': awsshangchuan,
           'filter': {
-            'status': '0'
+            'status': '0',
+            'state': '0'
           },
           'output': ['lastvalue', 'name']
         }, function(awsRes) {

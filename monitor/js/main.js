@@ -184,23 +184,6 @@ $(document).ready(function() {
   // 获取总用户数
   function getAllUsers(cache_groupids) {
     var totalUser = 0
-    // zabbix_server.queryData('item.get',{
-    //   'groupids': cache_groupids,
-    //   'search': {
-    //     'name': 'cache'
-    //   },
-    //   'output': ['name', 'lastvalue']
-    // }, function(res) {
-    //   if (res.result) {
-    //     totalUser = 0
-    //     res.result.forEach(function(item) {
-    //       if (item.name.indexOf('cache.demand.unique.count') >= 0 || item.name.indexOf('cache.live.unique.count') >= 0){
-    //         totalUser += parseInt(item.lastvalue)
-    //         $('#user').html(template('ledTpl', {value: totalUser.toString()}))
-    //       }
-    //     })
-    //   }
-    // })
     var totalNetwork = 0,
       type = 'G',
       user_net = 250,
@@ -208,7 +191,7 @@ $(document).ready(function() {
     cache_list.forEach(function(item) {
       if (item.realValue != undefined) {
         totalNetwork += item.realValue
-        if (item.realValue > 1000000) {
+        if ( item.realValue >= 1000000) {
           networkList.push({
             name: item.name,
             value: parseFloat(item.realValue / 1000000).toFixed(2)
@@ -290,7 +273,8 @@ $(document).ready(function() {
       'groupids': groupid,
       'application': application,
       'filter': {
-        'status': '0'
+        'status': '0',
+        'state': '0'
       },
       'output': ['lastvalue', 'name']
     }, function(res) {
@@ -369,12 +353,14 @@ $(document).ready(function() {
       'output': ['name', 'key_', 'lastvalue']
     }, function(res) {
       if (res.result) {
-        var success_persent = 0,
+        var success_persent = 0, success_persent_pic = 0,
           response_time = [],
           qps = 0
         res.result.forEach(function(item) {
           if (item.name.indexOf('gslb.success.global.rate.monitor.view') >= 0) {
             success_persent = item.lastvalue * 100
+          } if (item.name.indexOf('gslb.success.global.rate.monitor.pic') >= 0) {
+            success_persent_pic = item.lastvalue * 100
           } else if (item.name.indexOf('gslb.response.duration.monitor.view') >= 0) {
             response_time.push(parseInt(item.lastvalue))
           } else if (item.name.indexOf('gslb.qps.monitor.view') >= 0) {
@@ -385,9 +371,11 @@ $(document).ready(function() {
           return a - b
         })
         $('#chenggonglv').text(success_persent.toFixed(2) + '%')
+        $('#chenggonglv2').text(success_persent_pic.toFixed(2) + '%')
         $('#xiangyingshijian').text(response_time[0] + 'ms')
         $('#qps').text(qps)
         $('#chenggonglv').css('color', getColor(success_persent > 99 ? 'good' : success_persent > 95 ? 'well' : 'bad'))
+        $('#chenggonglv2').css('color', getColor(success_persent_pic > 99 ? 'good' : success_persent_pic > 95 ? 'well' : 'bad'))
         $('#xiangyingshijian').css('color', getColor(response_time[0] < 40 ? 'good' : response_time[0] < 50 ? 'well' : 'bad'))
         $('#qps').css('color', getColor(qps < standardValue * 0.7 ? 'good' : qps < standardValue * 0.9 ? 'well' : 'bad'))
       }
