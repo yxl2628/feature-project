@@ -191,3 +191,18 @@ html, body {
   top: 53px;
   left: 0;
 }
+.led-point{
+  position: relative;
+  width: 10px;
+  height: 65px;
+}
+.led-point:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2.5px;
+  width: 5px;
+  height: 5px;
+  background-color: #30af81;
+  border-radius: 50%;
+}

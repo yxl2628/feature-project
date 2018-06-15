@@ -203,15 +203,15 @@ $(document).ready(function() {
       return b.value - a.value
     }).slice(0, 10).reverse()
     if (totalNetwork < 10000000) { // 小于10M显示代为为K
-      totalNetwork = totalNetwork / 1000
+      totalNetwork = Math.round(otalNetwork / 1000)
       type = 'K'
       totalUser = Math.round(totalNetwork / user_net)
     } else if (totalNetwork < 10000000000) { // 小于10G显示代为为M
-      totalNetwork = totalNetwork / 1000000
+      totalNetwork = parseFloat(totalNetwork / 1000000).toFixed(2)
       type = 'M'
       totalUser = Math.round(totalNetwork / (user_net / 1000))
     } else {
-      totalNetwork = totalNetwork / 1000000000
+      totalNetwork = parseFloat(otalNetwork / 1000000000).toFixed(2)
       totalUser = Math.round(totalNetwork * 1000 / (user_net / 1000))
     }
     $('#user').html(template('ledTpl', {
@@ -220,7 +220,7 @@ $(document).ready(function() {
     $('#networdUnit').text(type)
     $('#networktop').text(networkList.length)
     $('#network').html(template('ledTpl', {
-      value: totalNetwork.toFixed(0)
+      value: totalNetwork.toString()
     }))
     top5Chart.setOption({
       color: ['#30af81', '#d1d41a', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42'],
