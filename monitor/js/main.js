@@ -202,11 +202,11 @@ $(document).ready(function() {
     networkList = networkList.sort(function(a, b) {
       return b.value - a.value
     }).slice(0, 10).reverse()
-    if (totalNetwork < 10000000) {
+    if (totalNetwork < 10000000) { // 小于10M显示代为为K
       totalNetwork = totalNetwork / 1000
       type = 'K'
       totalUser = Math.ceil(totalNetwork / user_net)
-    } else if (totalNetwork < 1000000000) {
+    } else if (totalNetwork < 10000000000) { // 小于10G显示代为为M
       totalNetwork = totalNetwork / 1000000
       type = 'M'
       totalUser = Math.ceil(totalNetwork / (user_net / 1000))
@@ -242,14 +242,6 @@ $(document).ready(function() {
           show: false
         }
       }],
-      // tooltip: {
-      //   trigger: 'item',
-      //   textStyle: {
-      //     'fontSize': 12
-      //   },
-      //   position: 'right',
-      //   formatter: '{b0} : {c0}Mbps'
-      // },
       series: [{
         name: '占用带宽（Mbps）',
         type: 'bar',

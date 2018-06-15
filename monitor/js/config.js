@@ -36,7 +36,7 @@ var geoCoordMap = {
 var cache_list = [
   {name: '尼日利亚_MTN', groupid: '', url: ''},
   {name: '尼日利亚_Glo', groupid: '61', url: 'http://10.0.224.100:3000/d/0MiACYVmz/cachezhan-dian-ni-ri-glo?refresh=1m&orgId=1'},
-  {name: '肯尼亚_Safaricom', groupid: '69', url: ''},
+  {name: '肯尼亚_Safaricom', groupid: '69', url: 'http://10.0.224.100:3000/d/D9uZJzHiz/cachezhan-dian-ken-ni-ya-safaricom?refresh=1m&orgId=1'},
   {name: '坦桑_Tigo', groupid: '70', url: 'http://10.0.224.100:3000/d/qLpLYTIiz/cachezhan-dian-tan-sang-tigo?refresh=1m&orgId=1'},
   {name: '坦桑_Airtel', groupid: '', url: ''},
   {name: '坦桑_Hallotel', groupid: '66', url: 'http://10.0.224.100:3000/d/jPMBLoSmk/cachezhan-dian-tan-sang-hallotel?refresh=1m&orgId=1'},
