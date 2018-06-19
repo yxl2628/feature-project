@@ -223,11 +223,16 @@ $(document).ready(function() {
     $('#user').html(template('ledTpl', {
       value: totalUser.toString()
     }))
+      console.log('totalUser-----',totalUser);
     $('#networdUnit').text(type)
     $('#networktop').text(networkList.length)
     $('#network').html(template('ledTpl', {
-      value: totalNetwork.toString()
-    }))
+          value: totalNetwork.toString()
+      }))
+      $('#network2').html(template('ledTpl', {
+          value: (18122.5).toString()
+      }))
+      console.log('totalNetwork-----',totalNetwork);
     top5Chart.setOption({
       color: ['#30af81', '#d1d41a', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42'],
       grid: {
@@ -265,6 +270,7 @@ $(document).ready(function() {
     $('#partner').html(template('ledTpl', {
       value: cache_list.length.toString()
     }))
+      console.log('cache_list.length-----',cache_list.length);
   }
   // 获取南非上行站频道监控
   function getRadarData(id, groupid, application) {

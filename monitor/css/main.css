@@ -206,3 +206,26 @@ html, body {
   background-color: #30af81;
   border-radius: 50%;
 }
+.network_led .network_led_float{
+   float: left;
+}
+.network_led .network_led_float .network_title{
+  color: #acacac;
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+.network_led .network_line{
+  float: left;
+  height: 40px;
+  border-left: 2px solid #868686;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 45px;
+}
+.network_led .network_led_float .network_number{
+  float: left;
+  background-color: #131313;
+  height: 76px;
+  padding-right: 20px;
+}
