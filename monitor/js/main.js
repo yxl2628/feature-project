@@ -59,8 +59,17 @@ $(document).ready(function() {
     getAWSData(gslb_manage_hostid)
     // 获取总用户数、总带宽及合作运营商
     setTimeout(function() {
-      getAllUsers(cache_groupids)
+      getAllUsers(cache_groupids);
     }, 2000)
+
+    setTimeout(function() {
+      getStarCDNCacheNetworkBandwidth(cache_groupids);
+    }, 2000);
+
+    setTimeout(function() {
+        getStarCDNUsers(cache_groupids);
+    }, 2000);
+
     getAppData()
   }
   // 获取zabbix告警数
@@ -102,53 +111,117 @@ $(document).ready(function() {
   }
   // 获取带宽
   function getCacheNetworkPersent(groupid) {
-    zabbix_server.queryData('item.get', {
-      'groupids': [groupid],
-      'application': 'Network', // 只查询Network的应用集
-      'selectGroups': ['name'], // 同时查出所属的主机组信息
-      'selectHosts': ['name'], // 同时查出所属主机的信息
-      'search': {
-        'name': 'Outgoing',
-      },
-      'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
-    }, function(res) {
-      if (res.result) {
-        var _countObj = {}
-        res.result.forEach(function(item) {
-          var _groupid = 'g-' + groupid
-          if (item.hosts[0].name.indexOf('STR') >= 0) {
-            if (item.key_.indexOf('enp3s0f1') >= 0 || item.key_.indexOf('p2p1') >= 0) {
-              // console.log('贷款异常错误排查：', item.hosts, item.key_, item.lastvalue)
-              if (_countObj[_groupid] === undefined) {
-                _countObj[_groupid] = {
-                  realValue: parseInt(item.lastvalue),
-                  totalValue: 10000000000
-                }
-              } else {
-                _countObj[_groupid].realValue += parseInt(item.lastvalue)
-                _countObj[_groupid].totalValue += 10000000000
-              }
-            }
+      zabbix_server.queryData('item.get', {
+          'groupids': [groupid],
+          'application': 'Network', // 只查询Network的应用集
+          'selectGroups': ['name'], // 同时查出所属的主机组信息
+          'selectHosts': ['name'], // 同时查出所属主机的信息
+          'search': {
+              'name': 'Outgoing',
+          },
+          'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
+      }, function(res) {
+          if (res.result) {
+              var _countObj = {}
+              res.result.forEach(function(item) {
+                  var _groupid = 'g-' + groupid
+                  if (item.hosts[0].name.indexOf('STR') >= 0) {
+                      if (item.key_.indexOf('enp3s0f1') >= 0 || item.key_.indexOf('p2p1') >= 0) {
+                          // console.log('贷款异常错误排查：', item.hosts, item.key_, item.lastvalue)
+                          if (_countObj[_groupid] === undefined) {
+                              _countObj[_groupid] = {
+                                  realValue: parseInt(item.lastvalue),
+                                  totalValue: 10000000000
+                              }
+                          } else {
+                              _countObj[_groupid].realValue += parseInt(item.lastvalue)
+                              _countObj[_groupid].totalValue += 10000000000
+                          }
+                      }
+                  }
+              })
+              cache_list.forEach(function(item) {
+                  var _key = 'g-' + item.groupid
+                  if (_countObj[_key] !== undefined) {
+                      item.realValue = _countObj[_key].realValue
+                      item.totalValue = _countObj[_key].totalValue
+                      item.value[1] = (item.realValue / item.totalValue * 100).toFixed(0)
+                  }
+              })
+              var _option = myChart.getOption()
+              _option.series.forEach(function(item) {
+                  if (item.name === 'cache节点告警') {
+                      item.data = convertPonitData(cache_list)
+                  }
+              })
+              myChart.setOption(_option, true)
           }
-        })
-        cache_list.forEach(function(item) {
-          var _key = 'g-' + item.groupid
-          if (_countObj[_key] !== undefined) {
-            item.realValue = _countObj[_key].realValue
-            item.totalValue = _countObj[_key].totalValue
-            item.value[1] = (item.realValue / item.totalValue * 100).toFixed(0)
-          }
-        })
-        var _option = myChart.getOption()
-        _option.series.forEach(function(item) {
-          if (item.name === 'cache节点告警') {
-            item.data = convertPonitData(cache_list)
-          }
-        })
-        myChart.setOption(_option, true)
-      }
-    })
+      })
   }
+
+
+  // 获取starCDN带宽
+  function getStarCDNCacheNetworkBandwidth(groupid) {
+      zabbix_server.queryData('item.get', {
+          'groupids': groupid,
+          'zapplication': 'CDN-cache', // 只查询Network的应用集
+          'selectGroups': ['name'], // 同时查出所属的主机组信息
+          'selectHosts': ['name'], // 同时查出所属主机的信息
+          'search': {
+              'key_': 'cache.output.data.monitor',
+          },
+          'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
+      }, function(res) {
+          if (res.result) {
+              var type = 'G',
+                  _totalNetwork = 0;
+              res.result.forEach(function(item) {
+                if(item.lastvalue){
+                  _totalNetwork += parseInt(item.lastvalue);
+                }
+              });
+              console.log('_totalNetwork---',res.result.length,_totalNetwork);
+
+              _totalNetwork = (_totalNetwork/1000/1000/1000).toFixed(2);
+              $('#networdUnit').text(type);
+              $('#networkStar').html(template('ledTpl', {
+                  value: _totalNetwork.toString()
+              }));
+              $('#totalBandWidth').text(_totalNetwork+' Gbps')
+          }
+      })
+  }
+
+  // 获取starCDN分钟请求数
+  function getStarCDNUsers(groupid) {
+      zabbix_server.queryData('item.get', {
+          'groupids': groupid,
+          'zapplication': 'CDN-cache', // 只查询Network的应用集
+          'selectGroups': ['name'], // 同时查出所属的主机组信息
+          'selectHosts': ['name'], // 同时查出所属主机的信息
+          'search': {
+              'key_': 'cache.request.count.monitor',
+          },
+          'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
+      }, function(res) {
+          if (res.result) {
+              var _totalUser = 0;
+              res.result.forEach(function(item) {
+                  if(item.lastvalue){
+                      _totalUser += parseInt(item.lastvalue);
+                  }
+              });
+              console.log('_totalUser---',res.result.length,_totalUser);
+              _totalUser = Math.round(_totalUser/20);
+              $('#user_left').html(template('ledTpl', {
+                  value: _totalUser.toString()
+              }));
+              $('#totalUsers').text(_totalUser)
+          }
+      })
+  }
+
+
   // 丢包率
   function getPackLoss(type, id, name) {
     var zabbix_params = {
@@ -185,7 +258,7 @@ $(document).ready(function() {
   function getAllUsers(cache_groupids) {
     var totalUser = 0
     var totalNetwork = 0,
-      type = 'G',
+      // type = 'G',
       user_net = 250,
       networkList = []
     cache_list.forEach(function(item) {
@@ -199,40 +272,55 @@ $(document).ready(function() {
         }
       }
     })
+
     networkList = networkList.sort(function(a, b) {
       return b.value - a.value
     }).slice(0, 10).reverse()
-    if (totalNetwork < 10000000) { // 小于10M显示代为为K
-      totalNetwork = Math.round(totalNetwork / 1000)
-      type = 'K'
-      totalUser = Math.round(totalNetwork / user_net)
-    } else if (totalNetwork < 1000000000) { // 小于1G显示代为为M
-      totalNetwork = Math.round(totalNetwork / 1000000)
-      type = 'M'
-      totalUser = Math.round(totalNetwork / (user_net / 1000))
-    } else {
-      totalNetwork = parseFloat(totalNetwork / 1000000000)
+    // if (totalNetwork < 10000000) { // 小于10M显示代为为K
+    //   totalNetwork = Math.round(totalNetwork / 1000)
+    //   type = 'K'
+    //   totalUser = Math.round(totalNetwork / user_net)
+    // } else if (totalNetwork < 1000000000) { // 小于1G显示代为为M
+    //   totalNetwork = Math.round(totalNetwork / 1000000)
+    //   type = 'M'
+    //   totalUser = Math.round(totalNetwork / (user_net / 1000))
+    // } else {
+    //   totalNetwork = parseFloat(totalNetwork / 1000000000)
+    //   if (totalNetwork <= 999) {
+    //     totalNetwork = totalNetwork.toFixed(2)
+    //   } else {
+    //     totalNetwork = totalNetwork.toFixed(0)
+    //   }
+    //   type = 'G'
+    //   totalUser = Math.round(totalNetwork * 1000 / (user_net / 1000))
+    // }
+
+      totalNetwork = parseFloat(totalNetwork / 1000000000);
       if (totalNetwork <= 999) {
         totalNetwork = totalNetwork.toFixed(2)
       } else {
         totalNetwork = totalNetwork.toFixed(0)
       }
-      type = 'G'
-      totalUser = Math.round(totalNetwork * 1000 / (user_net / 1000))
-    }
-    $('#user').html(template('ledTpl', {
-      value: totalUser.toString()
-    }))
-      console.log('totalUser-----',totalUser);
-    $('#networdUnit').text(type)
-    $('#networktop').text(networkList.length)
-    $('#network').html(template('ledTpl', {
-          value: totalNetwork.toString()
-      }))
-      $('#network2').html(template('ledTpl', {
-          value: (18122.5).toString()
-      }))
-      console.log('totalNetwork-----',totalNetwork);
+      // type = 'G'
+      //totalUser = Math.round(totalNetwork * 1000 / (user_net / 1000))
+
+    // $('#user_left').html(template('ledTpl', {
+    //   value: totalUser.toString()
+    // }))
+    // $('#user_right').html(template('ledTpl', {
+    //   value: totalUser.toString()
+    // }))
+    $('#instantBandwidth').text(totalNetwork);
+    // $('#networdUnit').text(type)
+    $('#networktop').text(networkList.length);
+    // $('#networkStar').html(template('ledTpl', {
+    //       // value: totalNetwork.toString()
+    //     value: '345.8'
+    //   }))
+    // $('#networkAWS').html(template('ledTpl', {
+    //     value: totalNetwork.toString()
+    // }))
+      //console.log('totalNetwork-----',totalNetwork);
     top5Chart.setOption({
       color: ['#30af81', '#d1d41a', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42'],
       grid: {
@@ -270,7 +358,7 @@ $(document).ready(function() {
     $('#partner').html(template('ledTpl', {
       value: cache_list.length.toString()
     }))
-      console.log('cache_list.length-----',cache_list.length);
+      //console.log('cache_list.length-----',cache_list.length);
   }
   // 获取南非上行站频道监控
   function getRadarData(id, groupid, application) {

@@ -50,7 +50,7 @@ var cache_list = [
   {name: '科特迪瓦_MTN', groupid: '90', url: 'http://10.0.224.100:3000/d/3Sf4p1Iik/cachezhan-dian-ke-te-mtn?refresh=1m&orgId=1'},
   {name: '塞内加尔_Orange', groupid: '', url: ''},
   {name: '莫桑比克_Vodacom', groupid: '', url: ''},
-  {name: '刚果布_Airtel', groupid: '', url: 'http://10.0.224.100:3000/d/Dn_sLoIik/cachezhan-dian-gang-guo-bu-airtel?refresh=1m&orgId=1'},
+  {name: '刚果布_Airtel', groupid: '67', url: 'http://10.0.224.100:3000/d/Dn_sLoIik/cachezhan-dian-gang-guo-bu-airtel?refresh=1m&orgId=1'},
   {name: '卢旺达', groupid: '', url: ''},
   {name: '马达', groupid: '', url: ''},
   {name: '刚果金_Africell', groupid: '', url: ''},
