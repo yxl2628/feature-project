@@ -68,8 +68,8 @@ var pack_loss_probability = [
   {fromName: '北京', hostid: '10084', toName: '亚马逊云'},
   {fromName: '上云站机房', hostid: '10545', toName: '亚马逊云'}
 ]
-// 南非OS组id、南非ott上云组id、gslb的主机id、app相关数据所在主机id
-var groupid_ott = 55, group_os = 54, gslb_manage_hostid = 10600, app_hostid = 10554
+// 南非OS组id、南非ott上云组id、gslb的主机id、app相关数据所在主机id, AWS_全非_cloudfront
+var groupid_ott = 55, group_os = 54, gslb_manage_hostid = 10600, app_hostid = 10554, groupid_aws = 93;
 // 需要监控的主机组
 var error_group_list = ['0701_AWS_研究院', '南非上云_OTT', '南非os组', '国内_总部机房', '国内_研究院_Aws_Openvpn_server', '研究院测试组']
 // 获取统一的状态色

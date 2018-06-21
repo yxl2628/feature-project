@@ -4,6 +4,14 @@ $(document).ready(function() {
   zabbix_server.userLogin()
   // 获取cache节点的groupid集合
   var cache_groupids = []
+  var networkStatistics = {
+    StarCDN: 0,
+    aws: 0,
+  };
+  var userStatistics = {
+      StarCDN: 0,
+      aws: 0,
+  };
   cache_list.forEach(function(item) {
     if (item.groupid) {
       cache_groupids.push(item.groupid)
@@ -64,10 +72,12 @@ $(document).ready(function() {
 
     setTimeout(function() {
       getStarCDNCacheNetworkBandwidth(cache_groupids);
+      getAWSCacheNetworkBandwidth([groupid_aws.toString()]);
     }, 2000);
 
     setTimeout(function() {
-        getStarCDNUsers(cache_groupids);
+      getStarCDNUsers(cache_groupids);
+      getAWSUsers([groupid_aws.toString()])
     }, 2000);
 
     getAppData()
@@ -159,44 +169,91 @@ $(document).ready(function() {
       })
   }
 
-
-  // 获取starCDN带宽
-  function getStarCDNCacheNetworkBandwidth(groupid) {
+  // 获取StarCDN带宽
+  function getStarCDNCacheNetworkBandwidth(groupids) {
       zabbix_server.queryData('item.get', {
-          'groupids': groupid,
-          'zapplication': 'CDN-cache', // 只查询Network的应用集
+          'groupids': groupids,
+          'application': 'CDN-cache', // 只查询Network的应用集
           'selectGroups': ['name'], // 同时查出所属的主机组信息
           'selectHosts': ['name'], // 同时查出所属主机的信息
           'search': {
               'key_': 'cache.output.data.monitor',
           },
           'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
-      }, function(res) {
+      },  function (res) {
           if (res.result) {
               var type = 'G',
-                  _totalNetwork = 0;
+                  _totalNetwork = 0, totalBandWidth = 0, cdnNetWorkPercent = 0, awsNetWorkPercent=0;
               res.result.forEach(function(item) {
-                if(item.lastvalue){
-                  _totalNetwork += parseInt(item.lastvalue);
-                }
+                  if(item.lastvalue){
+                      _totalNetwork += parseInt(item.lastvalue);
+                  }
               });
-              console.log('_totalNetwork---',res.result.length,_totalNetwork);
+              //console.log('networkStar---',res.result.length,_totalNetwork);
 
               _totalNetwork = (_totalNetwork/1000/1000/1000).toFixed(2);
+
+              networkStatistics.StarCDN = _totalNetwork;
+
               $('#networdUnit').text(type);
               $('#networkStar').html(template('ledTpl', {
                   value: _totalNetwork.toString()
               }));
-              $('#totalBandWidth').text(_totalNetwork+' Gbps')
+
+              totalBandWidth = parseFloat(networkStatistics.StarCDN) + parseFloat(networkStatistics.aws);
+              cdnNetWorkPercent = Math.round((networkStatistics.StarCDN)/totalBandWidth*100);
+              awsNetWorkPercent = Math.round(networkStatistics.aws/totalBandWidth*100);
+
+              $('#totalBandWidth').text(totalBandWidth+' Gbps');
+              $('#cdnNetWorkPercent').text(cdnNetWorkPercent+'%');
+              $('#awsNetWorkPercent').text(awsNetWorkPercent+'%')
+          }
+      })
+  }
+  // 获取AWS带宽
+  function getAWSCacheNetworkBandwidth(groupids) {
+      zabbix_server.queryData('item.get', {
+          'groupids': groupids,
+          //'application': 'awsRequestFind', // 只查询Network的应用集
+          'selectGroups': ['name'], // 同时查出所属的主机组信息
+          'selectHosts': ['name'], // 同时查出所属主机的信息
+          'search': {
+              'key_': 'cache.output.data.monitor',
+          },
+          'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
+      },  function (res) {
+          if (res.result) {
+              var type = 'G',
+                  _totalNetwork = 0, totalBandWidth = 0, cdnNetWorkPercent = 0, awsNetWorkPercent=0;
+              res.result.forEach(function(item) {
+                  if(item.lastvalue){
+                      _totalNetwork += parseInt(item.lastvalue);
+                  }
+              });
+              //console.log('networkAWS---',res.result.length,_totalNetwork);
+              _totalNetwork = (_totalNetwork/1000/1000/1000).toFixed(2);
+              networkStatistics.aws = _totalNetwork;
+              $('#networdUnit').text(type);
+              $('#networkAWS').html(template('ledTpl', {
+                  value: _totalNetwork.toString()
+              }));
+
+              totalBandWidth = parseFloat(networkStatistics.StarCDN) + parseFloat(networkStatistics.aws);
+              cdnNetWorkPercent = Math.round((networkStatistics.StarCDN)/totalBandWidth*100);
+              awsNetWorkPercent = Math.round(networkStatistics.aws/totalBandWidth*100);
+
+              $('#totalBandWidth').text(totalBandWidth+' Gbps');
+              $('#cdnNetWorkPercent').text(cdnNetWorkPercent+'%');
+              $('#awsNetWorkPercent').text(awsNetWorkPercent+'%')
           }
       })
   }
 
   // 获取starCDN分钟请求数
-  function getStarCDNUsers(groupid) {
+  function getStarCDNUsers(groupids) {
       zabbix_server.queryData('item.get', {
-          'groupids': groupid,
-          'zapplication': 'CDN-cache', // 只查询Network的应用集
+          'groupids': groupids,
+          'application': 'CDN-cache', // 只查询Network的应用集
           'selectGroups': ['name'], // 同时查出所属的主机组信息
           'selectHosts': ['name'], // 同时查出所属主机的信息
           'search': {
@@ -205,22 +262,69 @@ $(document).ready(function() {
           'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
       }, function(res) {
           if (res.result) {
-              var _totalUser = 0;
+              var _totalUser = 0, totalUser = 0, cdnUserPercent = 0, awsUserPercent= 0;
               res.result.forEach(function(item) {
                   if(item.lastvalue){
                       _totalUser += parseInt(item.lastvalue);
                   }
               });
-              console.log('_totalUser---',res.result.length,_totalUser);
+              //console.log('_totalUser---',res.result.length,_totalUser);
               _totalUser = Math.round(_totalUser/20);
+
+              userStatistics.StarCDN = _totalUser;
+
               $('#user_left').html(template('ledTpl', {
                   value: _totalUser.toString()
               }));
-              $('#totalUsers').text(_totalUser)
+
+              totalUser = parseInt(userStatistics.StarCDN) + parseInt(userStatistics.aws);
+
+              cdnUserPercent = Math.round((userStatistics.StarCDN)/totalUser*100);
+              awsUserPercent = Math.round((userStatistics.aws)/totalUser*100);
+
+              $('#totalUsers').text(totalUser);
+              $('#cdnUserPercent').text(cdnUserPercent+'%');
+              $('#awsUserPercent').text(awsUserPercent+'%');
           }
       })
   }
+  // 获取AWS分钟请求数
+  function getAWSUsers(groupids) {
+        zabbix_server.queryData('item.get', {
+            'groupids': groupids,
+            //'application': 'CDN-cache', // 只查询Network的应用集
+            'selectGroups': ['name'], // 同时查出所属的主机组信息
+            'selectHosts': ['name'], // 同时查出所属主机的信息
+            'search': {
+                'key_': 'cache.request.count.monitor',
+            },
+            'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
+        }, function(res) {
+            if (res.result) {
+                var _totalUser = 0, totalUser = 0, cdnUserPercent = 0, awsUserPercent= 0;
+                res.result.forEach(function(item) {
+                    if(item.lastvalue){
+                        _totalUser += parseInt(item.lastvalue);
+                    }
+                });
+                //console.log('_totalUser---',res.result.length,_totalUser);
+                _totalUser = Math.round(_totalUser/20);
 
+                userStatistics.aws = _totalUser;
+                $('#user_right').html(template('ledTpl', {
+                    value: _totalUser.toString()
+                }));
+
+                totalUser = parseInt(userStatistics.StarCDN) + parseInt(userStatistics.aws);
+                cdnUserPercent = Math.round((userStatistics.StarCDN)/totalUser*100);
+                awsUserPercent = Math.round((userStatistics.aws)/totalUser*100);
+
+                $('#totalUsers').text(totalUser);
+                $('#cdnUserPercent').text(cdnUserPercent+'%');
+                $('#awsUserPercent').text(awsUserPercent+'%');
+            }
+        })
+    }
 
   // 丢包率
   function getPackLoss(type, id, name) {
@@ -320,7 +424,7 @@ $(document).ready(function() {
     // $('#networkAWS').html(template('ledTpl', {
     //     value: totalNetwork.toString()
     // }))
-      //console.log('totalNetwork-----',totalNetwork);
+    //console.log('totalNetwork-----',totalNetwork);
     top5Chart.setOption({
       color: ['#30af81', '#d1d41a', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42'],
       grid: {

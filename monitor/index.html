@@ -20,7 +20,7 @@
     <span></span>
     <div class="title">全局调度系统</div>
     <div class="item"><label>总带宽：</label><p id="totalBandWidth" style="color: #30af81">0</p></div>
-    <div class="item"><label>全局在线用户数：</label><p id="totalUsers" style="color: #30af81">0</p></div>
+    <div class="item"><label>总用户：</label><p id="totalUsers" style="color: #30af81">0</p></div>
     <div class="item"><label>HTTP成功率：</label><p id="chenggonglv">0</p></div>
     <div class="item"><label>DNS成功率：</label><p id="chenggonglv2">0</p></div>
     <div class="item"><label>HTTP响应时间：</label><p id="xiangyingshijian">0</p></div>
@@ -56,14 +56,14 @@
               <div class="title">CDN带宽分布(<span id="networdUnit"></span>bps)</div>
               <div class="network_led">
                   <div class="network_led_float">
-                      <div class="network_title">STAR:30%</div>
+                      <div class="network_title">STAR: <span style="color: #30af81" id="cdnNetWorkPercent"></span></div>
                       <div class="network_number">
                           <div id="networkStar" class="number" ></div>
                       </div>
                   </div>
                   <div class="network_line"></div>
                   <div class="network_led_float">
-                      <div class="network_title">AWS:70%</div>
+                      <div class="network_title">AWS: <span style="color: #30af81" id="awsNetWorkPercent"></span></div>
                       <div class="network_number">
                           <div id='networkAWS' class="number" ></div>
                       </div>
@@ -78,14 +78,14 @@
               <div class="title">CDN在线用户分布</div>
               <div class="user_box">
                   <div class="user_left">
-                      <div class="user_left_title">STAR:30%</div>
+                      <div class="user_left_title">STAR: <span style="color: #30af81" id="cdnUserPercent"></span></div>
                       <div id="user_left" class="number user_left_number"></div>
                   </div>
                   <div class="user_center">
                       <span></span>
                   </div>
                   <div class="user_right">
-                      <div class="user_right_title">AWS:70%</div>
+                      <div class="user_right_title">AWS: <span style="color: #30af81" id="awsUserPercent"></span></div>
                       <div id="user_right" class="number user_right_number"></div>
                   </div>
               </div>
