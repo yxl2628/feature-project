@@ -50,50 +50,48 @@
     <div class="item"><label>订单：</label><p id="apporder"></p></div>
     <div class="item"><label>支付：</label><p id="apppay"></p></div>
   </div>
-  <div class="total user">
-      <div class="item">
-          <div class="content">
-              <div class="title">StarCDN在线用户数</div>
-              <div class="user_box">
-                  <div class="user_left">
-                      <!--<div class="user_left_title">STAR: <span style="color: #30af81" id="cdnUserPercent"></span></div>-->
-                      <div id="user_left" class="number user_left_number"></div>
-                  </div>
-                  <!--<div class="user_center">-->
-                  <!--<span></span>-->
-                  <!--</div>-->
-                  <div class="user_right">
-                      <!--<div class="user_right_title">AWS: <span style="color: #30af81" id="awsUserPercent"></span></div>-->
-                      <div class="user_left_title"><span style="color: #30af81;font-size: 16px;position: relative;top: 54px;" id="cdnUserPercent"></span></div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
   <div class="total network">
       <div class="item">
           <div class="content">
-              <div class="title">StarCDN带宽(<span id="networdUnit"></span>bps)</div>
+              <div class="title">CDN带宽分布(<span id="networdUnit"></span>bps)</div>
               <div class="network_led">
                   <div class="network_led_float">
-                      <!--<div class="network_title">STAR: <span style="color: #30af81" id="cdnNetWorkPercent"></span></div>-->
+                      <div class="network_title">STAR: <span style="color: #30af81" id="cdnNetWorkPercent"></span></div>
                       <div class="network_number">
                           <div id="networkStar" class="number" ></div>
                       </div>
                   </div>
-                  <!--<div class="network_line"></div>-->
+                  <div class="network_line"></div>
                   <div class="network_led_float">
-                      <!--<div class="network_title">AWS: <span style="color: #30af81" id="awsNetWorkPercent"></span></div>-->
+                      <div class="network_title">AWS: <span style="color: #30af81" id="awsNetWorkPercent"></span></div>
                       <div class="network_number">
-                          <div class="network_title"><span style="color: #30af81;font-size: 16px;position: relative;top: 50px; " id="cdnNetWorkPercent"></span></div>
-                          <!--<div id='networkAWS' class="number" ></div>-->
+                          <div id='networkAWS' class="number" ></div>
                       </div>
                   </div>
               </div>
           </div>
       </div>
   </div>
-
+  <div class="total user">
+      <div class="item">
+          <div class="content">
+              <div class="title">CDN在线用户分布</div>
+              <div class="user_box">
+                  <div class="user_left">
+                      <div class="user_left_title">STAR: <span style="color: #30af81" id="cdnUserPercent"></span></div>
+                      <div id="user_left" class="number user_left_number"></div>
+                  </div>
+                  <div class="user_center">
+                      <span></span>
+                  </div>
+                  <div class="user_right">
+                      <div class="user_right_title">AWS: <span style="color: #30af81" id="awsUserPercent"></span></div>
+                      <div id="user_right" class="number user_right_number"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
   <div class="total top10">
     <div class="item">
       <div class="content">

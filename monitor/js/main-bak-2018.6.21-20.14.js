@@ -182,48 +182,29 @@ $(document).ready(function() {
           'output': ['itemid', 'hosts', 'key_', 'name', 'lastvalue']
       },  function (res) {
           if (res.result) {
-              var type = 'G', _totalNetwork = 0, totalBandWidth = 0, cdnNetWorkPercent = 0, awsNetWorkPercent=0;
+              var type = 'G',
+                  _totalNetwork = 0, totalBandWidth = 0, cdnNetWorkPercent = 0, awsNetWorkPercent=0;
               res.result.forEach(function(item) {
                   if(item.lastvalue){
                       _totalNetwork += parseInt(item.lastvalue);
                   }
               });
-              networkStatistics.StarCDN = _totalNetwork;
+              //console.log('networkStar---',res.result.length,_totalNetwork);
 
-              if (_totalNetwork < 10000000) { // 小于10M显示代为为K
-                _totalNetwork = Math.round(_totalNetwork / 1000);
-                type = 'K'
-              } else if (_totalNetwork < 1000000000) { // 小于1G显示代为为M
-                _totalNetwork = Math.round(_totalNetwork / 1000000);
-                type = 'M'
-              } else {
-                _totalNetwork = parseFloat(_totalNetwork / 1000000000).toFixed(2);
-                type = 'G';
-              }
+              _totalNetwork = (_totalNetwork/1000/1000/1000).toFixed(2);
+
+              networkStatistics.StarCDN = _totalNetwork;
 
               $('#networdUnit').text(type);
               $('#networkStar').html(template('ledTpl', {
                   value: _totalNetwork.toString()
               }));
 
-              totalBandWidth = parseInt(networkStatistics.StarCDN + networkStatistics.aws);
+              totalBandWidth = (parseFloat(networkStatistics.StarCDN) + parseFloat(networkStatistics.aws)).toFixed(2);
               cdnNetWorkPercent = Math.round((networkStatistics.StarCDN)/totalBandWidth*100);
               awsNetWorkPercent = Math.round(networkStatistics.aws/totalBandWidth*100);
 
-              var _type = 'G';
-
-              if (totalBandWidth < 10000000) { // 小于10M显示代为为K
-                  totalBandWidth = Math.round(totalBandWidth / 1000);
-                  _type = 'K'
-              } else if (totalBandWidth < 1000000000) { // 小于1G显示代为为M
-                  totalBandWidth = Math.round(totalBandWidth / 1000000);
-                  _type = 'M'
-              } else {
-                  totalBandWidth = parseFloat(totalBandWidth / 1000000000).toFixed(2);
-                  _type = 'G';
-              }
-
-              $('#totalBandWidth').text(totalBandWidth+' '+_type+'bps');
+              $('#totalBandWidth').text(totalBandWidth+' Gbps');
               $('#cdnNetWorkPercent').text('占比:'+cdnNetWorkPercent+'%');
               $('#awsNetWorkPercent').text(awsNetWorkPercent+'%')
           }
@@ -249,42 +230,19 @@ $(document).ready(function() {
                       _totalNetwork += parseInt(item.lastvalue);
                   }
               });
+              //console.log('networkAWS---',res.result.length,_totalNetwork);
+              _totalNetwork = (_totalNetwork/1000/1000/1000).toFixed(2);
               networkStatistics.aws = _totalNetwork;
-
-              if (_totalNetwork < 10000000) { // 小于10M显示代为为K
-                  _totalNetwork = Math.round(_totalNetwork / 1000);
-                  type = 'K'
-              } else if (_totalNetwork < 1000000000) { // 小于1G显示代为为M
-                  _totalNetwork = Math.round(_totalNetwork / 1000000);
-                  type = 'M'
-              } else {
-                  _totalNetwork = parseFloat(_totalNetwork / 1000000000).toFixed(2);
-                  type = 'G';
-              }
-
               $('#networdUnit').text(type);
               $('#networkAWS').html(template('ledTpl', {
                   value: _totalNetwork.toString()
               }));
 
-              totalBandWidth = parseInt(networkStatistics.StarCDN + networkStatistics.aws);
+              totalBandWidth = (parseFloat(networkStatistics.StarCDN) + parseFloat(networkStatistics.aws)).toFixed(2);
               cdnNetWorkPercent = Math.round((networkStatistics.StarCDN)/totalBandWidth*100);
               awsNetWorkPercent = Math.round(networkStatistics.aws/totalBandWidth*100);
 
-              var _type = 'G';
-
-              if (totalBandWidth < 10000000) { // 小于10M显示代为为K
-                  totalBandWidth = Math.round(totalBandWidth / 1000);
-                  _type = 'K'
-              } else if (totalBandWidth < 1000000000) { // 小于1G显示代为为M
-                  totalBandWidth = Math.round(totalBandWidth / 1000000);
-                  _type = 'M'
-              } else {
-                  totalBandWidth = parseFloat(totalBandWidth / 1000000000).toFixed(2);
-                  _type = 'G';
-              }
-
-              $('#totalBandWidth').text(totalBandWidth+' '+_type+'bps');
+              $('#totalBandWidth').text(totalBandWidth+' Gbps');
               $('#cdnNetWorkPercent').text(cdnNetWorkPercent+'%');
               $('#awsNetWorkPercent').text(awsNetWorkPercent+'%')
           }
@@ -310,6 +268,7 @@ $(document).ready(function() {
                       _totalUser += parseInt(item.lastvalue);
                   }
               });
+              //console.log('_totalUser---',res.result.length,_totalUser);
               _totalUser = Math.round(_totalUser/20);
 
               userStatistics.StarCDN = _totalUser;
@@ -319,6 +278,7 @@ $(document).ready(function() {
               }));
 
               totalUser = parseInt(userStatistics.StarCDN) + parseInt(userStatistics.aws);
+
               cdnUserPercent = Math.round((userStatistics.StarCDN)/totalUser*100);
               awsUserPercent = Math.round((userStatistics.aws)/totalUser*100);
 
@@ -347,6 +307,7 @@ $(document).ready(function() {
                         _totalUser += parseInt(item.lastvalue);
                     }
                 });
+                //console.log('_totalUser---',res.result.length,_totalUser);
                 _totalUser = Math.round(_totalUser/20);
 
                 userStatistics.aws = _totalUser;
