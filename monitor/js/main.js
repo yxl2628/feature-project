@@ -29,11 +29,10 @@ $(document).ready(function() {
   /**
    * 下面是定时任务，将上述获取过程，写入定时任务
    * 默认是60秒请求一次
-   * by wanglijing 改为 1分钟
    */
   setInterval(function() {
     task(cache_groupids)
-  }, 10000)
+  }, 60000)
   /**
    * 下面是各个获取数据的详细方法
    */

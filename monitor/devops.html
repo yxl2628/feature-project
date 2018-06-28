@@ -78,12 +78,14 @@
 <script src="./js/jquery.min.js?version=1528769604144" charset="utf-8"></script>
 <script src="./js/zabbix_devops.js?version=1528769604144" charset="utf-8"></script>
 <script type="text/javascript">
-    var zabbix_server = new $.jqzabbix()
-    // 先登录获取zabbix的auth
-    zabbix_server.userLogin()
     getNewData();
-    setInterval(getNewData,10000);
+    setInterval(function () {
+        getNewData()
+    },60000);
     function getNewData(){
+        var zabbix_server = new $.jqzabbix()
+        // 先登录获取zabbix的auth
+        zabbix_server.userLogin()
         zabbix_server.queryData('item.get', {
             // 'groupids': [groupid],
             'application': 'build_info', // 只查询Network的应用集  //构建
