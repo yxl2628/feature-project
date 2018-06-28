@@ -19,7 +19,7 @@ html, body {
 .total.user {
   position: absolute;
   left: 20px;
-  bottom: 480px;
+  bottom: 500px;
 }
 .total.user .user_box{
   color: #b9b9b9;
@@ -66,7 +66,7 @@ html, body {
 .total.network {
   position: absolute;
   left: 20px;
-  bottom: 330px;
+  bottom: 355px;
 }
 .total.top10 {
   position: absolute;
@@ -115,7 +115,7 @@ html, body {
 }
 .aws {
   left: 20px;
-  top: 30px;
+  top: 10px;
 }
 .radar {
   width: 200px;
@@ -129,7 +129,7 @@ html, body {
   padding-right: 20px;
 }
 .radar .title, .aws .title, .app .title {
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 .radar .item{

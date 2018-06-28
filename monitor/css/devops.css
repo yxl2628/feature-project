@@ -6,7 +6,7 @@ html, body {
   color: #b9b9b9;
   background-color: #333333;
   overflow: hidden;
-  padding: 15px 5px;
+  padding: 0px 5px;
 }
 .content {
   width: 100%;
@@ -26,7 +26,7 @@ html, body {
   font-size: 0;
   width: 15%;
 }
-.item img {
+.item>img {
   display: block;
   font-size: 0;
   width: 100%;
@@ -35,20 +35,30 @@ html, body {
   padding: 0;
   font-size: 8px;
   line-height: 15px;
+  text-align: center;
+  min-width: 118px;
+  /*display: inline-flex;
+  align-items: center;
+  text-align: left;*/
+}
+.item .statusTitle {
+  padding: 0;
+  font-size: 14px;
+  line-height: 15px;
   display: inline-flex;
   align-items: center;
-  text-align: left;
+  text-align: center;
 }
-.item .status img{
+.item .statusTitle img{
   display: inline-block;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   margin-right: 5px;
 }
 .split{
   display: inline-block;
   position: relative;
-  width: 13.333333%;
+  width: 27.333333%;
   height: 100%;
   top: 36px;
 }
@@ -57,7 +67,7 @@ html, body {
   display: block;
   top:40%;
   left: 2.5%;
-  margin-top: -1px;
+  /*margin-top: -1px;*/
   width: 95%;
   height: 1px;
   background-color: #797979;

@@ -60,6 +60,7 @@ var cache_list = [
   {name: '几内亚_MTN', groupid: '', url: 'http://10.0.224.100:3000/d/SlAoLoSmz/cachezhan-dian-ji-nei-ya-mtn?refresh=1m&orgId=1'},
   {name: '布隆迪_LEO', groupid: '88', url: 'http://10.0.224.100:3000/d/oXbEYTSiz/cachezhan-dian-bu-long-di-leo?refresh=1m&orgId=1'}
 ]
+
 // 各个cache节点对应的grafana子页面地址
 var cache_url = {
 }
@@ -149,6 +150,7 @@ var convertPonitData = function(data) {
     var dataItem = data[i]
     var coord = geoCoordMap[dataItem.name]
     if (coord) {
+      //严重告警
       var type_cache = 'none'
       if (dataItem.value[0] == 0) {
         type_cache = 'good'
@@ -157,6 +159,7 @@ var convertPonitData = function(data) {
       } else if (dataItem.value[0] > 5) {
         type_cache = 'bad'
       }
+      //一般严重告警
       var type_load = 'none'
       if (dataItem.value[1] >= 0) {
         type_load = 'good'
