@@ -2,149 +2,165 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <meta charset="utf-8">
-    <title>四达时代网络监控-OTT</title>
-    <link rel="stylesheet" href="./css/bossStatus.css?version=1528769604144">
-    <link rel="stylesheet" href="./css/boosFont/bossIconfont.css?version=1528769604144">
-    <script src="./js/jquery.min.js?version=1528769604144" charset="utf-8"></script>
-    <script src="./js/zabbix.js?version=1528769604144" charset="utf-8"></script>
-    <script src="./js/template-web.js?version=1528769604144" charset="utf-8"></script>
-    <script src="./js/moment.js?version=1528769604144" charset="utf-8"></script>
-    <script src="./js/moment-timezone-with-data.min.js?version=1528769604144" charset="utf-8"></script>
-    <script src="./js/draw.js?version=1528769604144" charset="utf-8"></script>
+  <meta charset="utf-8">
+  <title>四达时代网络监控-OTT</title>
+  <link rel="stylesheet" href="./css/bossStatus.css?version=1528769604144">
+  <link rel="stylesheet" href="./css/boosFont/bossIconfont.css?version=1528769604144">
+  <script src="./js/jquery.min.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/zabbix.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/template-web.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/moment.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/moment-timezone-with-data.min.js?version=1528769604144" charset="utf-8"></script>
 </head>
+
 <body>
-<div class="bossPage">
+  <div class="bossPage">
     <div class="title">
-        <div class="titleImage">
-            <img src="img/boss/Cloud%20server.png" alt="">
-        </div>
-        <div class="titleName">BOSS</div>
+      <div class="titleImage">
+        <img src="img/boss/Cloud%20server.png" alt="">
+      </div>
+      <div class="titleName">BOSS</div>
     </div>
     <div class="sassList">
-        <div class="listPanel">
-            <div class="sassTitle">
-                <p>SaaS</p>
-            </div>
-            <ul class="sassContent">
-                <li>
-                    <p>boos服务状态</p>
-                    <p class="sassContentFirstList">72/72</p>
-                </li>
-                <li>
-                    <p>系统接入状态</p>
-                    <div class="sassLiContentFont">
-                        <p class="sassLiContentFont">系统请求数:70234</p>
-                        <p class="sassLiContentFont">请求错误率:5%</p>
-                    </div>
-                </li>
-                <li>
-                    <p>CA指令状态</p>
-                </li>
-                <li>
-                    <p>短信下发状态</p>
-                </li>
-                <li>
-                    <p>支付状态</p>
-                </li>
-                <li>
-                    <p>营业状态</p>
-                </li>
-            </ul>
-            <div class='sassPlaceHolder'></div>
+      <div class="listPanel">
+        <div class="sassTitle">
+          <p>SaaS</p>
         </div>
-        <div class="listPanel">
-            <div class="iaasTitle">
-                <p>IaaS/paaS</p>
+        <ul class="sassContent">
+          <li>
+            <p>boos服务状态</p>
+            <p class="sassContentFirstList">72/72</p>
+          </li>
+          <li>
+            <p>系统接入状态</p>
+            <div class="sassLiContentFont">
+              <p class="sassLiContentFont">系统请求数:70234</p>
+              <p class="sassLiContentFont">请求错误率:5%</p>
             </div>
-            <ul class="iaasContent">
-                <li>
-                    <i class="iconfont icon-dec2" ></i>
-                    <p>EC2</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-KS" ></i>
-                    <p>K8S</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-database" ></i>
-                    <p>BOSSDB</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-yunxiazai1" ></i>
-                    <p>系统缓存</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-xiaoxiduilieMQ" ></i>
-                    <p>消息队列</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-xiaoxiguanli" ></i>
-                    <p>消息通知</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-jingxiangku" ></i>
-                    <p>发布镜像库</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-peizhiguanli" ></i>
-                    <p>配置管理</p>
-                </li>
-                <li>
-                    <i class="iconfont icon-shujuku" ></i>
-                    <p>数据备份</p>
-                </li>
-            </ul>
-            <div class="iassPlaceHolder">
-
-            </div>
+          </li>
+          <li>
+            <p>CA指令状态</p>
+          </li>
+          <li>
+            <p>短信下发状态</p>
+          </li>
+          <li>
+            <p>支付状态</p>
+          </li>
+          <li>
+            <p>营业状态</p>
+          </li>
+        </ul>
+        <div class='sassPlaceHolder'></div>
+      </div>
+      <div class="listPanel">
+        <div class="iaasTitle">
+          <p>IaaS/paaS</p>
         </div>
+        <ul class="iaasContent">
+          <li>
+            <i class="iconfont icon-dec2"></i>
+            <p>EC2</p>
+          </li>
+          <li>
+            <i class="iconfont icon-KS"></i>
+            <p>K8S</p>
+          </li>
+          <li>
+            <i class="iconfont icon-database"></i>
+            <p>BOSSDB</p>
+          </li>
+          <li>
+            <i class="iconfont icon-yunxiazai1"></i>
+            <p>系统缓存</p>
+          </li>
+          <li>
+            <i class="iconfont icon-xiaoxiduilieMQ"></i>
+            <p>消息队列</p>
+          </li>
+          <li>
+            <i class="iconfont icon-xiaoxiguanli"></i>
+            <p>消息通知</p>
+          </li>
+          <li>
+            <i class="iconfont icon-jingxiangku"></i>
+            <p>发布镜像库</p>
+          </li>
+          <li>
+            <i class="iconfont icon-peizhiguanli"></i>
+            <p>配置管理</p>
+          </li>
+          <li>
+            <i class="iconfont icon-shujuku"></i>
+            <p>数据备份</p>
+          </li>
+        </ul>
+        <div class="iassPlaceHolder">
+        </div>
+      </div>
     </div>
     <div class="cloudImgWrap">
-        <div class="canvasDiv">
-            <canvas id="canvas" width="500" height ="500"></canvas>
-        </div>
-        <div class="cloud"></div>
+      <div class="cloudline"><div class="line"></div></div>
+      <div class="cloud"></div>
+      <div class="wrap-bg"></div>
+      <div class="wrap-icon">
+        <span><i></i></span>
+      </div>
+      <div class="wrap-bg wrap-bg2"></div>
+      <div class="wrap-icon wrap-icon2">
+        <span><i></i></span>
+      </div>
+      <div class="wrap-bg wrap-bg3"></div>
+      <div class="wrap-icon wrap-icon3">
+        <span><i></i></span>
+      </div>
+      <div class="countryLine">
+        <div class="itemLine itemLine1"><div class="line"></div></div>
+        <div class="itemLine itemLine2"><div class="line"></div></div>
+        <div class="itemLine itemLine3"><div class="line"></div></div>
+        <div class="itemLine itemLine4"><div class="line"></div></div>
+      </div>
     </div>
-    <div class="countryGroupWrap">
-        <div class="countryGroup">
-             <div class="countryTitle">
-                <p>东非</p>
-             </div>
-            <div class="countryItem">
-            <div class="countryImg">
-                <img src="img/country/Kenya.jpg" alt="">
-            </div>
-            <div class="countryName">
-                肯尼亚
-            </div>
-            <div class="countryTime">
-                16:35:48
-            </div>
-            <div class="countryStatus">
-                <div class="status">
+  </div>
+  <div class="countryGroupWrap">
+    <div class="countryGroup">
+      <div class="countryTitle">
+        <p>东非</p>
+      </div>
+      <div class="countryItem">
+        <div class="countryImg">
+          <img src="img/country/Kenya.jpg" alt="">
+        </div>
+        <div class="countryName">
+          肯尼亚
+        </div>
+        <div class="countryTime">
+          16:35:48
+        </div>
+        <div class="countryStatus">
+          <div class="status">
 
-                </div>
-            </div>
+          </div>
         </div>
-        </div>
-        <div class="countryGroup">
-            <div class="countryTitle">
-                <p>西非</p>
-            </div>
-        </div>
-        <div class="countryGroup">
-            <div class="countryTitle">
-                <p>中非</p>
-            </div>
-        </div>
-        <div class="countryGroup">
-            <div class="countryTitle">
-                <p>南非</p>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+    <div class="countryGroup">
+      <div class="countryTitle">
+        <p>西非</p>
+      </div>
+    </div>
+    <div class="countryGroup">
+      <div class="countryTitle">
+        <p>中非</p>
+      </div>
+    </div>
+    <div class="countryGroup">
+      <div class="countryTitle">
+        <p>南非</p>
+      </div>
+    </div>
+  </div>
+  </div>
 </body>
 
 </html>
