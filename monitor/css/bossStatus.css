@@ -1,0 +1,188 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    color: #929293;
+    background-color: #303030;
+    background-image: url("../img/boss/di.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title{
+    margin-top: 30px;
+    margin-left: 10px;
+    display: inline-block;
+}
+.title>div{
+    color: #FFF;
+    float: left;
+}
+.titleImage{
+    width: 30px;
+    padding: 3px 5px;
+    border-radius: 32px;
+    border: 1px solid #6e6e6e;
+}
+.titleImage>img{
+    width: 100%;
+}
+.titleName{
+    padding-top:12px;
+    padding-left: 10px;
+}
+.sassList{
+    width: 100%;
+    display: inline-block;
+}
+.listPanel{
+    display: flex;
+    margin-top: 50px;
+}
+.sassTitle{
+    flex: 1;
+}
+.sassTitle p{
+    text-align: right;
+    margin-top: -31px;
+}
+.sassContent{
+    flex: 7;
+    background-image: url("../img/boss/ban.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+}
+.sassPlaceHolder,.iassPlaceHolder{
+    flex: 1;
+}
+.sassContent>li:first-child{
+    margin-left: 80px;
+}
+.sassContent>li{
+    text-align: center;
+    width: 14%;
+    margin-right: 10px;
+    height: 82px;
+    float: left;
+    list-style: none;
+    padding-top: 10px;
+    background-color:#262627;
+    margin-top: -33px;
+    font-size: 16px;
+}
+.sassLiContentFont{
+    margin-top: 10px;
+}
+.sassLiContentFont p{
+    font-size: 14px;
+    color: #30af81;
+    line-height: 12px;
+}
+.sassContentFirstList{
+    color: #30af81;
+    font-size: 32px;
+}
+.iaasTitle{
+    flex: 1;
+}
+.iaasTitle p{
+    text-align: right;
+    margin-top: -25px;
+}
+.iaasContent{
+    flex: 7;
+    background-image: url("../img/boss/ban.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+}
+.iaasContent>li{
+    text-align: center;
+    float: left;
+    width: 9%;
+    margin-right: 8px;
+    list-style: none;
+    margin-top: -33px;
+}
+.iaasContent>li:first-child{
+    margin-left: 80px;
+}
+.iaasContent>li>i{
+    color: #30af81;
+    font-size: 48px;
+}
+.iaasContent>li>p{
+    margin-top: 10px;
+}
+.cloudImgWrap{
+    height: 500px;
+
+}
+.cloud{
+    margin:200px auto;
+    width: 412px;
+    height: 236px;
+    background-image: url("../img/boss/yun.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    position: relative;
+    top:-683px;
+}
+
+.countryGroupWrap{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+.countryGroup{
+    flex: 1;
+    background-color: #222223;
+    margin-right: 10px;
+}
+.countryTitle{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #303031;
+}
+.countryItem{
+    display: flex;
+    padding: 5px;
+}
+.countryImg{
+    flex: 1;
+    padding-left: 10px;
+}
+.countryImg img{
+    width: 80%;
+}
+.countryName{
+    flex: 2;
+    text-align: center;
+    padding-top: 5px;
+}
+.countryTime{
+    flex: 2;
+    text-align: center;
+    padding-top: 5px;
+}
+.countryStatus{
+    flex: 1;
+    padding-top: 10px;
+}
+.status{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #30af81;
+    border-bottom: 1px solid #303031;
+    margin: 0 auto;
+}
+.canvasDiv{
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
