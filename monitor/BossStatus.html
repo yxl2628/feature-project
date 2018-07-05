@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="./css/bossStatus.css?version=1528769604144">
   <link rel="stylesheet" href="./css/boosFont/bossIconfont.css?version=1528769604144">
   <script src="./js/jquery.min.js?version=1528769604144" charset="utf-8"></script>
-  <script src="./js/zabbix.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/grafana.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/template-web.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/moment.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/moment-timezone-with-data.min.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./config/boss-contry.js?version=1528769604144" charset="utf-8"></script>
 </head>
 
 <body>
@@ -127,40 +128,79 @@
       <div class="countryTitle">
         <p>东非</p>
       </div>
-      <div class="countryItem">
-        <div class="countryImg">
-          <img src="img/country/Kenya.jpg" alt="">
-        </div>
-        <div class="countryName">
-          肯尼亚
-        </div>
-        <div class="countryTime">
-          16:35:48
-        </div>
-        <div class="countryStatus">
-          <div class="status">
-
-          </div>
-        </div>
+      <div id="eastAfrica">
       </div>
     </div>
     <div class="countryGroup">
       <div class="countryTitle">
         <p>西非</p>
       </div>
+      <div id="westAfrica">
+      </div>
     </div>
     <div class="countryGroup">
       <div class="countryTitle">
         <p>中非</p>
+      </div>
+      <div id="centerAfrica">
       </div>
     </div>
     <div class="countryGroup">
       <div class="countryTitle">
         <p>南非</p>
       </div>
+      <div id="southAfirca">
+      </div>
     </div>
   </div>
   </div>
+  <script id="countryTpl" type="text/html">
+    <div class="countryItem">
+      <div class="countryImg">
+        <img src="img/country/{{enName}}.jpg" alt="">
+      </div>
+      <div class="countryName">
+        {{name}}
+      </div>
+      <div class="countryTime">
+        {{time}}
+      </div>
+      <div class="countryStatus">
+        <div class="status">
+        {{status}}
+        </div>
+      </div>
+    </div>
+  </script>
+  <script type="text/javascript">
+    var grafana_server = new $.jqgrafana()
+    grafana_server.queryData('alerts?state=all', 'GET', null, function(res) {
+      console.log(res)
+    })
+    moment.locale('zh_cn')
+    $('#eastAfrica').html('')
+    eastAfrica.forEach(function (item) {
+      item.time = moment().tz(item.timezone).format('HH:mm')
+      $('#eastAfrica').append(template('countryTpl', item))
+    })
+    $('#westAfrica').html('')
+    westAfrica.forEach(function (item) {
+      item.time = moment().tz(item.timezone).format('HH:mm')
+      $('#westAfrica').append(template('countryTpl', item))
+    })
+    $('#centerAfrica').html('')
+    centerAfrica.forEach(function (item) {
+      item.time = moment().tz(item.timezone).format('HH:mm')
+      $('#centerAfrica').append(template('countryTpl', item))
+    })
+    $('#southAfirca').html('')
+    southAfirca.forEach(function (item) {
+      item.time = moment().tz(item.timezone).format('HH:mm')
+      $('#southAfirca').append(template('countryTpl', item))
+    })
+    //
+    //
+  </script>
 </body>
 
 </html>

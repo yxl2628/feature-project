@@ -31,6 +31,14 @@ $(document).ready(function() {
    * 默认是60秒请求一次
    */
   setInterval(function() {
+    cache_list.forEach(function(item) {
+      if (item.groupid) {
+        cache_groupids.push(item.groupid)
+        item.value = [0, 0]
+      } else {
+        item.value = [-1, -1]
+      }
+    })
     task(cache_groupids)
   }, 60000)
   /**

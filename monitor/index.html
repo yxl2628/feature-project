@@ -45,12 +45,12 @@
     <span></span>
     <span></span>
     <div class="title">APP用户体验</div>
-    <div class="item"><label>播放：</label><p id="appplay"></p></div>
-    <div class="item"><label>首页：</label><p id="apphome"></p></div>
-    <div class="item"><label>登录：</label><p id="applogin"></p></div>
-    <div class="item"><label>转化：</label><p id="appregister"></p></div>
-    <div class="item"><label>订单：</label><p id="apporder"></p></div>
-    <div class="item"><label>支付：</label><p id="apppay"></p></div>
+    <div class="item"><label>播放成功率：</label><p id="appplay"></p></div>
+    <div class="item"><label>首页打开成功率：</label><p id="apphome"></p></div>
+    <div class="item"><label>登录成功率：</label><p id="applogin"></p></div>
+    <div class="item"><label>注册成功转化率：</label><p id="appregister"></p></div>
+    <div class="item"><label>订单服务成功率：</label><p id="apporder"></p></div>
+    <div class="item"><label>支付成功率：</label><p id="apppay"></p></div>
   </div>
   <div class="total user">
       <div class="item">
@@ -194,8 +194,10 @@
       if (params.seriesType && (params.seriesType === 'effectScatter' || params.seriesType === 'scatter')) {
         switch (params.name) {
           case '北京':
+            goto('http://192.168.32.70:8080/bi/Viewer?proc=1&action=viewer&hback=true&db=!5927!!5c4f!!5c55!!793a!!2f!!7efc!!5408!!4e1a!!52a1!!670d!!52a1!!76d1!!63a7!!5e73!!53f0!_!52a0!!9875!!9762!_!5de5!!5355!_!5de6!_!5168!!5c40!!8c03!!5ea6!!7cfb!!7edf!.db&isAir=false&browserType=chrome')
+            break;
+          case '亚马逊云':
             goto('http://10.0.224.100:3000/d/kU0SkYDik/otthou-tai?orgId=1&refresh=1m&from=now-6h&to=now')
-            // goto('http://192.168.32.70:8080/bi/Viewer?proc=1&action=viewer&hback=true&db=!5927!!5c4f!!5c55!!793a!!2f!!7efc!!5408!!4e1a!!52a1!!670d!!52a1!!76d1!!63a7!!5e73!!53f0!_!52a0!!9875!!9762!_!5de5!!5355!_!5de6!_!5168!!5c40!!8c03!!5ea6!!7cfb!!7edf!.db&isAir=false&browserType=chrome')
             break;
           default:
             if (params.data.url) {
