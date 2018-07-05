@@ -1,3 +1,8 @@
+@font-face {
+  font-family: hyzh;
+  src: url('./hyzh.ttf');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +11,7 @@
 body {
   color: #929293;
   background-color: #303030;
+  font-family: 'hyzh';
 }
 
 .title {
@@ -150,7 +156,7 @@ body {
 }
 
 .cloud {
-  margin: -40px auto 0;
+  margin: -35px auto 0;
   width: 206px;
   height: 118px;
   background-image: url("../img/boss/yun.png");
