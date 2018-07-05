@@ -40,15 +40,28 @@
           </li>
           <li>
             <p>CA指令状态</p>
+            <div class="sassLiContentFont">
+              <p class="sassLiContentFont">堆积指令:23</p>
+              <p class="sassLiContentFont">失败指令:6</p>
+            </div>
           </li>
           <li>
             <p>短信下发状态</p>
+            <div class="sassLiContentFont">
+              <p class="sassLiContentFont single">失败短信：2</p>
+            </div>
           </li>
           <li>
             <p>支付状态</p>
+            <div class="sassLiContentFont">
+              <p class="sassLiContentFont single">最近30分钟支付：45</p>
+            </div>
           </li>
           <li>
             <p>营业状态</p>
+            <div class="sassLiContentFont">
+              <p class="sassLiContentFont single">最近30分钟：10</p>
+            </div>
           </li>
         </ul>
         <div class='sassPlaceHolder'></div>
@@ -174,7 +187,9 @@
   <script type="text/javascript">
     var grafana_server = new $.jqgrafana()
     grafana_server.queryData('alerts?state=all', 'GET', null, function(res) {
-      console.log(res)
+      res.forEach(function(item) {
+        console.log(item)
+      })
     })
     moment.locale('zh_cn')
     $('#eastAfrica').html('')

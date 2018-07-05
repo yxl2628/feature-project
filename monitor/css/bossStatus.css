@@ -88,12 +88,14 @@ body {
   margin-top: 10px;
 }
 
-.sassLiContentFont p {
+.sassLiContentFont{
   font-size: 14px;
   color: #30af81;
   line-height: 12px;
 }
-
+.sassLiContentFont.single{
+  line-height: 28px;
+}
 .sassContentFirstList {
   color: #30af81;
   font-size: 32px;
@@ -186,7 +188,7 @@ body {
 }
 
 .countryImg {
-  width: 50px;
+  width: 40px;
   padding-left: 10px;
 }
 
@@ -201,18 +203,18 @@ body {
   -moz-text-align-last: justify;
   -webkit-text-align-last: justify;
   min-width: 56px;
-  padding-top: 5px;
+  padding-top: 1px;
 }
 
 .countryTime {
   width: 60px;
   text-align: center;
-  padding-top: 5px;
+  padding-top: 1px;
 }
 
 .countryStatus {
   width: 30px;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .status {
@@ -470,7 +472,7 @@ body {
 .itemLine:after {
   content:"";
 	position:absolute;
-	width:200%;
+	width:400%;
 	height:2px;
 	bottom:0;
 	z-index:3;
@@ -478,13 +480,13 @@ body {
 }
 
 .itemLine1{
-  top: -20px;
-  left: 4%;
+  top: 47px;
+  left: -10%;
   transform:rotateZ(-25deg);
 }
 .itemLine1.itemLine:after{
-  -webkit-animation: solid-line-right linear 16s infinite;
-  animation:solid-line-right linear 16s infinite;
+  -webkit-animation: solid-line-right linear 20s infinite;
+  animation:solid-line-right linear 20s infinite;
 }
 .itemLine2 {
   top: -25px;
@@ -492,8 +494,8 @@ body {
   transform:rotateZ(-230deg);
 }
 .itemLine2.itemLine:after{
-  -webkit-animation: solid-line-left linear 10s infinite;
-  animation:solid-line-left linear 10s infinite;
+  -webkit-animation: solid-line-left linear 15s infinite;
+  animation:solid-line-left linear 15s infinite;
 }
 .itemLine3{
   top: 150px;
@@ -501,17 +503,17 @@ body {
   transform:rotateZ(230deg);
 }
 .itemLine3.itemLine:after{
-  -webkit-animation: solid-line-right linear 10s infinite;
-  animation:solid-line-right linear 10s infinite;
+  -webkit-animation: solid-line-right linear 15s infinite;
+  animation:solid-line-right linear 15s infinite;
 }
 .itemLine4{
-  top: -120px;
-  right: 25.5%;
+  top: -140px;
+  right: 31%;
   transform:rotateZ(25deg);
 }
 .itemLine4.itemLine:after{
-  -webkit-animation: solid-line-left linear 16s infinite;
-  animation:solid-line-left linear 16s infinite;
+  -webkit-animation: solid-line-left linear 20s infinite;
+  animation:solid-line-left linear 20s infinite;
 }
 .cloudline {
   position: relative;
@@ -525,7 +527,7 @@ body {
   left: 50%;
 	width:2px;
 	height:200%;
-	bottom:-120%;
+	bottom:-73%;
 	z-index:3;
 	background:-webkit-repeating-linear-gradient(90deg,#30af81 0,#30af81 3px,rgba(0,0,0,0) 3px,rgba(0,0,0,0) 6px);
   -webkit-animation: solid-line-down linear 8s infinite;
