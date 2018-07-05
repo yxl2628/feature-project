@@ -24,7 +24,7 @@ var eastAfrica = [
     hasService: ['BOSS', 'OTT']
   },
   {
-    name: '埃塞俄比亚',
+    name: '埃塞',
     enName: 'Ethiopia',
     timezone: 'Africa/Nairobi',
     hasService: ['BOSS', 'OTT']
