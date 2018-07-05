@@ -168,7 +168,7 @@ body {
 
 .countryGroupWrap {
   display: flex;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -194,6 +194,7 @@ body {
 }
 
 .countryImg {
+  flex: 1;
   width: 40px;
   padding-left: 10px;
 }
@@ -201,24 +202,29 @@ body {
 .countryImg img {
   width: 80%;
 }
-
 .countryName {
+  flex: 2;
+  text-align: center;
+}
+.countryName .name {
   text-align: justify;
   text-justify: distribute-all-lines;
   text-align-last: justify;
   -moz-text-align-last: justify;
   -webkit-text-align-last: justify;
-  min-width: 56px;
+  width: 56px;
   padding-top: 1px;
 }
 
 .countryTime {
+  flex: 1;
   width: 60px;
   text-align: center;
   padding-top: 1px;
 }
 
 .countryStatus {
+  flex: 1;
   width: 30px;
   padding-top: 5px;
 }
