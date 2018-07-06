@@ -165,7 +165,29 @@ body {
   background-size: 100% 100%;
   position: relative;
 }
-
+.vpn {
+  text-align: center;
+  margin-top: -40px;
+  margin-bottom: -20px;
+  font-size: 50px;
+  font-weight: bold;
+  color: #30af81;
+}
+.stat {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  margin-top: -90px;
+  line-height: 1.5;
+}
+.stat .title{
+  font-size: 16px;
+}
+.stat .num{
+  font-size: 30px;
+  font-weight: bold;
+  color: #30af81;
+}
 .countryGroupWrap {
   display: flex;
   width: 90%;
@@ -175,6 +197,7 @@ body {
 .countryGroup {
   flex: 1;
   background-color: #222223;
+  line-height: 25px;
 }
 .countryGroup:not(:last-child){
   margin-right: 10px;
@@ -182,50 +205,47 @@ body {
 
 .countryTitle {
   text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
   border-bottom: 1px solid #303031;
 }
 
 .countryItem {
   display: flex;
-  padding: 5px;
   font-size: 14px;
+  margin: 8px auto;
 }
 
 .countryImg {
-  flex: 1;
-  width: 40px;
+  width: 20%;
   padding-left: 10px;
 }
 
 .countryImg img {
+  height: 25px;
   width: 80%;
+  display: block;
+  font-size: 0;
 }
 .countryName {
-  flex: 2;
-  text-align: center;
+  width: 40%;
 }
-.countryName .name {
-  text-align: justify;
-  text-justify: distribute-all-lines;
-  text-align-last: justify;
-  -moz-text-align-last: justify;
-  -webkit-text-align-last: justify;
+.name {
+  margin: 0 auto;
+  text-align:justify;
+  text-justify:distribute-all-lines;/*ie6-8*/
+  text-align-last:justify;/* ie9*/
+  -moz-text-align-last:justify;/*ff*/
+  -webkit-text-align-last:justify;/*chrome 20+*/
   width: 56px;
-  padding-top: 1px;
 }
 
 .countryTime {
-  flex: 1;
-  width: 60px;
+  width: 25%;
   text-align: center;
   padding-top: 1px;
 }
 
 .countryStatus {
-  flex: 1;
-  width: 30px;
+  width: 15%;
   padding-top: 5px;
 }
 
@@ -233,9 +253,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: #30af81;
-  border-bottom: 1px solid #303031;
-  margin: 0 auto;
+  margin: 3px auto;
 }
 
 .canvasDiv {
@@ -478,7 +496,7 @@ body {
 .itemLine {
   position: relative;
   width: 100%;
-  height: 130px;
+  height: 120px;
   text-align: center;
 }
 .itemLine:after {
@@ -592,4 +610,47 @@ body {
   to {
   	transform:translateY(0);
   }
+}
+.light {
+  position: relative;
+  margin: 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.none-light {
+  background-color: #999999;
+}
+.good-light{
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-name: breathe-green;
+  -webkit-animation-duration: 900ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+}
+@-webkit-keyframes breathe-green {
+  0% { opacity: .2;background-color:#30af81; border:1px solid #30af81; box-shadow:0 1px 30px #30af81;}
+  100% { opacity: 1;background-color:#30af81; border:1px solid #30af81; box-shadow:0 1px 30px #30af81;}
+}
+.error-light{
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-name: breathe-red;
+  -webkit-animation-duration: 900ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+}
+@-webkit-keyframes breathe-red {
+  0% { opacity: .2;background-color:#ff1d04; border:1px solid #ff1d04; box-shadow:0 1px 30px #ff1d04;}
+  100% { opacity: 1;background-color:#ff1d04; border:1px solid #ff1d04; box-shadow:0 1px 30px #ff1d04;}
+}
+.bad-light{
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-name: breathe-yellow;
+  -webkit-animation-duration: 900ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+}
+@-webkit-keyframes breathe-yellow {
+  0% { opacity: .2;background-color:#d1d41a; border:1px solid #d1d41a; box-shadow:0 1px 30px #d1d41a;}
+  100% { opacity: 1;background-color:#d1d41a; border:1px solid #d1d41a; box-shadow:0 1px 30px #d1d41a;}
 }

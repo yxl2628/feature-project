@@ -11,6 +11,9 @@
     this.setOptions = function(addoptions) {
       options = $.extend(options, addoptions);
     }
+    this.getOptions = function(key) {
+      return options[key]
+    }
     // 请求方法
     this.queryData = function (url, method, params, success, error) {
       getGrafanaAjax(url, method, params, success, error)

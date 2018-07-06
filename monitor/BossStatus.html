@@ -13,11 +13,10 @@
   <script src="./js/moment-timezone-with-data.min.js?version=1528769604144" charset="utf-8"></script>
   <script src="./config/boss-contry.js?version=1528769604144" charset="utf-8"></script>
 </head>
-
 <body>
   <div class="bossPage">
     <div class="sassList">
-      <div class="listPanel" style="margin-top:70px;">
+      <div class="listPanel" style="margin-top:55px;">
         <div class="sassTitle">
           <div class="title">
             <div class="titleImage">
@@ -29,38 +28,38 @@
         <ul class="sassContent">
           <li>
             <p>微服务状态</p>
-            <p class="sassContentFirstList">72/72</p>
+            <p class="sassContentFirstList"><span id="bossSuccess"></span>/<span id="bossTotal"></span></p>
           </li>
           <li>
             <p>系统接入状态</p>
             <div class="sassLiContentFont">
-              <p class="sassLiContentFont">系统请求数:70234</p>
-              <p class="sassLiContentFont">请求错误率:5%</p>
+              <p class="sassLiContentFont">系统请求数:<span id="systemTotal"></span></p>
+              <p class="sassLiContentFont">请求错误率:<span id="systemPersent"></span>%</p>
             </div>
           </li>
           <li>
             <p>CA指令状态</p>
             <div class="sassLiContentFont">
-              <p class="sassLiContentFont">堆积指令:23</p>
-              <p class="sassLiContentFont">失败指令:6</p>
+              <p class="sassLiContentFont">堆积指令:<span id="caTotal"></span></p>
+              <p class="sassLiContentFont">失败指令:<span id="caError"></span></p>
             </div>
           </li>
           <li>
             <p>短信下发状态</p>
             <div class="sassLiContentFont">
-              <p class="sassLiContentFont single">失败短信：2</p>
+              <p class="sassLiContentFont single">失败短信：<span id="msgError"></span></p>
             </div>
           </li>
           <li>
             <p>支付状态</p>
             <div class="sassLiContentFont">
-              <p class="sassLiContentFont single">最近30分钟支付：45</p>
+              <p class="sassLiContentFont single">最近30分钟支付：<span id="payTotal"></span></p>
             </div>
           </li>
           <li>
             <p>营业状态</p>
             <div class="sassLiContentFont">
-              <p class="sassLiContentFont single">最近30分钟：10</p>
+              <p class="sassLiContentFont single">最近30分钟：???</p>
             </div>
           </li>
         </ul>
@@ -115,6 +114,17 @@
     <div class="cloudImgWrap">
       <div class="cloudline"><div class="line"></div></div>
       <div class="cloud"></div>
+      <div class="vpn">VPN</div>
+      <div class="stat">
+        <div class="stat-item">
+          <div class="title">运营国家</div>
+          <div class="num">24</div>
+        </div>
+        <div class="stat-item">
+          <div class="title">在线终端</div>
+          <div class="num">541</div>
+        </div>
+      </div>
       <div class="wrap-bg"></div>
       <div class="wrap-icon">
         <span><i></i></span>
@@ -167,147 +177,196 @@
   </div>
   </div>
   <script id="countryTpl" type="text/html">
-    <div class="countryItem">
+    <div class="countryItem" onclick="goto('{{url}}')">
       <div class="countryImg">
         <img src="img/country/{{enName}}.jpg" alt="">
       </div>
       <div class="countryName">
-        <div class="name">
-          {{name}}
-        </div>
+        <div class="name">{{name}}</div>
       </div>
       <div class="countryTime">
         {{time}}
       </div>
       <div class="countryStatus">
-        <div class="status">
-        {{status}}
-        </div>
+        <div class="light {{if status=='none'}}none{{else if status=='good'}}good{{else}}bad{{/if}}-light"></div>
       </div>
     </div>
   </script>
   <script type="text/javascript">
-    var grafana_server = new $.jqgrafana(), bossStatus = {}
-    grafana_server.queryData('alerts?state=all', 'GET', null, function(res) {
-      bossStatus = {}
-      res.forEach(function(item) {
-        if (item.name.indexOf('微服务状态-EC2-BOSS') >= 0) {
-          if (bossStatus.status == undefined) {
-            bossStatus.status = {
-              success: 0,
-              total: 0
+    var grafana_server = new $.jqgrafana(), bossStatus = {}, color = ['#30af81', '#d1d41a', '#ff1d04']
+    moment.locale('zh_cn')
+    task()
+    // 总的任务调度
+    function task(){
+      getBossStatus()
+      getCountryStatus()
+    }
+    // 获取boss各项服务状态
+    function getBossStatus(){
+      grafana_server.queryData('alerts?state=all', 'GET', null, function(res) {
+        bossStatus = {}
+        res.forEach(function(item) {
+          if (item.name.indexOf('微服务状态-EC2-BOSS') >= 0) {
+            if (bossStatus.status == undefined) {
+              bossStatus.status = {
+                success: 0,
+                total: 0
+              }
             }
-          }
-          bossStatus.status.total += 1
-          if (item.state == 'ok') {
-            bossStatus.status.success += 1
-          }
-        } else if (item.name.indexOf('业务状态-BOSS-CA-') >= 0) {
-          if (bossStatus.ca == undefined) {
-            bossStatus.ca = {
-              success: 0,
-              total: 0
+            bossStatus.status.total += 1
+            if (item.state == 'ok') {
+              bossStatus.status.success += 1
             }
-          }
-          bossStatus.ca.total += 1
-          if (item.state == 'ok') {
-            bossStatus.ca.success += 1
-          }
-        } else if (item.name.indexOf('业务状态-BOSS-短信-') >= 0) {
-          if (bossStatus.msg == undefined) {
-            bossStatus.msg = {
-              success: 0,
-              total: 0
+          } else if (item.name.indexOf('业务状态-BOSS-CA-') >= 0) {
+            if (bossStatus.ca == undefined) {
+              bossStatus.ca = {
+                success: 0,
+                total: 0
+              }
             }
-          }
-          bossStatus.msg.total += 1
-          if (item.state == 'ok') {
-            bossStatus.msg.success += 1
-          }
-        } else if (item.name.indexOf('业务状态-BOSS-支付-') >= 0) {
-          if (bossStatus.pay == undefined) {
-            bossStatus.pay = {
-              success: 0,
-              total: 0
+            bossStatus.ca.total += 1
+            if (item.state == 'ok') {
+              bossStatus.ca.success += 1
             }
-          }
-          bossStatus.pay.total += 1
-          if (item.state == 'ok') {
-            bossStatus.pay.success += 1
-          }
-        } else if (item.name.indexOf('基础服务-系统缓存-') >= 0) {
-          if (bossStatus.cache == undefined) {
-            bossStatus.cache = {
-              success: 0,
-              total: 0
+          } else if (item.name.indexOf('业务状态-BOSS-短信-') >= 0) {
+            if (bossStatus.msg == undefined) {
+              bossStatus.msg = {
+                success: 0,
+                total: 0
+              }
             }
-          }
-          bossStatus.cache.total += 1
-          if (item.state == 'ok') {
-            bossStatus.cache.success += 1
-          }
-        } else if (item.name.indexOf('基础服务-EC2HOST-') >= 0) {
-          if (bossStatus.EC2 == undefined) {
-            bossStatus.EC2 = {
-              success: 0,
-              total: 0
+            bossStatus.msg.total += 1
+            if (item.state == 'ok') {
+              bossStatus.msg.success += 1
             }
-          }
-          bossStatus.EC2.total += 1
-          if (item.state == 'ok') {
-            bossStatus.EC2.success += 1
-          }
-        } else if (item.name.indexOf('基础服务-BOSSDB') >= 0) {
-          if (bossStatus.BOSSDB == undefined) {
-            bossStatus.BOSSDB = {
-              success: 0,
-              total: 0
+          } else if (item.name.indexOf('业务状态-BOSS-支付-') >= 0) {
+            if (bossStatus.pay == undefined) {
+              bossStatus.pay = {
+                success: 0,
+                total: 0
+              }
             }
-          }
-          bossStatus.BOSSDB.total += 1
-          if (item.state == 'ok') {
-            bossStatus.BOSSDB.success += 1
-          }
-        } else if (item.name.indexOf('基础服务-K8s') >= 0) {
-          if (bossStatus.K8s == undefined) {
-            bossStatus.K8s = {
-              success: 0,
-              total: 0
+            bossStatus.pay.total += 1
+            if (item.state == 'ok') {
+              bossStatus.pay.success += 1
             }
+          } else if (item.name.indexOf('基础服务-系统缓存-') >= 0) {
+            if (bossStatus.cache == undefined) {
+              bossStatus.cache = {
+                success: 0,
+                total: 0
+              }
+            }
+            bossStatus.cache.total += 1
+            if (item.state == 'ok') {
+              bossStatus.cache.success += 1
+            }
+          } else if (item.name.indexOf('基础服务-EC2HOST-') >= 0) {
+            if (bossStatus.EC2 == undefined) {
+              bossStatus.EC2 = {
+                success: 0,
+                total: 0
+              }
+            }
+            bossStatus.EC2.total += 1
+            if (item.state == 'ok') {
+              bossStatus.EC2.success += 1
+            }
+          } else if (item.name.indexOf('基础服务-BOSSDB') >= 0) {
+            if (bossStatus.BOSSDB == undefined) {
+              bossStatus.BOSSDB = {
+                success: 0,
+                total: 0
+              }
+            }
+            bossStatus.BOSSDB.total += 1
+            if (item.state == 'ok') {
+              bossStatus.BOSSDB.success += 1
+            }
+          } else if (item.name.indexOf('基础服务-K8s') >= 0) {
+            if (bossStatus.K8s == undefined) {
+              bossStatus.K8s = {
+                success: 0,
+                total: 0
+              }
+            }
+            bossStatus.K8s.total += 1
+            if (item.state == 'ok') {
+              bossStatus.K8s.success += 1
+            }
+          } else {
+            // console.log(item)
           }
-          bossStatus.K8s.total += 1
-          if (item.state == 'ok') {
-            bossStatus.K8s.success += 1
-          }
+        })
+        $('#bossTotal').text(bossStatus.status.total)
+        $('#bossSuccess').text(bossStatus.status.success)
+        if (bossStatus.EC2.success === bossStatus.EC2.total) {
+          $('.icon-dec2').css('color', color[0])
         } else {
-          console.log(item)
+          $('.icon-dec2').css('color', color[2])
+        }
+        if (bossStatus.K8s.success === bossStatus.K8s.total) {
+          $('.icon-KS').css('color', color[0])
+          } else {
+          $('.icon-KS').css('color', color[2])
+        }
+        if (bossStatus.BOSSDB.success === bossStatus.BOSSDB.total) {
+          $('.icon-database').css('color', color[0])
+          } else {
+          $('.icon-database').css('color', color[2])
+        }
+        if (bossStatus.cache.success === bossStatus.cache.total) {
+          $('.icon-yunxiazai1').css('color', color[0])
+          } else {
+          $('.icon-yunxiazai1').css('color', color[2])
+        }
+        if (bossStatus.msg.success === bossStatus.msg.total) {
+          $('.icon-xiaoxiduilieMQ').css('color', color[0])
+          } else {
+          $('.icon-xiaoxiduilieMQ').css('color', color[2])
         }
       })
-      console.log(bossStatus)
-    })
-    moment.locale('zh_cn')
-    $('#eastAfrica').html('')
-    eastAfrica.forEach(function (item) {
-      item.time = moment().tz(item.timezone).format('HH:mm')
-      $('#eastAfrica').append(template('countryTpl', item))
-    })
-    $('#westAfrica').html('')
-    westAfrica.forEach(function (item) {
-      item.time = moment().tz(item.timezone).format('HH:mm')
-      $('#westAfrica').append(template('countryTpl', item))
-    })
-    $('#centerAfrica').html('')
-    centerAfrica.forEach(function (item) {
-      item.time = moment().tz(item.timezone).format('HH:mm')
-      $('#centerAfrica').append(template('countryTpl', item))
-    })
-    $('#southAfirca').html('')
-    southAfirca.forEach(function (item) {
-      item.time = moment().tz(item.timezone).format('HH:mm')
-      $('#southAfirca').append(template('countryTpl', item))
-    })
-    //
-    //
+    }
+    // 渲染国家列表
+    function getCountryStatus(){
+      handlerCountry('westAfrica', westAfrica)
+      handlerCountry('eastAfrica', eastAfrica)
+      handlerCountry('centerAfrica', centerAfrica)
+      handlerCountry('southAfirca', southAfirca)
+    }
+    function handlerCountry(id, list){
+      $('#' + id).html('')
+      list.forEach(function (item) {
+        if (item.name.split('').length <= 3) {
+          item.name = item.name.split('').join(' ')
+        }
+        item.time = moment().tz(item.timezone).format('HH:mm')
+        if (item.uid != undefined) {
+          grafana_server.queryData('dashboards/uid/' + item.uid, 'GET', null, function(res) {
+            item.url = grafana_server.getOptions('url').replace('api/', res.meta.url)
+            console.log(item.url)
+            item.id = res.dashboard.id
+            grafana_server.queryData('alerts?dashboardId=' + item.id, 'GET', null, function(res) {
+              item.status = 'good'
+              res.forEach(function(_val) {
+                if (_val.state != 'ok') {
+                  item.status = 'bad'
+                }
+              })
+              $('#' + id).append(template('countryTpl', item))
+            })
+          })
+        } else {
+          item.status = 'none'
+          $('#' + id).append(template('countryTpl', item))
+        }
+      })
+    }
+    function goto(url) {
+      if (url !== undefined) {
+        location.href = url
+      }
+    }
   </script>
 </body>
 
