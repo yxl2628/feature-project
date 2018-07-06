@@ -118,7 +118,7 @@
       <div class="stat">
         <div class="stat-item">
           <div class="title">运营国家</div>
-          <div class="num">24</div>
+          <div class="num" id="countryNum"></div>
         </div>
         <div class="stat-item">
           <div class="title">在线终端</div>
@@ -188,13 +188,14 @@
         {{time}}
       </div>
       <div class="countryStatus">
-        <div class="light {{if status=='none'}}none{{else if status=='good'}}good{{else}}bad{{/if}}-light"></div>
+        <div class="light {{if status=='none'}}none{{else if status=='good'}}good{{else}}error{{/if}}-light"></div>
       </div>
     </div>
   </script>
   <script type="text/javascript">
     var grafana_server = new $.jqgrafana(), bossStatus = {}, color = ['#30af81', '#d1d41a', '#ff1d04']
     moment.locale('zh_cn')
+    $('#countryNum').html(westAfrica.length + eastAfrica.length + centerAfrica.length + southAfirca.length)
     task()
     // 总的任务调度
     function task(){

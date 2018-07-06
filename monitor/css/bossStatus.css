@@ -212,6 +212,7 @@ body {
   display: flex;
   font-size: 14px;
   margin: 8px auto;
+  cursor: pointer;
 }
 
 .countryImg {
