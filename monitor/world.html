@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>四达时代数字电视网络平台</title>
+  <style media="screen">
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main"></div>
+  <script src="./js/echarts.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/echarts-gl.min.js?version=1528769604144"></script>
+  <script src="./map/world.js?version=1528769604144"></script>
+  <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'))
+    var options = {
+      geo3D: {
+        map: 'world',
+        show: true,
+        roam: true,
+        regionHeight: 0.4,
+        environment: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: '#007fd5' // 天空颜色
+        },{
+          offset: 0.6,
+          color: '#007fd5' // 天空颜色
+        }, {
+          offset: 0.6,
+          color: '#333' // 地面颜色
+        }, {
+          offset: 1,
+          color: '#333' // 地面颜色
+        }], false),
+        itemStyle: {
+          color: '#777',
+          borderColor: '#fff'
+        },
+        emphasis: {
+          itemStyle: {
+            show: false
+          },
+          label: {
+            show: false
+          }
+        }
+      }
+    }
+    myChart.setOption(options)
+  </script>
+</body>
+
+</html>
