@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/boosFont/bossIconfont.css?version=1528769604144">
   <script src="./js/jquery.min.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/grafana.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/influxdb.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/template-web.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/moment.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/moment-timezone-with-data.min.js?version=1528769604144" charset="utf-8"></script>
@@ -193,7 +194,8 @@
     </div>
   </script>
   <script type="text/javascript">
-    var grafana_server = new $.jqgrafana(), bossStatus = {}, color = ['#30af81', '#d1d41a', '#ff1d04']
+    var grafana_server = new $.jqgrafana(), influxdb_server = new $.jqinfluxdb(),
+     bossStatus = {}, color = ['#30af81', '#d1d41a', '#ff1d04']
     moment.locale('zh_cn')
     $('#countryNum').html(westAfrica.length + eastAfrica.length + centerAfrica.length + southAfirca.length)
     task()
@@ -201,6 +203,12 @@
     function task(){
       getBossStatus()
       getCountryStatus()
+      getInfluxDB()
+    }
+    function getInfluxDB() {
+      influxdb_server.queryData('SELECT * FROM "social_channel_transaction_speed" WHERE time > now() - 24h', function (res) {
+        console.log(11111111, res)
+      })
     }
     // 获取boss各项服务状态
     function getBossStatus(){
