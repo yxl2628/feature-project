@@ -4,6 +4,7 @@
     options = $.extend({
       url: 'http://52.31.253.254:8000/api/',
       token: 'eyJrIjoiSkZ3dXc3SGtjYXlWVDMzdXZVZVowa29LMjFTRFZtM24iLCJuIjoiYm9zc19zdGF0dXMiLCJpZCI6MX0=',
+      timeout: 3000
     }, options)
     var rpc_id = 0
     var auth_id = null

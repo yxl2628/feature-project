@@ -78,6 +78,7 @@ body {
 }
 
 .sassContent>li {
+  cursor: pointer;
   text-align: center;
   width: 14%;
   margin-right: 10px;
@@ -126,6 +127,7 @@ body {
 }
 
 .iaasContent>li {
+  cursor: pointer;
   text-align: center;
   float: left;
   width: 9%;

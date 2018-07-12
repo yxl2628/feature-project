@@ -4,6 +4,7 @@
       url: 'http://54.76.206.29:8086/query',
       user: 'admin',
       password: 'admin4boss',
+      timeout: 3000,
     }, options)
     // 设置参数
     this.setOptions = function(addoptions) {
@@ -20,6 +21,7 @@
         dataType: 'json',
         type: 'POST',
         url: options.url + '?u=' + options.user + '&p=' + options.password + '&db=boss&pretty=true',
+        timeout: options.timeout,
         data: {q: sql},
         success: function(response, status) {
           success && success(response, status)

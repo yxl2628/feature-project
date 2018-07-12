@@ -14,6 +14,7 @@
   <script src="./js/moment-timezone-with-data.min.js?version=1528769604144" charset="utf-8"></script>
   <script src="./config/boss-contry.js?version=1528769604144" charset="utf-8"></script>
 </head>
+
 <body>
   <div class="bossPage">
     <div class="sassList">
@@ -27,37 +28,37 @@
           </div>
         </div>
         <ul class="sassContent">
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/000000006/bosswei-fu-wu-jian-kong?orgId=1')">
             <p>微服务状态</p>
             <p class="sassContentFirstList"><span id="bossSuccess"></span>/<span id="bossTotal"></span></p>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/000000018/nginxri-zhi-jian-kong?orgId=1')">
             <p>系统接入状态</p>
             <div class="sassLiContentFont">
               <p class="sassLiContentFont">系统请求数:<span id="systemTotal"></span></p>
               <p class="sassLiContentFont">请求错误率:<span id="systemPersent"></span>%</p>
             </div>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/XEe6zkHiz/cazhi-ling-jian-kong?orgId=1')">
             <p>CA指令状态</p>
             <div class="sassLiContentFont">
               <p class="sassLiContentFont">堆积指令:<span id="caTotal"></span></p>
               <p class="sassLiContentFont">失败指令:<span id="caError"></span></p>
             </div>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/n-EAGGOiz/duan-xin-xia-fa-jian-kong')">
             <p>短信下发状态</p>
             <div class="sassLiContentFont">
               <p class="sassLiContentFont single">失败短信：<span id="msgError"></span></p>
             </div>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/0WSA7Gdmk/zhi-fu-dui-lie-jian-kong')">
             <p>支付状态</p>
             <div class="sassLiContentFont">
               <p class="sassLiContentFont single">最近30分钟支付：<span id="payTotal"></span></p>
             </div>
           </li>
-          <li>
+          <li onclick="goto('')">
             <p>营业状态</p>
             <div class="sassLiContentFont">
               <p class="sassLiContentFont single">最近30分钟：???</p>
@@ -71,39 +72,39 @@
           <p></p>
         </div>
         <ul class="iaasContent">
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/000000019/ec2jian-kong-cpuandmem?orgId=1')">
             <i class="iconfont icon-dec2"></i>
             <p>云主机</p>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/000000001/k8sji-qun-jian-kong?orgId=1')">
             <i class="iconfont icon-KS"></i>
             <p>集群平台</p>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/000000011/rdsjian-kong?orgId=1')">
             <i class="iconfont icon-database"></i>
             <p>数据库</p>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/000000010/redisjian-kong?orgId=1')">
             <i class="iconfont icon-yunxiazai1"></i>
             <p>系统缓存</p>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/iBHoTQSmz/sqsjian-kong?refresh=5m&orgId=1')">
             <i class="iconfont icon-xiaoxiduilieMQ"></i>
             <p>消息队列</p>
           </li>
-          <li>
+          <li onclick="goto('')">
             <i class="iconfont icon-xiaoxiguanli"></i>
             <p>消息通知</p>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/EHD5-fDmz/zhi-cheng-fu-wu-jian-kong?orgId=1')">
             <i class="iconfont icon-jingxiangku"></i>
             <p>发布镜像库</p>
-          </li>
+          </li onclick="goto('http://52.31.253.254:8000/d/EHD5-fDmz/zhi-cheng-fu-wu-jian-kong?orgId=1')">
           <li>
             <i class="iconfont icon-peizhiguanli"></i>
             <p>配置管理</p>
           </li>
-          <li>
+          <li onclick="goto('http://52.31.253.254:8000/d/EHD5-fDmz/zhi-cheng-fu-wu-jian-kong?orgId=1')">
             <i class="iconfont icon-shujuku"></i>
             <p>数据备份</p>
           </li>
@@ -113,7 +114,9 @@
       </div>
     </div>
     <div class="cloudImgWrap">
-      <div class="cloudline"><div class="line"></div></div>
+      <div class="cloudline">
+        <div class="line"></div>
+      </div>
       <div class="cloud"></div>
       <div class="vpn">VPN</div>
       <div class="stat">
@@ -194,24 +197,48 @@
     </div>
   </script>
   <script type="text/javascript">
-    var grafana_server = new $.jqgrafana(), influxdb_server = new $.jqinfluxdb(),
-     bossStatus = {}, color = ['#30af81', '#d1d41a', '#ff1d04']
+    var grafana_server = new $.jqgrafana(),
+      influxdb_server = new $.jqinfluxdb(),
+      bossStatus = {},
+      color = ['#30af81', '#d1d41a', '#ff1d04']
     moment.locale('zh_cn')
     $('#countryNum').html(westAfrica.length + eastAfrica.length + centerAfrica.length + southAfirca.length)
     task()
+    setInterval(function() {
+      task()
+    }, 60000)
     // 总的任务调度
-    function task(){
+    function task() {
       getBossStatus()
-      getCountryStatus()
       getInfluxDB()
+      getCountryStatus()
     }
+
     function getInfluxDB() {
-      influxdb_server.queryData('SELECT * FROM "social_channel_transaction_speed" WHERE time > now() - 24h', function (res) {
-        console.log(11111111, res)
+      // 失败指令
+      influxdb_server.queryData('SELECT last("VALUE") FROM "send_fail_equipment_instruction" WHERE time > now() - 30m GROUP BY "COMPANY_ID"', function(res) {
+        $('#caError').text(getInfluxDBValue(res.results[0].series))
+      })
+      // 堆积指令
+      influxdb_server.queryData('SELECT last("local_file_number") FROM "conax_proxy_py" WHERE  time > now() - 30m', function(res) {
+        $('#caTotal').text(getInfluxDBValue(res.results[0].series))
+      })
+      // 失败短信
+      influxdb_server.queryData('SELECT last("VALUE")  FROM "send_message" WHERE time > now() - 30m GROUP BY "COMPANY_ID", "LAST_SEND_INFO"', function(res) {
+        $('#msgError').text(getInfluxDBValue(res.results[0].series))
       })
     }
+    function getInfluxDBValue(list) {
+      var total = 0
+      list.forEach(function(serie) {
+        serie.values.forEach(function(val) {
+          total += val[1]
+        })
+      })
+      return total
+    }
     // 获取boss各项服务状态
-    function getBossStatus(){
+    function getBossStatus() {
       grafana_server.queryData('alerts?state=all', 'GET', null, function(res) {
         bossStatus = {}
         res.forEach(function(item) {
@@ -316,36 +343,37 @@
         }
         if (bossStatus.K8s.success === bossStatus.K8s.total) {
           $('.icon-KS').css('color', color[0])
-          } else {
+        } else {
           $('.icon-KS').css('color', color[2])
         }
         if (bossStatus.BOSSDB.success === bossStatus.BOSSDB.total) {
           $('.icon-database').css('color', color[0])
-          } else {
+        } else {
           $('.icon-database').css('color', color[2])
         }
         if (bossStatus.cache.success === bossStatus.cache.total) {
           $('.icon-yunxiazai1').css('color', color[0])
-          } else {
+        } else {
           $('.icon-yunxiazai1').css('color', color[2])
         }
         if (bossStatus.msg.success === bossStatus.msg.total) {
           $('.icon-xiaoxiduilieMQ').css('color', color[0])
-          } else {
+        } else {
           $('.icon-xiaoxiduilieMQ').css('color', color[2])
         }
       })
     }
     // 渲染国家列表
-    function getCountryStatus(){
+    function getCountryStatus() {
       handlerCountry('westAfrica', westAfrica)
       handlerCountry('eastAfrica', eastAfrica)
       handlerCountry('centerAfrica', centerAfrica)
       handlerCountry('southAfirca', southAfirca)
     }
-    function handlerCountry(id, list){
+
+    function handlerCountry(id, list) {
       $('#' + id).html('')
-      list.forEach(function (item) {
+      list.forEach(function(item) {
         if (item.name.split('').length <= 3) {
           item.name = item.name.split('').join(' ')
         }
@@ -371,6 +399,7 @@
         }
       })
     }
+
     function goto(url) {
       if (url !== undefined) {
         location.href = url
