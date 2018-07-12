@@ -217,25 +217,33 @@
     function getInfluxDB() {
       // 失败指令
       influxdb_server.queryData('SELECT last("VALUE") FROM "send_fail_equipment_instruction" WHERE time > now() - 30m GROUP BY "COMPANY_ID"', function(res) {
-        $('#caError').text(getInfluxDBValue(res.results[0].series))
+        handelerInfluxDBValue('caError', res.results[0].series)
       })
       // 堆积指令
       influxdb_server.queryData('SELECT last("local_file_number") FROM "conax_proxy_py" WHERE  time > now() - 30m', function(res) {
-        $('#caTotal').text(getInfluxDBValue(res.results[0].series))
+        handelerInfluxDBValue('caTotal', res.results[0].series)
       })
       // 失败短信
       influxdb_server.queryData('SELECT last("VALUE")  FROM "send_message" WHERE time > now() - 30m GROUP BY "COMPANY_ID", "LAST_SEND_INFO"', function(res) {
-        $('#msgError').text(getInfluxDBValue(res.results[0].series))
+        handelerInfluxDBValue('msgError', res.results[0].series)
       })
     }
-    function getInfluxDBValue(list) {
+    function handelerInfluxDBValue(id, list) {
       var total = 0
       list.forEach(function(serie) {
         serie.values.forEach(function(val) {
           total += val[1]
         })
       })
-      return total
+      $('#' + id).text(total)
+      var $parent = $('#' + id).parent()
+      if (value = 0) {
+        $parent.css('color', color[0])
+      } else if (value >0 && value < 5) {
+        $parent.css('color', color[1])
+      } else {
+        $parent.css('color', color[2])
+      }
     }
     // 获取boss各项服务状态
     function getBossStatus() {
