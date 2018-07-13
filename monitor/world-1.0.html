@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>四达时代数字电视网络平台</title>
+  <style media="screen">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: url('./img/world/bg.jpg') repeat-x 100% 100%;
+    }
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+    #bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="bg"></div>
+  <div id="main"></div>
+  <script src="./js/echarts.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./map/world.js?version=1528769604144"></script>
+  <script src="./js/svg.js?version=1528769604144"></script>
+  <script type="text/javascript">
+    var wei = 'image://./img/world/wei.png',
+    bo = 'image://./img/world/bo.png',
+    ta = 'image://./img/world/ta.png',
+    xing = 'image://./img/world/xing.png',
+    startimes = 'image://./img/startimes_noc-good.png',
+    aws = 'image://./img/aws_ott-bad.png'
+    var lineColor = ['#00fbf2', '#6efa01', '#ffcd01', '#fc8e00']
+    var geoMap = {
+      '1-卫星': [70, 100],
+      '2-卫星': [50, 100],
+      '3-卫星': [90, 100],
+      '北京-总部': [116, 39],
+      '南非-上星站': [20, -30],
+      '南非-发射塔': [24, -28],
+      '南非-播控中心': [28, -29],
+      '尼日利亚-发射塔': [15, -7],
+      '肯尼亚-发射塔': [38, 0],
+      '坦桑-发射塔': [36, 10],
+      '赞比亚-发射塔': [28, -15],
+      '乌干达-发射塔': [33, 3],
+      '爱尔兰-亚马逊云': [-7, 53],
+      '中非-cdn': [20, 6],
+      '几内亚-cdn': [20, -10],
+      '马达-cdn': [48, -16],
+      '莫桑比克-cdn': [33, -24]
+    }
+    echarts.registerMap('world', worldMap)
+    var myChart = echarts.init(document.getElementById('main'))
+    var bgChart = echarts.init(document.getElementById('bg'))
+    var coverData = function(data) {
+      var res = []
+      for(var x in data) {
+        var type = x.split('-')
+        switch(type[1]) {
+          case '卫星':
+            res.push({
+              name: x,
+              value: data[x],
+              symbol: wei,
+              symbolSize: 45
+            })
+            break;
+          case '上星站':
+            res.push({
+              name: x,
+              value: data[x],
+              symbol: xing,
+              symbolSize: 20
+            })
+            break;
+          case '发射塔':
+            res.push({
+              name: x,
+              value: data[x],
+              symbol: ta,
+              symbolSize: 60
+            })
+            break;
+          case '播控中心':
+            res.push({
+              name: x,
+              value: data[x],
+              symbol: bo,
+              symbolSize: [15, 24]
+            })
+            break;
+          case '总部':
+            res.push({
+              name: x,
+              value: data[x],
+              symbol: startimes,
+              symbolSize: 50
+            })
+            break;
+          case '亚马逊云':
+            res.push({
+              name: x,
+              value: data[x],
+              symbol: aws,
+              symbolSize: 45
+            })
+            break;
+          default:
+            res.push({
+              name: x,
+              value: data[x],
+              symbolSize: 15
+            })
+        }
+      }
+      return res
+    }
+    var coverLines = function(x,y,color) {
+      var line = {
+        name: '连接线',
+        type: 'lines',
+        coordinateSystem: 'geo',
+        z: 2,
+        effect: {
+          show: true,
+          constantSpeed: 30,
+          symbol: 'arrow',
+          symbolSize: 5,
+          trailLength: 0,
+        },
+        lineStyle: {
+          normal: {
+            color: color,
+            width: 1,
+            opacity: 0.8,
+            curveness: 0.2
+          }
+        },
+        data: []
+      }
+      if (x instanceof Array) {
+        for(var i=0,len=x.length;i<len;i++){
+          line.data.push([geoMap[x[i]],geoMap[y]])
+        }
+      } else {
+        for(var i=0,len=y.length;i<len;i++){
+          line.data.push([geoMap[x], geoMap[y[i]]])
+        }
+      }
+      return line
+    }
+    var options = {
+      geo: {
+        id: 0,
+        name: '非洲地图',
+        map: 'world',
+        roam: true,
+        zoom: 1.6,
+        center: [50, 35],
+        aspectScale: 0.9,
+        itemStyle: {
+          opacity: 1,
+          color: '#545454',
+          borderWidth: 1,
+          borderColor: '#333'
+        },
+        emphasis: {
+          itemStyle: {
+            opacity: 1,
+            color: '#545454',
+            borderWidth: 1,
+            borderColor: '#333'
+          },
+          label: {
+            show: false
+          }
+        }
+      },
+      series: [{
+          name: '建筑',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 10,
+          data: coverData(geoMap)
+        }
+      ]
+    }
+    var optpionBg = {
+      geo: {
+        name: '非洲地图',
+        map: 'world',
+        roam: true,
+        zoom: 1.6,
+        center: [49, 36],
+        aspectScale: 0.9,
+        itemStyle: {
+          opacity: 1,
+          color: '#000',
+        },
+        emphasis: {
+          itemStyle: {
+            opacity: 1,
+            color: '#000',
+            borderWidth: 0
+          },
+          label: {
+            show: false
+          }
+        }
+      },
+    }
+    options.series.push(coverLines('1-卫星', ['尼日利亚-发射塔','肯尼亚-发射塔'], lineColor[3]))
+    options.series.push(coverLines('2-卫星', ['坦桑-发射塔', '南非-发射塔', '赞比亚-发射塔'], lineColor[3]))
+    options.series.push(coverLines('3-卫星', ['乌干达-发射塔'], lineColor[3]))
+    options.series.push(coverLines(['北京-总部'], '南非-上星站', lineColor[1]))
+    options.series.push(coverLines('南非-上星站', ['1-卫星', '2-卫星', '3-卫星'], lineColor[2]))
+    options.series.push(coverLines(['中非-cdn','几内亚-cdn','马达-cdn','莫桑比克-cdn'], '爱尔兰-亚马逊云', lineColor[0]))
+    myChart.setOption(options, true)
+    bgChart.setOption(optpionBg, true)
+  </script>
+</body>
+
+</html>

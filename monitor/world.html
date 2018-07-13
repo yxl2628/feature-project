@@ -12,7 +12,7 @@
       width: 100%;
       height: 100%;
       /* background: url('./img/world/bg.jpg') repeat-x 100% 100%; */
-      background-color: #1a3779;
+      background-color: #333333;
     }
 
     #main {
@@ -34,182 +34,12 @@
   <div id="main"></div>
   <script src="./js/echarts.js?version=1528769604144" charset="utf-8"></script>
   <script src="./map/world.js?version=1528769604144"></script>
-  <script src="./js/svg.js?version=1528769604144"></script>
+  <script src="./js/world.js?version=1528769604144"></script>
   <script type="text/javascript">
-    var wei = 'image://./img/world/wei.png',
-    bo = 'image://./img/world/bo.png',
-    ta = 'image://./img/world/ta.png',
-    xing = 'image://./img/world/xing.png',
-    startimes = 'image://./img/startimes_noc-good.png',
-    aws = 'image://./img/aws_ott-bad.png'
-    var lineColor = ['#00fbf2', '#6efa01', '#ffcd01', '#fc8e00']
-    var geoMap = {
-      '1-卫星': [10, 65],
-      '2-卫星': [50, 65],
-      '3-卫星': [80, 65],
-      '北京-总部': [116, 39],
-      '南非-上星站': [20, -29],
-      '南非-发射塔': [24, -28],
-      '南非-播控中心': [28, -29],
-      '尼日利亚-发射塔': [15, -7],
-      '肯尼亚-发射塔': [38, 0],
-      '坦桑-发射塔': [36, 10],
-      '赞比亚-发射塔': [28, -15],
-      '乌干达-发射塔': [33, 3],
-      '爱尔兰-亚马逊云': [-7, 53],
-      '中非-cdn': [20, 6],
-      '几内亚-cdn': [20, -10],
-      '马达-cdn': [48, -16],
-      '莫桑比克-cdn': [33, -24]
-    }
-
     echarts.registerMap('world', worldMap)
     var myChart = echarts.init(document.getElementById('main'))
     var bgChart = echarts.init(document.getElementById('bg'))
-    var coverData = function(data) {
-      var res = []
-      for(var x in data) {
-        var type = x.split('-')
-        switch(type[1]) {
-          case '卫星':
-            res.push({
-              name: x,
-              value: data[x],
-              symbol: wei,
-              symbolSize: 45
-            })
-            break;
-          case '上星站':
-            res.push({
-              name: x,
-              value: data[x],
-              symbol: xing,
-              symbolSize: 20
-            })
-            break;
-          case '发射塔':
-            res.push({
-              name: x,
-              value: data[x],
-              symbol: ta,
-              symbolSize: 60
-            })
-            break;
-          case '播控中心':
-            res.push({
-              name: x,
-              value: data[x],
-              symbol: bo,
-              symbolSize: [15, 24]
-            })
-            break;
-          case '总部':
-            res.push({
-              name: x,
-              value: data[x],
-              symbol: startimes,
-              symbolSize: 50
-            })
-            break;
-          case '亚马逊云':
-            res.push({
-              name: x,
-              value: data[x],
-              symbol: aws,
-              symbolSize: 45
-            })
-            break;
-          default:
-            res.push({
-              name: x,
-              value: data[x],
-              symbolSize: 10
-            })
-        }
-      }
-      return res
-    }
-    var coverLines = function(x,y,color) {
-      var line = {
-        name: '连接线',
-        type: 'lines',
-        coordinateSystem: 'geo',
-        z: 2,
-        effect: {
-          show: true,
-          constantSpeed: 30,
-          symbol: 'arrow',
-          symbolSize: 5,
-          trailLength: 0,
-        },
-        lineStyle: {
-          normal: {
-            color: {
-              type: 'radial',
-              x: 0.5,
-              y: 0.5,
-              r: 0.5,
-              colorStops: [{
-                  offset: 0, color: '#fff' // 0% 处的颜色
-              }, {
-                  offset: 1, color: color // 100% 处的颜色
-              }],
-              globalCoord: false // 缺省为 false
-            },
-            width: 1,
-            opacity: 1,
-            curveness: 0.2
-          }
-        },
-        data: []
-      }
-      if (x instanceof Array) {
-        for(var i=0,len=x.length;i<len;i++){
-          line.data.push([geoMap[x[i]],geoMap[y]])
-        }
-      } else {
-        for(var i=0,len=y.length;i<len;i++){
-          line.data.push([geoMap[x], geoMap[y[i]]])
-        }
-      }
-      return line
-    }
-    var ignoreCountry = ['Russia', 'Norway', 'Greenland', 'Australia', 'Sweden', 'Finland', 'Iceland', 'Kazakhstan', 'Mongolia', 'Canada',
-     'United States', 'Mexico', 'Brazil', 'Cuba', 'Haiti','Guatemala', 'Belize', 'Nicaragua', 'Panama', 'Bahamas', 'Barbados', 'Dominica',
-      'Honduras', 'Dominican Rep.', 'El Salvador', 'Costa Rica', 'Jamaica', 'Paraguay', 'Argentina', 'Bolivia', 'Chile', 'Colombia', 'Ecuador',
-       'Guyana', 'Peru', 'Suriname', 'Uruguay', 'Venezuela', 'Puerto Rico', 'Trinidad and Tobago', '', '', '', '', '', '', '', '', '', '', '', '']
-    var regions= [].concat.apply([], ignoreCountry.map(function (item) {
-      return {
-        name: item,
-        itemStyle: {
-          opacity: 0.3,
-        },
-        emphasis: {
-          itemStyle: {
-            opacity: 0.3,
-          },
-          label: {
-            show: false
-          }
-        }
-      }
-    }))
-    var regionsBg= [].concat.apply([], ignoreCountry.map(function (item) {
-      return {
-        name: item,
-        itemStyle: {
-          opacity: 0,
-        },
-        emphasis: {
-          itemStyle: {
-            opacity: 0,
-          },
-          label: {
-            show: false
-          }
-        }
-      }
-    }))
+
     var options = {
       geo: {
         id: 0,
@@ -220,16 +50,16 @@
         aspectScale: 0.9,
         itemStyle: {
           opacity: 1,
-          color: '#2086f5',
+          color: '#151515',
           borderWidth: 1,
-          borderColor: '#545454'
+          borderColor: '#555555'
         },
         emphasis: {
           itemStyle: {
             opacity: 1,
-            color: '#2086f5',
+            color: '#151515',
             borderWidth: 1,
-            borderColor: '#545454'
+            borderColor: '#555555'
           },
           label: {
             show: false
@@ -244,6 +74,26 @@
           symbolSize: 30,
           z: 10,
           data: coverData(geoMap)
+        },
+        ,
+        {
+          name: 'cdn',
+          type: 'effectScatter',
+          coordinateSystem: 'geo',
+          zlevel: 2,
+          symbolSize: 4,
+          showEffectOn: 'render',
+          itemStyle: {
+            normal: {
+              color: '#00fbf2'
+            }
+          },
+          rippleEffect: {
+            period: 4,
+            scale: 4,
+            brushType: 'fill'
+          },
+          data: coverCDN(geoMap)
         }
       ]
     }
@@ -272,12 +122,12 @@
         regions: regionsBg
       }
     }
-    options.series.push(coverLines('1-卫星', ['尼日利亚-发射塔','肯尼亚-发射塔'], lineColor[3]))
-    options.series.push(coverLines('2-卫星', ['坦桑-发射塔', '南非-发射塔', '赞比亚-发射塔'], lineColor[3]))
-    options.series.push(coverLines('3-卫星', ['乌干达-发射塔'], lineColor[3]))
-    options.series.push(coverLines(['北京-总部'], '南非-上星站', lineColor[1]))
-    options.series.push(coverLines('南非-上星站', ['1-卫星', '2-卫星', '3-卫星'], lineColor[2]))
-    options.series.push(coverLines(['中非-cdn','几内亚-cdn','马达-cdn','莫桑比克-cdn'], '爱尔兰-亚马逊云', lineColor[0]))
+    options.series.push(coverLines('北京-总部', ['南非-上星站','斯洛文尼亚-上星站', '德国-上星站'], lineColor[0]))
+    options.series.push(coverLines(['南非-上星站'], 'E10A-卫星', lineColor[0]))
+    options.series.push(coverLines(['南非-上星站','斯洛文尼亚-上星站'], 'E8WB-卫星', lineColor[0]))
+    options.series.push(coverLines(['南非-上星站','斯洛文尼亚-上星站', '德国-上星站'], 'SES5-卫星', lineColor[0]))
+    options.series.push(coverLines('E8WB-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
+    options.series.push(coverLines('SES5-卫星', ['塞内加尔-CDN', '几内亚-CDN', '加纳-CDN', '科特迪瓦-CDN', '尼日利亚-CDN', '刚果金-CDN', '刚果布-CDN', '乌干达-CDN', '卢旺达-CDN', '肯尼亚-CDN', '布隆迪-CDN', '坦桑尼亚-CDN', '赞比亚-CDN', '莫桑比克-CDN', '南非-CDN', '马达-CDN'], lineColor[2]))
     myChart.setOption(options, true)
     bgChart.setOption(optpionBg, true)
   </script>

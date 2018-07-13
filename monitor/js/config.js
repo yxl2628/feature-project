@@ -52,7 +52,7 @@ var cache_list = [
   {name: '莫桑比克_Vodacom', groupid: '', url: ''},
   {name: '刚果布_Airtel', groupid: '67', url: 'http://10.0.224.100:3000/d/Dn_sLoIik/cachezhan-dian-gang-guo-bu-airtel?refresh=1m&orgId=1'},
   {name: '卢旺达', groupid: '', url: ''},
-  {name: '马达', groupid: '', url: ''},
+  {name: '马达', groupid: '81', url: 'http://10.0.224.100:3000/d/SNGrmzdmk/cachezhan-dian-ma-da-orange'},
   {name: '刚果金_Africell', groupid: '', url: ''},
   {name: '刚果金_Vodacom', groupid: '', url: ''},
   {name: '刚果金_Orange', groupid: '', url: ''},
