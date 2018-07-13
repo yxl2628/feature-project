@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>四达时代数字电视网络平台</title>
+  <style media="screen">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: url('./img/world/bg.jpg') repeat-x 100% 100%;
+    }
+
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main"></div>
+  <script src="./js/echarts.js?version=1528769604144" charset="utf-8"></script>
+  <script src="./js/echarts-gl.min.js?version=1528769604144"></script>
+  <script src="./map/world.js?version=1528769604144"></script>
+  <script src="./js/svg.js?version=1528769604144"></script>
+  <script type="text/javascript">
+  echarts.registerMap('world', worldMap)
+    var myChart = echarts.init(document.getElementById('main'))
+    var options = {
+      geo3D: {
+        map: 'world',
+        show: true,
+        regionHeight: 1,
+        boxWidth: 250,
+        left: '-20%',
+        itemStyle: {
+          opacity: 1,
+          color: '#42b9e5',
+          borderWidth: 1,
+          borderColor: '#59dafa'
+        },
+        emphasis: {
+          itemStyle: {
+            opacity: 1,
+            color: '#42b9e5',
+            borderWidth: 1,
+            borderColor: '#59dafa'
+          },
+          label: {
+            show: false
+          }
+        }
+      },
+      series:[
+        {
+          name: '上星站',
+          type: 'scatter3D',
+          coordinateSystem: 'geo3D',
+          symbol: sxzSvg,
+          symbolSize:30,
+          data: [
+            {name: '测试-播控中心', value: [21, -8, 1],itemStyle: {color: '#fff'} }
+          ]
+        },
+        {
+          name: '卫星',
+          type: 'scatter3D',
+          coordinateSystem: 'geo3D',
+          symbol: wxSvg,
+          symbolSize:50,
+          data: [
+            {name: '卫星1', value: [80, 120, 1], itemStyle: {color: '#30af81'}},
+            {name: '卫星2', value: [120, 120, 1], itemStyle: {color: '#30af81'}},
+            {name: '卫星3', value: [160, 120, 1], itemStyle: {color: '#30af81'}}
+          ]
+        },
+        {
+          name: '连接线',
+          type: 'lines3D',
+          coordinateSystem: 'geo3D',
+          blendMode: 'lighter',
+          lineStyle: {
+            width: 2,
+            opacity: 1
+          },
+          data: [
+            [[23, -8],[80, 120]],
+          ]
+        }
+      ]
+    }
+    myChart.setOption(options, true)
+  </script>
+</body>
+
+</html>
