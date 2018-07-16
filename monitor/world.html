@@ -11,7 +11,6 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      /* background: url('./img/world/bg.jpg') repeat-x 100% 100%; */
       background-color: #333333;
     }
 
@@ -30,7 +29,6 @@
 </head>
 
 <body>
-  <div id="bg"></div>
   <div id="main"></div>
   <script src="./js/echarts.js?version=1528769604144" charset="utf-8"></script>
   <script src="./map/world.js?version=1528769604144"></script>
@@ -38,49 +36,141 @@
   <script type="text/javascript">
     echarts.registerMap('world', worldMap)
     var myChart = echarts.init(document.getElementById('main'))
-    var bgChart = echarts.init(document.getElementById('bg'))
 
     var options = {
-      geo: {
-        id: 0,
-        name: '非洲地图',
-        map: 'world',
-        zoom: 2.1,
-        center: [50, 15],
-        aspectScale: 0.9,
-        itemStyle: {
-          opacity: 1,
-          color: '#151515',
-          borderWidth: 1,
-          borderColor: '#555555'
-        },
-        emphasis: {
+      legend: [
+        {
+          show: true,
+          right: 20,
+          bottom: 20,
+          orient: 'vertical',
+          data: [
+            {name: '中继网络', textStyle: {color: lineColor[0]}},
+            {name: 'DTT', textStyle: {color: lineColor[1]}},
+            {name: 'OTT', textStyle: {color: lineColor[2]}},
+            {name: 'VPN', textStyle: {color: lineColor[3]}}
+          ]
+        }
+      ],
+      geo: [
+        {
+          id: 0,
+          name: '非洲地图',
+          map: 'world',
+          zoom: 2.1,
+          center: [50, 15],
+          aspectScale: 0.9,
+          z: 2,
           itemStyle: {
             opacity: 1,
             color: '#151515',
             borderWidth: 1,
-            borderColor: '#555555'
+            borderColor: '#404a59'
           },
-          label: {
-            show: false
-          }
+          emphasis: {
+            itemStyle: {
+              opacity: 1,
+              color: '#151515',
+              borderWidth: 1,
+              borderColor: '#555555'
+            },
+            label: {
+              show: false
+            }
+          },
+          regions: regions
         },
-        regions: regions
-      },
+        {
+          id: 1,
+          name: '非洲地图-阴影',
+          map: 'world',
+          zoom: 2.1,
+          center: [48.5, 16],
+          aspectScale: 0.9,
+          z: 1,
+          itemStyle: {
+            opacity: 1,
+            borderWidth: 0,
+            color: '#000',
+          },
+          emphasis: {
+            itemStyle: {
+              opacity: 1,
+              color: '#000',
+              borderWidth: 0
+            },
+            label: {
+              show: false
+            }
+          },
+          regions: regionsBg
+        }
+      ],
       series: [{
-          name: '建筑',
+          name: '卫星',
           type: 'scatter',
           coordinateSystem: 'geo',
           symbolSize: 30,
           z: 10,
-          data: coverData(geoMap)
+          data: [
+            { name: 'E10A-卫星', value: geoMap['E10A-卫星'], symbol: wei.replace('wei', 'E10A'), symbolSize: [60, 92] },
+            { name: 'E8WB-卫星', value: geoMap['E8WB-卫星'], symbol: wei.replace('wei', 'E8WB'), symbolSize: [60, 92] },
+            { name: 'SES5-卫星', value: geoMap['SES5-卫星'], symbol: wei.replace('wei', 'SES5'), symbolSize: [60, 92] }
+          ]
         },
-        ,
         {
-          name: 'cdn',
+          name: '总部',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 10,
+          data: [{ name: '北京-总部', value: geoMap['北京-总部'], symbol: startimes, symbolSize: 50 }]
+        },
+        {
+          name: '亚马逊云',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 10,
+          data: [{ name: '爱尔兰-亚马逊云', value: geoMap['爱尔兰-亚马逊云'], symbol: aws, symbolSize: 45 }]
+        },
+        {
+          name: 'VPN',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 5,
+          data: [{ name: 'Startimes-VPN', value: geoMap['Startimes-VPN'], symbol: vpn, symbolSize: 80 }]
+        },
+        {
+          name: '播控中心',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 10,
+          data: coverData(geoMap, '播控中心')
+        },
+        {
+          name: 'DTT',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 10,
+          data: coverData(geoMap, '发射塔')
+        },
+        {
+          name: '中继网络',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 10,
+          data: coverData(geoMap, '上星站')
+        },
+        {
+          name: 'OTT',
           type: 'effectScatter',
           coordinateSystem: 'geo',
-          zlevel: 2,
+          z: 10,
           symbolSize: 4,
           showEffectOn: 'render',
           itemStyle: {
@@ -93,43 +183,27 @@
             scale: 4,
             brushType: 'fill'
           },
-          data: coverCDN(geoMap)
+          data: coverData(geoMap, 'CDN')
+        },
+        {
+          name: 'VPN',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 30,
+          z: 10,
+          data: coverData(geoMap, '路由')
         }
       ]
     }
-    var optpionBg = {
-      geo: {
-        name: '非洲地图',
-        map: 'world',
-        zoom: 2.1,
-        center: [48.5, 16],
-        aspectScale: 0.9,
-        itemStyle: {
-          opacity: 1,
-          borderWidth: 0,
-          color: '#000',
-        },
-        emphasis: {
-          itemStyle: {
-            opacity: 1,
-            color: '#42b9e5',
-            borderWidth: 0
-          },
-          label: {
-            show: false
-          }
-        },
-        regions: regionsBg
-      }
-    }
-    options.series.push(coverLines('北京-总部', ['南非-上星站','斯洛文尼亚-上星站', '德国-上星站'], lineColor[0]))
-    options.series.push(coverLines(['南非-上星站'], 'E10A-卫星', lineColor[0]))
-    options.series.push(coverLines(['南非-上星站','斯洛文尼亚-上星站'], 'E8WB-卫星', lineColor[0]))
-    options.series.push(coverLines(['南非-上星站','斯洛文尼亚-上星站', '德国-上星站'], 'SES5-卫星', lineColor[0]))
-    options.series.push(coverLines('E8WB-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
-    options.series.push(coverLines('SES5-卫星', ['塞内加尔-CDN', '几内亚-CDN', '加纳-CDN', '科特迪瓦-CDN', '尼日利亚-CDN', '刚果金-CDN', '刚果布-CDN', '乌干达-CDN', '卢旺达-CDN', '肯尼亚-CDN', '布隆迪-CDN', '坦桑尼亚-CDN', '赞比亚-CDN', '莫桑比克-CDN', '南非-CDN', '马达-CDN'], lineColor[2]))
-    myChart.setOption(options, true)
-    bgChart.setOption(optpionBg, true)
+    options.series.push(coverLines('中继网络', '北京-总部', ['南非-上星站','斯洛文尼亚-上星站', '德国-上星站'], lineColor[0]))
+    options.series.push(coverLines('中继网络', ['南非-上星站', '尼日利亚-上星站', '刚果金-上星站', '乌干达-上星站', '肯尼亚-上星站', '布隆迪-上星站', '坦桑尼亚-上星站','赞比亚-上星站', '莫桑比克-上星站'], 'E10A-卫星', lineColor[0]))
+    options.series.push(coverLines('中继网络', ['南非-上星站','斯洛文尼亚-上星站'], 'E8WB-卫星', lineColor[0]))
+    options.series.push(coverLines('中继网络', ['南非-上星站', '尼日利亚-上星站', '斯洛文尼亚-上星站', '德国-上星站'], 'SES5-卫星', lineColor[0]))
+    options.series.push(coverLines('DTT', 'E8WB-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
+    options.series.push(coverLines('DTT', 'E10A-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
+    options.series.push(coverLines('OTT', 'SES5-卫星', ['塞内加尔-CDN', '几内亚-CDN', '加纳-CDN', '科特迪瓦-CDN', '尼日利亚-CDN', '刚果金-CDN', '刚果布-CDN', '乌干达-CDN', '卢旺达-CDN', '肯尼亚-CDN', '布隆迪-CDN', '坦桑尼亚-CDN', '赞比亚-CDN', '莫桑比克-CDN', '南非-CDN', '马达-CDN'], lineColor[2]))
+    options.series.push(coverLines('VPN', ['肯尼亚-路由', '尼日利亚-路由', '南非-路由', '北京-路由', '伦敦-路由'], 'Startimes-VPN', lineColor[3]))
+    myChart.setOption(options)
   </script>
 </body>
 

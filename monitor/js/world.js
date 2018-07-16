@@ -1,30 +1,32 @@
 var geoMap = {
   // 卫星
-  'E10A-卫星': [10, 65],
-  'E8WB-卫星': [50, 65],
-  'SES5-卫星': [80, 65],
+  'E10A-卫星': [10, 62],
+  'E8WB-卫星': [50, 62],
+  'SES5-卫星': [80, 62],
   // 北京总部
   '北京-总部': [116, 39],
   '爱尔兰-亚马逊云': [-8, 53.488],
+  'Startimes-VPN': [80, -3],
   // 上星站
   '南非-上星站': [21, -30],
   '斯洛文尼亚-上星站': [14.6, 45.95],
   '德国-上星站': [8, 50],
-  // '尼日利亚-上星站': [24, -28],
-  // '刚果金-上星站': [24, -28],
-  // '乌干达-上星站': [24, -28],
-  // '肯尼亚-上星站': [24, -28],
-  // '布隆迪-上星站': [24, -28],
-  // '坦桑尼亚-上星站': [24, -28],
-  // '赞比亚-上星站': [24, -28],
-  // '莫桑比克-上星站': [24, -28],
+  '尼日利亚-上星站': [8.1738, 11],
+  '刚果金-上星站': [26.89, 2.81],
+  '喀麦隆-上星站': [12.337, 5.12],
+  '乌干达-上星站': [33.27, 1.537],
+  '肯尼亚-上星站': [36.65, -0.5],
+  '布隆迪-上星站': [28.1, -5.1],
+  '坦桑尼亚-上星站': [33.2, -3],
+  '赞比亚-上星站': [30.827, -11.049],
+  '莫桑比克-上星站': [33.31, -23.72],
   //发射塔
   '几内亚-发射塔': [-13, 9],
   '尼日利亚-发射塔': [11, 9],
   '中非-发射塔': [21, 8],
   '刚果金-发射塔': [16, 0],
   '刚果布-发射塔': [21, -0.2],
-  '乌干达-发射塔': [32.6, 2.55],
+  '乌干达-发射塔': [31.6, 2.55],
   '卢旺达-发射塔': [29.4, -1.7],
   '肯尼亚-发射塔': [37.44, 3.03],
   '布隆迪-发射塔': [30.1, -5.1],
@@ -48,13 +50,19 @@ var geoMap = {
   '刚果布-CDN': [25, -5],
   '乌干达-CDN': [32, -0.4],
   '卢旺达-CDN': [27, -2.7],
-  '肯尼亚-CDN': [39.15,-2.1],
-  '布隆迪-CDN': [28,-4.5],
+  '肯尼亚-CDN': [39.15,-3.5],
+  '布隆迪-CDN': [29,-4.5],
   '坦桑尼亚-CDN': [36.16, -9.49],
   '赞比亚-CDN': [26.36, -16.8],
   '莫桑比克-CDN': [34.18, -19.51],
   '南非-CDN': [28, -27],
   '马达-CDN': [45.439, -23.966],
+  // 路由
+  '肯尼亚-路由': [40, -1.5],
+  '尼日利亚-路由': [8, 8],
+  '南非-路由': [24, -28],
+  '北京-路由': [116.54, 35],
+  '伦敦-路由': [0.087, 51.289],
 }
 
 var wei = 'image://./img/world/wei.png',
@@ -63,88 +71,46 @@ ta = 'image://./img/world/ta.png',
 xing = 'image://./img/world/xing.png',
 startimes = 'image://./img/startimes_noc-good.png',
 aws = 'image://./img/world/aws.png',
-dian = 'image://./img/world/dian.png'
+dian = 'image://./img/world/dian.png',
+vpn = 'image://./img/world/vpn.png',
+route = 'image://./img/world/route.png'
 
-var lineColor = ['#6efa01', '#00fbf2', '#0da1ed', '#8b0ded']
+// var lineColor = ['#6efa01', '#00fbf2', '#0da1ed', '#8b0ded']
+var lineColor = ['#16ab51', '#257fb7', '#9c26b5', '#ffffff']
 
-var coverData = function(data) {
+var coverData = function(data, name) {
   var res = []
   for(var x in data) {
     var type = x.split('-')
-    switch(type[1]) {
-      case '卫星':
-        res.push({
-          name: x,
-          value: data[x],
-          symbol: wei,
-          symbolSize: 45
-        })
-        break;
-      case '上星站':
-        res.push({
-          name: x,
-          value: data[x],
-          symbol: xing,
-          symbolSize: 30
-        })
-        break;
-      case '发射塔':
-        res.push({
-          name: x,
-          value: data[x],
-          symbol: ta,
-          symbolSize: 60
-        })
-        break;
-      case '播控中心':
-        res.push({
-          name: x,
-          value: data[x],
-          symbol: bo,
-          symbolSize: [25, 50]
-        })
-        break;
-      case '总部':
-        res.push({
-          name: x,
-          value: data[x],
-          symbol: startimes,
-          symbolSize: 50
-        })
-        break;
-      case '亚马逊云':
-        res.push({
-          name: x,
-          value: data[x],
-          symbol: aws,
-          symbolSize: 45
-        })
-        break;
+    if (name === type[1]) {
+      switch(type[1]) {
+        case '上星站':
+          res.push({ name: x, value: data[x], symbol: xing, symbolSize: 30 })
+          break;
+        case '发射塔':
+          res.push({ name: x, value: data[x], symbol: ta, symbolSize: 60 })
+          break;
+        case '播控中心':
+          res.push({ name: x, value: data[x], symbol: bo, symbolSize: [25, 50] })
+          break;
+        case 'CDN':
+          res.push({ name: x, value: data[x] })
+          break;
+        case '路由':
+          res.push({ name: x, value: data[x], symbol: route, symbolSize: [20, 17] })
+          break;
+      }
     }
   }
   return res
 }
 
-var coverCDN = function(data) {
-  var res = []
-  for(var x in data) {
-    var type = x.split('-')
-    if(type[1] === 'CDN') {
-      res.push({
-        name: x,
-        value: data[x]
-      })
-    }
-  }
-  return res
-}
-
-var coverLines = function(x,y,color) {
+var coverLines = function(name, x, y, color) {
   var line = {
-    name: '连接线',
+    name: name,
     type: 'lines',
     coordinateSystem: 'geo',
-    z: 2,
+    z: 5,
     effect: {
       show: true,
       constantSpeed: 30,
@@ -156,7 +122,7 @@ var coverLines = function(x,y,color) {
       normal: {
         color: color,
         width: 0.7,
-        opacity: 0.8,
+        opacity: 1,
         curveness: 0
       }
     },
@@ -170,6 +136,13 @@ var coverLines = function(x,y,color) {
     for(var i=0,len=y.length;i<len;i++){
       line.data.push([geoMap[x], geoMap[y[i]]])
     }
+  }
+  if (name == 'VPN') {
+    line.lineStyle.normal.curveness = 0.3
+    line.lineStyle.normal.width = 1.5
+    line.lineStyle.normal.opacity = 1
+    line.effect.symbol = 'pin'
+    line.effect.symbolSize = 7
   }
   return line
 }
