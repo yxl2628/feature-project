@@ -4,206 +4,120 @@
 <head>
   <meta charset="utf-8">
   <title>四达时代数字电视网络平台</title>
-  <style media="screen">
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #333333;
-    }
-
-    #main {
-      width: 100%;
-      height: 100%;
-    }
-    #bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+  <link rel="stylesheet" href="css/world.css?version=1528769604144">
+  <link rel="stylesheet" type="text/css" href="css/font/iconfont.css?version=1528769604144">
 </head>
 
 <body>
   <div id="main"></div>
+  <div class="aws">
+    <div class="aws-item">BOSS</div>
+    <div class="aws-item">OTT</div>
+    <div class="aws-item">众包</div>
+    <div class="aws-item">客服</div>
+  </div>
+  <div class="startimes">
+    <div class="startimes-item">ERP</div>
+    <div class="startimes-item">OA</div>
+    <div class="startimes-item">视频会议</div>
+    <div class="startimes-item">大数据</div>
+  </div>
+  <div class="total">
+    <div class="total-title"><img src="img/world/total.png" /></div>
+    <div class="total-item" data-name="ku"><div>KU波段卫星：</div><span>0</span>颗</div>
+    <div class="total-item" data-name="c"><div>C波段卫星： </div><span>0</span>颗</div>
+    <div class="total-item" data-name="bo"><div>播控中心：</div><span>0</span>座</div>
+    <div class="total-item" data-name="xing"><div>上星站：</div><span>0</span>座</div>
+    <div class="total-item" data-name="cdn"><div>CDN节点：</div><span>0</span>个</div>
+    <div class="total-item" data-name="ta"><div>发射塔：</div><span>0</span>座</div>
+    <div class="total-item" data-name="live"><div>直播频道：</div><span>0</span>套</div>
+    <div class="total-item" data-name="country"><div>覆盖国家：</div><span>0</span>个</div>
+    <div class="total-item" data-name="person"><div>覆盖人口：</div><span>0</span>亿</div>
+  </div>
+  <div class="legend">
+    <div class="legend-item checked" data-name="ALL">
+      <i class="iconfont"></i>全部
+    </div>
+    <div class="legend-item checked" data-name="节目中继">
+      <i class="iconfont"></i>节目中继
+    </div>
+    <!-- <div class="legend-item checked" data-name="DTH">
+      <i class="iconfont"></i>DTH
+    </div> -->
+    <div class="legend-item checked" data-name="DTT">
+      <i class="iconfont"></i>DTT
+    </div>
+    <div class="legend-item checked" data-name="OTT">
+      <i class="iconfont"></i>OTT
+    </div>
+    <div class="legend-item checked" data-name="VPN">
+      <i class="iconfont"></i>VPN
+    </div>
+  </div>
+  <script src="./js/jquery.min.js?version=1528769604144" charset="utf-8"></script>
   <script src="./js/echarts.js?version=1528769604144" charset="utf-8"></script>
   <script src="./map/world.js?version=1528769604144"></script>
   <script src="./js/world.js?version=1528769604144"></script>
   <script type="text/javascript">
     echarts.registerMap('world', worldMap)
     var myChart = echarts.init(document.getElementById('main'))
-
-    var options = {
-      legend: [
-        {
-          show: true,
-          right: 20,
-          bottom: 20,
-          orient: 'vertical',
-          data: [
-            {name: '中继网络', textStyle: {color: lineColor[0]}},
-            {name: 'DTT', textStyle: {color: lineColor[1]}},
-            {name: 'OTT', textStyle: {color: lineColor[2]}},
-            {name: 'VPN', textStyle: {color: lineColor[3]}}
-          ]
-        }
-      ],
-      geo: [
-        {
-          id: 0,
-          name: '非洲地图',
-          map: 'world',
-          zoom: 2.1,
-          center: [50, 15],
-          aspectScale: 0.9,
-          z: 2,
-          itemStyle: {
-            opacity: 1,
-            color: '#151515',
-            borderWidth: 1,
-            borderColor: '#404a59'
-          },
-          emphasis: {
-            itemStyle: {
-              opacity: 1,
-              color: '#151515',
-              borderWidth: 1,
-              borderColor: '#555555'
-            },
-            label: {
-              show: false
-            }
-          },
-          regions: regions
-        },
-        {
-          id: 1,
-          name: '非洲地图-阴影',
-          map: 'world',
-          zoom: 2.1,
-          center: [48.5, 16],
-          aspectScale: 0.9,
-          z: 1,
-          itemStyle: {
-            opacity: 1,
-            borderWidth: 0,
-            color: '#000',
-          },
-          emphasis: {
-            itemStyle: {
-              opacity: 1,
-              color: '#000',
-              borderWidth: 0
-            },
-            label: {
-              show: false
-            }
-          },
-          regions: regionsBg
-        }
-      ],
-      series: [{
-          name: '卫星',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 10,
-          data: [
-            { name: 'E10A-卫星', value: geoMap['E10A-卫星'], symbol: wei.replace('wei', 'E10A'), symbolSize: [60, 92] },
-            { name: 'E8WB-卫星', value: geoMap['E8WB-卫星'], symbol: wei.replace('wei', 'E8WB'), symbolSize: [60, 92] },
-            { name: 'SES5-卫星', value: geoMap['SES5-卫星'], symbol: wei.replace('wei', 'SES5'), symbolSize: [60, 92] }
-          ]
-        },
-        {
-          name: '总部',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 10,
-          data: [{ name: '北京-总部', value: geoMap['北京-总部'], symbol: startimes, symbolSize: 50 }]
-        },
-        {
-          name: '亚马逊云',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 10,
-          data: [{ name: '爱尔兰-亚马逊云', value: geoMap['爱尔兰-亚马逊云'], symbol: aws, symbolSize: 45 }]
-        },
-        {
-          name: 'VPN',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 5,
-          data: [{ name: 'Startimes-VPN', value: geoMap['Startimes-VPN'], symbol: vpn, symbolSize: 80 }]
-        },
-        {
-          name: '播控中心',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 10,
-          data: coverData(geoMap, '播控中心')
-        },
-        {
-          name: 'DTT',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 10,
-          data: coverData(geoMap, '发射塔')
-        },
-        {
-          name: '中继网络',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 10,
-          data: coverData(geoMap, '上星站')
-        },
-        {
-          name: 'OTT',
-          type: 'effectScatter',
-          coordinateSystem: 'geo',
-          z: 10,
-          symbolSize: 4,
-          showEffectOn: 'render',
-          itemStyle: {
-            normal: {
-              color: '#00fbf2'
-            }
-          },
-          rippleEffect: {
-            period: 4,
-            scale: 4,
-            brushType: 'fill'
-          },
-          data: coverData(geoMap, 'CDN')
-        },
-        {
-          name: 'VPN',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          symbolSize: 30,
-          z: 10,
-          data: coverData(geoMap, '路由')
-        }
-      ]
-    }
-    options.series.push(coverLines('中继网络', '北京-总部', ['南非-上星站','斯洛文尼亚-上星站', '德国-上星站'], lineColor[0]))
-    options.series.push(coverLines('中继网络', ['南非-上星站', '尼日利亚-上星站', '刚果金-上星站', '乌干达-上星站', '肯尼亚-上星站', '布隆迪-上星站', '坦桑尼亚-上星站','赞比亚-上星站', '莫桑比克-上星站'], 'E10A-卫星', lineColor[0]))
-    options.series.push(coverLines('中继网络', ['南非-上星站','斯洛文尼亚-上星站'], 'E8WB-卫星', lineColor[0]))
-    options.series.push(coverLines('中继网络', ['南非-上星站', '尼日利亚-上星站', '斯洛文尼亚-上星站', '德国-上星站'], 'SES5-卫星', lineColor[0]))
-    options.series.push(coverLines('DTT', 'E8WB-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
-    options.series.push(coverLines('DTT', 'E10A-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
+    options.series.push(coverLines('节目中继', '北京-总部', ['南非-上星站','斯洛文尼亚-上星站', '德国-上星站'], lineColor[0]))
+    options.series.push(coverLines('节目中继', ['尼日利亚(阿布贾)-上星站', '尼日利亚(拉各斯)-上星站', '喀麦隆-上星站', '刚果金-上星站', '乌干达-上星站', '肯尼亚-上星站', '布隆迪-上星站', '坦桑尼亚-上星站', '莫桑比克-上星站'], 'E10A-卫星', lineColor[0]))
+    options.series.push(coverLines('节目中继', ['赞比亚-上星站', '南非-上星站', '斯洛文尼亚-上星站'], 'E8WB-卫星', lineColor[0]))
+    options.series.push(coverLines('节目中继', ['尼日利亚(拉各斯)-上星站', '南非-上星站', '斯洛文尼亚-上星站', '德国-上星站'], 'SES5-卫星', lineColor[0]))
+    options.series.push(coverLines('DTT', 'E8WB-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '喀麦隆-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
+    options.series.push(coverLines('DTT', 'E10A-卫星', ['几内亚-发射塔', '尼日利亚-发射塔', '喀麦隆-发射塔', '中非-发射塔', '刚果金-发射塔', '刚果布-发射塔', '乌干达-发射塔', '卢旺达-发射塔', '肯尼亚-发射塔', '布隆迪-发射塔', '坦桑尼亚-发射塔', '赞比亚-发射塔', '莫桑比克-发射塔', '马达-发射塔'], lineColor[1]))
     options.series.push(coverLines('OTT', 'SES5-卫星', ['塞内加尔-CDN', '几内亚-CDN', '加纳-CDN', '科特迪瓦-CDN', '尼日利亚-CDN', '刚果金-CDN', '刚果布-CDN', '乌干达-CDN', '卢旺达-CDN', '肯尼亚-CDN', '布隆迪-CDN', '坦桑尼亚-CDN', '赞比亚-CDN', '莫桑比克-CDN', '南非-CDN', '马达-CDN'], lineColor[2]))
-    options.series.push(coverLines('VPN', ['肯尼亚-路由', '尼日利亚-路由', '南非-路由', '北京-路由', '伦敦-路由'], 'Startimes-VPN', lineColor[3]))
+    options.series.push(coverLines('VPN', ['肯尼亚-路由', '尼日利亚-路由', '南非-路由', '北京-路由', '爱尔兰-路由', '乌干达-路由', '赞比亚-路由', '莫桑比克-路由'], 'Startimes-VPN', lineColor[3]))
     myChart.setOption(options)
+    $(document).ready(function(){
+      $('.total-item').each(function(){
+        $(this).find('span').html(worldCount[$(this).attr('data-name')])
+      })
+      $('.legend-item').each(function(index) {
+        var color = '#f27609'
+        if (index > 0) {
+          color = lineColor[index - 1]
+        }
+        // $(this).attr('style', 'color:' + color)
+        $(this).find('.iconfont').attr('style', 'color:' + color)
+      })
+    })
+    $('.legend-item').on('click', function(){
+      var name = $(this).attr('data-name')
+      var names = myChart.getOption().series.map(function(item){
+        return item.name
+      })
+      if (name === 'ALL') {
+        $('.legend-item').each(function(index) {
+          $(this).addClass('checked')
+        })
+      } else {
+        $('.legend-item').each(function(index) {
+          if (name == $(this).attr('data-name')) {
+            $(this).addClass('checked')
+          } else {
+            $(this).removeClass('checked')
+          }
+        })
+      }
+      for (var i = 0, len = names.length; i < len; i++) {
+        var type = ''
+        if (name === 'ALL') {
+          type = 'legendSelect'
+        } else {
+          if (name === names[i] || ['卫星', '总部', '亚马逊云'].indexOf(names[i]) >= 0) {
+            type = 'legendSelect'
+          } else {
+            type = 'legendUnSelect'
+          }
+        }
+        myChart.dispatchAction({
+          type: type,
+          name: names[i]
+        })
+      }
+    })
   </script>
 </body>
 

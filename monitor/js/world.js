@@ -4,16 +4,17 @@ var geoMap = {
   'E8WB-卫星': [50, 62],
   'SES5-卫星': [80, 62],
   // 北京总部
-  '北京-总部': [116, 39],
-  '爱尔兰-亚马逊云': [-8, 53.488],
+  '北京-总部': [116, 41],
+  '爱尔兰-亚马逊云': [-8, 55],
   'Startimes-VPN': [80, -3],
   // 上星站
   '南非-上星站': [21, -30],
   '斯洛文尼亚-上星站': [14.6, 45.95],
   '德国-上星站': [8, 50],
-  '尼日利亚-上星站': [8.1738, 11],
+  '尼日利亚(阿布贾)-上星站': [8.1738, 11],
+  '尼日利亚(拉各斯)-上星站': [13.095, 12.039],
+  '喀麦隆-上星站': [11, 5.12],
   '刚果金-上星站': [26.89, 2.81],
-  '喀麦隆-上星站': [12.337, 5.12],
   '乌干达-上星站': [33.27, 1.537],
   '肯尼亚-上星站': [36.65, -0.5],
   '布隆迪-上星站': [28.1, -5.1],
@@ -23,6 +24,7 @@ var geoMap = {
   //发射塔
   '几内亚-发射塔': [-13, 9],
   '尼日利亚-发射塔': [11, 9],
+  '喀麦隆-发射塔': [13.5, 5.12],
   '中非-发射塔': [21, 8],
   '刚果金-发射塔': [16, 0],
   '刚果布-发射塔': [21, -0.2],
@@ -35,7 +37,7 @@ var geoMap = {
   '莫桑比克-发射塔': [38.18, -16.04],
   '马达-发射塔': [46.84, -18.72],
   // 播控中心
-  '北京-播控中心': [113.29, 39.36],
+  '北京-播控中心': [112, 39.36],
   '肯尼亚-播控中心': [40.42, 2],
   '尼日利亚-播控中心': [5, 10.74],
   '坦桑尼亚-播控中心': [32.56,-5.96],
@@ -59,17 +61,49 @@ var geoMap = {
   '马达-CDN': [45.439, -23.966],
   // 路由
   '肯尼亚-路由': [40, -1.5],
+  '坦桑尼亚-路由': [8, 8],
+  '乌干达-路由': [33.75, 4.33],
+  '赞比亚-路由': [29.7, -14.349],
+  '莫桑比克-路由': [39.199, -13.068],
   '尼日利亚-路由': [8, 8],
   '南非-路由': [24, -28],
   '北京-路由': [116.54, 35],
-  '伦敦-路由': [0.087, 51.289],
+  '爱尔兰-路由': [0.087, 51.289],
+}
+
+var worldCount = {
+  ku: 1,
+  c: 2,
+  bo: 5,
+  xing: 16,
+  cdn: 20,
+  ta: 324,
+  live: 480,
+  country: 45,
+  person: 9.7,
+  fst: {
+    '几内亚-发射塔': 2,
+    '尼日利亚-发射塔': 82,
+    '喀麦隆-发射塔': 2,
+    '中非-发射塔': 1,
+    '刚果金-发射塔': 4,
+    '刚果布-发射塔': 5,
+    '乌干达-发射塔': 8,
+    '卢旺达-发射塔': 6,
+    '肯尼亚-发射塔': 23,
+    '布隆迪-发射塔': 12,
+    '坦桑尼亚-发射塔': 19,
+    '赞比亚-发射塔': 72,
+    '莫桑比克-发射塔': 87,
+    '马达-发射塔': 1,
+  },
 }
 
 var wei = 'image://./img/world/wei.png',
 bo = 'image://./img/world/bo.png',
 ta = 'image://./img/world/ta.png',
 xing = 'image://./img/world/xing.png',
-startimes = 'image://./img/startimes_noc-good.png',
+startimes = 'image://./img/world/beijing.png',
 aws = 'image://./img/world/aws.png',
 dian = 'image://./img/world/dian.png',
 vpn = 'image://./img/world/vpn.png',
@@ -88,10 +122,10 @@ var coverData = function(data, name) {
           res.push({ name: x, value: data[x], symbol: xing, symbolSize: 30 })
           break;
         case '发射塔':
-          res.push({ name: x, value: data[x], symbol: ta, symbolSize: 60 })
+          res.push({ name: x, value: data[x].concat(worldCount.fst[x]), symbol: ta, symbolSize: 60, label: {show: true, offset: [0, -21], formatter: '{@[2]}', textStyle: {color: '#fff', fontSize: 12}} })
           break;
         case '播控中心':
-          res.push({ name: x, value: data[x], symbol: bo, symbolSize: [25, 50] })
+          res.push({ name: x, value: data[x], symbol: bo, symbolSize: [20, 40] })
           break;
         case 'CDN':
           res.push({ name: x, value: data[x] })
@@ -138,9 +172,9 @@ var coverLines = function(name, x, y, color) {
     }
   }
   if (name == 'VPN') {
-    line.lineStyle.normal.curveness = 0.3
-    line.lineStyle.normal.width = 1.5
-    line.lineStyle.normal.opacity = 1
+    line.lineStyle.normal.curveness = 0
+    line.lineStyle.normal.width = 1
+    line.lineStyle.normal.opacity = 0.8
     line.effect.symbol = 'pin'
     line.effect.symbolSize = 7
   }
@@ -183,6 +217,152 @@ var regionsBg= [].concat.apply([], ignoreCountry.map(function (item) {
     }
   }
 }))
+
+var options = {
+  legend: {show: false},
+  geo: [
+    {
+      id: 0,
+      name: '非洲地图',
+      map: 'world',
+      zoom: 2.5,
+      center: [50, 15],
+      aspectScale: 1.1,
+      z: 2,
+      itemStyle: {
+        opacity: 1,
+        color: '#151515',
+        borderWidth: 1,
+        borderColor: '#222222'
+      },
+      emphasis: {
+        itemStyle: {
+          opacity: 1,
+          color: '#151515',
+          borderWidth: 1,
+          borderColor: '#555555'
+        },
+        label: {
+          show: false
+        }
+      },
+      regions: regions
+    },
+    {
+      id: 1,
+      name: '非洲地图-阴影',
+      map: 'world',
+      zoom: 2.5,
+      center: [48.5, 16],
+      aspectScale: 1.1,
+      z: 1,
+      itemStyle: {
+        opacity: 1,
+        borderWidth: 0,
+        color: '#000',
+      },
+      emphasis: {
+        itemStyle: {
+          opacity: 1,
+          color: '#000',
+          borderWidth: 0
+        },
+        label: {
+          show: false
+        }
+      },
+      regions: regionsBg
+    }
+  ],
+  series: [{
+      name: '卫星',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 10,
+      data: [
+        { name: 'E10A-卫星', value: geoMap['E10A-卫星'], symbol: wei.replace('wei', 'E10A'), symbolSize: [60, 92] },
+        { name: 'E8WB-卫星', value: geoMap['E8WB-卫星'], symbol: wei.replace('wei', 'E8WB'), symbolSize: [60, 92] },
+        { name: 'SES5-卫星', value: geoMap['SES5-卫星'], symbol: wei.replace('wei', 'SES5'), symbolSize: [60, 92] }
+      ]
+    },
+    {
+      name: '总部',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 10,
+      data: [{ name: '北京-总部', value: geoMap['北京-总部'], symbol: startimes, symbolSize: 80 }]
+    },
+    {
+      name: '亚马逊云',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 10,
+      data: [{ name: '爱尔兰-亚马逊云', value: geoMap['爱尔兰-亚马逊云'], symbol: aws, symbolSize: 80 }]
+    },
+    {
+      name: 'VPN',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 5,
+      data: [{ name: 'Startimes-VPN', value: geoMap['Startimes-VPN'], symbol: vpn, symbolSize: 60 }]
+    },
+    {
+      name: '播控中心',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 10,
+      data: coverData(geoMap, '播控中心')
+    },
+    {
+      name: 'DTT',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 10,
+      data: coverData(geoMap, '发射塔')
+    },
+    {
+      name: '节目中继',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 10,
+      data: coverData(geoMap, '上星站')
+    },
+    {
+      name: 'OTT',
+      type: 'effectScatter',
+      coordinateSystem: 'geo',
+      z: 10,
+      symbolSize: 4,
+      showEffectOn: 'render',
+      itemStyle: {
+        normal: {
+          color: '#00fbf2'
+        }
+      },
+      rippleEffect: {
+        period: 4,
+        scale: 4,
+        brushType: 'fill'
+      },
+      data: coverData(geoMap, 'CDN')
+    },
+    {
+      name: 'VPN',
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      symbolSize: 30,
+      z: 10,
+      data: coverData(geoMap, '路由')
+    }
+  ]
+}
 
 var wxSvg = 'path://M934.603,157.663l-139.784-139.784c-19.505-19.505-50.387-19.505-68.267,0l-203.175,203.175c-19.505,19.505-19.505,50.387,0,68.267l55.263,55.263-27.632,27.632-17.879-17.879c-26.006-26.006-60.14-37.384-92.648-37.384-43.886-35.759-100.775-40.635-133.283-8.127-32.508,32.508-27.632,89.397,8.127,133.283,0,34.133,11.378,66.641,37.384,92.648l17.879,17.879-27.632,27.632-55.263-55.263c-19.505-19.505-50.387-19.505-68.267,0l-203.175,203.175c-19.505,19.505-19.505,50.387,0,68.267l139.784,139.784c19.505,19.505,50.387,19.505,68.267,0l203.175-203.175c19.505-19.505,19.505-50.387,0-68.267l-47.137-47.137,27.632-27.632,61.765,61.765c16.254-37.384,42.26-74.768,74.768-107.276,32.508-32.508,69.892-58.514,107.276-74.768l-61.765-61.765,27.632-27.632,47.137,47.137c19.505,19.505,50.387,19.505,68.267,0l203.175-203.175c17.879-17.879,17.879-48.762-1.625-66.641z,M887.467,508.749c-3.251-3.251-8.127-6.502-11.378-8.127,0,0-1.625,0-1.625-1.625-3.251-1.625-4.876-3.251-8.127-4.876h-1.625c-79.644-43.886-203.175-13.003-294.197,78.019-92.648,92.648-121.905,214.552-78.019,294.197,1.625,3.251,3.251,4.876,4.876,8.127,0,0,0,1.625,1.625,1.625,3.251,4.876,6.502,8.127,8.127,11.378,34.133,22.756,110.527-6.502,191.797-71.517l-40.635-32.508c-48.762,39.010-87.771,60.14-99.149,50.387-14.629-14.629,34.133-87.771,108.902-162.54s147.911-123.53,162.54-108.902c9.752,9.752-8.127,43.886-42.26,87.771l32.508,40.635c61.765-78.019,89.397-149.537,66.641-182.044z,M692.419,726.552c-13.003-9.752-13.003-27.632-1.625-39.010l4.876-4.876c11.378-11.378,29.257-9.752,39.010,1.625l43.886,53.638c9.752,13.003,9.752,32.508-1.625,43.886l14.629-14.629c-11.378,11.378-30.883,13.003-43.886,1.625l-55.263-42.26z,M797.615,748.463c-20.691,0-37.921,17.229-39.075,36.783,0,20.691,16.091,36.783,39.075,36.783,20.691,0,39.075-16.091,39.075-36.783-1.138-21.845-18.383-36.783-39.075-36.783z,M894.163,748.463c0,34.491-13.8,66.658-40.229,90.795-25.291,25.291-58.612,37.937-95.411,37.937v52.874c105.748,0,189.651-81.595,190.805-181.606h-55.166z,M991.85,747.325c0,121.823-104.594,221.818-233.309,221.818v52.858c158.606,0,288.475-122.978,288.475-274.692h-55.166z'
 
