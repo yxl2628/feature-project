@@ -109,8 +109,7 @@ dian = 'image://./img/world/dian.png',
 vpn = 'image://./img/world/vpn.png',
 route = 'image://./img/world/route.png'
 
-// var lineColor = ['#6efa01', '#00fbf2', '#0da1ed', '#8b0ded']
-var lineColor = ['#16ab51', '#257fb7', '#9c26b5', '#ffffff']
+var lineColor = ['#6efa01', '#0da1ed', '#9c26b5', '#ffffff']
 
 var coverData = function(data, name) {
   var res = []
