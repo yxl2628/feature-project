@@ -239,7 +239,7 @@ var options = {
           opacity: 1,
           color: '#151515',
           borderWidth: 1,
-          borderColor: '#555555'
+          borderColor: '#222222'
         },
         label: {
           show: false
