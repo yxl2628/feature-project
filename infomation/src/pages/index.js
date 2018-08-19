@@ -1,3 +1,3 @@
-export default () => (
-  <div>1111111111111</div>
-)
+import Redirect from 'umi/redirect'
+
+export default () => <Redirect to="/mobile/" />

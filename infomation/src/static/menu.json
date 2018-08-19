@@ -1,0 +1,30 @@
+[
+  {
+    "name": "推荐",
+    "key": "tuijian"
+  },
+  {
+    "name": "架构",
+    "key": "jiagou"
+  },
+  {
+    "name": "运营&管理",
+    "key": "yunying"
+  },
+  {
+    "name": "区块链",
+    "key": "qukuailian"
+  },
+  {
+    "name": "资料下载",
+    "key": "xiazai"
+  },
+  {
+    "name": "AI大数据",
+    "key": "ai"
+  },
+  {
+    "name": "前端",
+    "key": "fe"
+  }
+]

@@ -1,0 +1,17 @@
+.body {
+  height: 100%;
+  box-sizing: border-box;
+  flex: column;
+  align-items: stretch;
+  padding-top: 750px;
+}
+.header {
+  position: fixed;
+  margin-top: -750px;
+  height: 750px;
+}
+.content {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 150px 100px 0 100px;
+}

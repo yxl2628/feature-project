@@ -1,0 +1,16 @@
+.header {
+  background-color: #0084ff;
+  height: 400px;
+  text-align: center;
+}
+.logo {
+  display: block;
+  width: 1500px;
+  height: 200px;
+}
+.title {
+  display: block;
+  width: 1550px;
+  height: 150px;
+  margin-top: 50px;
+}

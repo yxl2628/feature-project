@@ -1,0 +1,26 @@
+.menu {
+  background-color: #f4f5f6;
+  height: 350px;
+  width: 100%;
+  padding: 0 100px;
+  box-sizing: border-box;
+}
+.scroll {
+  background-color: #f4f5f6;
+  height: 350px;
+  overflow: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+.item {
+  color: #505050;
+  width: 100%;
+  box-sizing: border-box;
+  height: 350px;
+  line-height: 350px;
+  font-size: 140px;
+  padding: 0 80px;
+}
