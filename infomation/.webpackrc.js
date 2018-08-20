@@ -1,6 +1,5 @@
 export default {
-  'publicPath': '/information/static/',
-  // 'outputPath': 'kindergarten',
+  'publicPath': '//yangxl.cn/other/information/static/',
   'theme': {
     'hd': '10px'
   },

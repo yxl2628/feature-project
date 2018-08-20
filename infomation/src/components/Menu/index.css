@@ -1,26 +1,26 @@
 .menu {
   background-color: #f4f5f6;
-  height: 350px;
+  height: 370px;
   width: 100%;
   padding: 0 100px;
   box-sizing: border-box;
 }
 .scroll {
   background-color: #f4f5f6;
-  height: 350px;
-  overflow: hidden;
+  height: 370px;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
 }
 .scroll::-webkit-scrollbar {
   display: none;
 }
 .item {
   color: #505050;
-  width: 100%;
   box-sizing: border-box;
-  height: 350px;
-  line-height: 350px;
-  font-size: 140px;
-  padding: 0 80px;
+  height: 370px;
+  line-height: 370px;
+  font-size: 170px;
+  margin: 50px 0 50px 50px;
+  padding: 0 100px;
 }
