@@ -2,6 +2,10 @@
   background-color: #d43d3d;
   height: 45px;
   text-align: center;
+  font-family: "icrosoft YaHei";
+  color: #fff;
+  line-height: 45px;
+  font-size: 20px;
 }
 .logo {
   display: inline-block;

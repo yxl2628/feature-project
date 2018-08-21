@@ -3,7 +3,7 @@
   border-bottom: 1px solid rgba(221, 221, 221, 0.6);
 }
 .title {
-  font-size: 16.5px;
+  font-size: 17px;
   line-height: 19px;
   letter-spacing: 0.8px;
   color: #222;
@@ -12,14 +12,14 @@
   margin-top: 15px;
   padding-right: 20px;
   color: #aaa;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   justify-content: space-between;
   line-height: 20px;
   box-sizing: border-box;
 }
 .left {
-  width: 40%;
+  display: inline-block;
 }
 .news {
   color: #b145b8;
@@ -46,7 +46,7 @@
   padding: 3px 8px;
 }
 .right {
-  width: 60%;
+  display: inline-block;
   text-align: right;
   color: #666;
 }
