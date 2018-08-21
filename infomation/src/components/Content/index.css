@@ -1,6 +1,9 @@
+.body {
+  background: #fff;
+  /* margin-bottom: 5px; */
+}
 .content {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(221, 221, 221, 0.6);
+  padding: 15px 10px 5px;
 }
 .title {
   font-size: 17px;
@@ -14,7 +17,6 @@
   color: #aaa;
   font-size: 14px;
   display: flex;
-  justify-content: space-between;
   line-height: 20px;
   box-sizing: border-box;
 }
@@ -22,32 +24,37 @@
   display: inline-block;
 }
 .news {
+  font-size: 10px;
   color: #b145b8;
   border: 1px solid #b145b8;
   border-radius: 10px;
-  padding: 3px 8px;
+  padding: 2px 6px;
 }
 .jiagou {
+  font-size: 10px;
   color: #29bbc0;
   border: 1px solid #29bbc0;
   border-radius: 10px;
-  padding: 3px 8px;
+  padding: 1px 5px;
 }
 .ai {
+  font-size: 10px;
   color: #ee5757;
   border: 1px solid #ee5757;
   border-radius: 10px;
-  padding: 3px 8px;
+  padding: 2px 6px;
 }
 .qukuailian {
+  font-size: 10px;
   color: #43ad32;
   border: 1px solid #43ad32;
   border-radius: 10px;
-  padding: 3px 8px;
+  padding: 2px 6px;
 }
 .right {
   display: inline-block;
-  text-align: right;
+  margin-left: 15px;
+  line-height: 23px;
   color: #666;
 }
 .right span:not(:last-child){
@@ -56,6 +63,17 @@
 .right .source {
   margin-right: 25px;
 }
-.read i, .zan i{
+.read i, .zan i, .share i{
   margin-right: 5px;
+}
+.btngroup {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  color: #666;
+  font-size: 16px;
+  padding: 10px 15px;
+  /* border-top: 1px solid rgba(221, 221, 221, 0.6); */
+  border-bottom: 1px solid rgba(221, 221, 221, 0.6);
 }
