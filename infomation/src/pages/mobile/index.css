@@ -3,16 +3,16 @@
   box-sizing: border-box;
   flex: column;
   align-items: stretch;
-  padding-top: 750px;
+  padding-top: 75px;
 }
 .header {
   position: fixed;
   width: 100%;
-  margin-top: -750px;
-  height: 750px;
+  margin-top: -75px;
+  height: 75px;
 }
 .content {
   height: 100%;
   box-sizing: border-box;
-  padding: 150px 100px 0 100px;
+  padding: 15px 10px 0 10px;
 }

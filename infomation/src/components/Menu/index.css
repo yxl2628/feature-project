@@ -1,13 +1,13 @@
 .menu {
   background-color: #f4f5f6;
-  height: 370px;
+  height: 37px;
   width: 100%;
-  padding: 0 100px;
+  padding: 0;
   box-sizing: border-box;
 }
 .scroll {
   background-color: #f4f5f6;
-  height: 370px;
+  height: 37px;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
@@ -18,9 +18,9 @@
 .item {
   color: #505050;
   box-sizing: border-box;
-  height: 370px;
-  line-height: 370px;
-  font-size: 170px;
-  margin: 50px 0 50px 50px;
-  padding: 0 100px;
+  height: 37px;
+  line-height: 37px;
+  font-size: 17px;
+  margin: 5px 0 5px 5px;
+  padding: 0 10px;
 }

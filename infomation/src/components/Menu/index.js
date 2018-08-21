@@ -15,7 +15,7 @@ function Menu ({dispatch, pageData}){
       <div className={styles.scroll}>
         {pageData.list.map((item) => (<span className={styles.item} onClick={() => {
           setCurrentKey(item.key)
-        }} style={pageData.currentKey === item.key ? {color : '#0084ff'} : {}} key={item.key}>{item.name}</span>))}
+        }} style={pageData.currentKey === item.key ? {color : '#d43d3d'} : {}} key={item.key}>{item.name}</span>))}
       </div>
     </div>
   )

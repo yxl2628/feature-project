@@ -1,20 +1,61 @@
 .content {
-  padding: 100px 0;
-  border-bottom: 10px solid rgba(221, 221, 221, 0.6);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.6);
 }
 .title {
-  font-size: 170px;
+  font-size: 16.5px;
+  line-height: 19px;
+  letter-spacing: 0.8px;
   color: #222;
 }
 .footer {
-  margin-top: 150px;
-  padding-right: 200px;
+  margin-top: 15px;
+  padding-right: 20px;
   color: #aaa;
-  font-size: 120px;
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
-  line-height: 150px;
+  line-height: 20px;
+  box-sizing: border-box;
+}
+.left {
+  width: 40%;
+}
+.news {
+  color: #b145b8;
+  border: 1px solid #b145b8;
+  border-radius: 10px;
+  padding: 3px 8px;
+}
+.jiagou {
+  color: #29bbc0;
+  border: 1px solid #29bbc0;
+  border-radius: 10px;
+  padding: 3px 8px;
+}
+.ai {
+  color: #ee5757;
+  border: 1px solid #ee5757;
+  border-radius: 10px;
+  padding: 3px 8px;
+}
+.qukuailian {
+  color: #43ad32;
+  border: 1px solid #43ad32;
+  border-radius: 10px;
+  padding: 3px 8px;
+}
+.right {
+  width: 60%;
+  text-align: right;
+  color: #666;
+}
+.right span:not(:last-child){
+  margin-right: 15px;
+}
+.right .source {
+  margin-right: 25px;
 }
 .read i, .zan i{
-  margin-right: 50px;
+  margin-right: 5px;
 }

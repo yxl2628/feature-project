@@ -1,8 +1,5 @@
 export default {
-  'publicPath': '//yangxl.cn/other/information/static/',
-  'theme': {
-    'hd': '10px'
-  },
+  'publicPath': '/static/',
   'copy': [
     {
       'from': 'src/static/',
