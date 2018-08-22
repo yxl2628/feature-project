@@ -10,7 +10,7 @@
 .title {
   font-size: 16px;
   line-height: 19px;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.3px;
   color: #222;
 }
 .footer {
@@ -58,7 +58,7 @@
   display: inline-block;
   margin-left: 15px;
   line-height: 23px;
-  color: #666;
+  color: #999;
 }
 .right span:not(:last-child){
   margin-right: 15px;
