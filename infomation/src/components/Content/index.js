@@ -12,7 +12,6 @@ function Content({item}) {
           </div>
           <div className={styles.right}>
             <span className={styles.source}>{item.source}</span>
-
           </div>
         </div>
       </div>
