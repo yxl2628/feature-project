@@ -17,19 +17,20 @@
 .item {
   display: inline-block;
   list-style: none;
-  width: 20%;
+  width: calc(20% - 20px);
   color: #333;
   box-sizing: border-box;
   height: 35px;
   line-height: 35px;
   font-size: 16px;
   white-space: nowrap;
+  margin-left: 20px;
 }
 .show {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  width: calc(20% - 2px);
+  width: calc(20% - 22px);
   z-index: 999;
   height: 35px;
   line-height: 35px;
