@@ -8,7 +8,7 @@
     "key": "jiagou"
   },
   {
-    "name": "运营&管理",
+    "name": "运营",
     "key": "yunying"
   },
   {
@@ -16,11 +16,35 @@
     "key": "qukuailian"
   },
   {
-    "name": "资料下载",
+    "name": "资料",
     "key": "xiazai"
   },
   {
-    "name": "AI大数据",
+    "name": "大数据",
+    "key": "ai"
+  },
+  {
+    "name": "前端",
+    "key": "fe"
+  },
+  {
+    "name": "架构",
+    "key": "jiagou"
+  },
+  {
+    "name": "运营",
+    "key": "yunying"
+  },
+  {
+    "name": "区块链",
+    "key": "qukuailian"
+  },
+  {
+    "name": "资料",
+    "key": "xiazai"
+  },
+  {
+    "name": "大数据",
     "key": "ai"
   },
   {

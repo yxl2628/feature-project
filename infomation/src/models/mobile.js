@@ -5,7 +5,8 @@ export default {
   state: {
     currentKey: '',
     list: [],
-    newsList: []
+    newsList: [],
+    show: true
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -49,6 +50,9 @@ export default {
     },
     setNewsList(state, { payload: { list } }) {
       return { ...state, newsList: list }
+    },
+    changeMenu(state, { payload: { show } }) {
+      return { ...state, show }
     }
   },
 }

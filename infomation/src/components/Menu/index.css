@@ -1,26 +1,38 @@
 .menu {
-  background-color: #f4f5f6;
-  height: 37px;
+  position: relative;
+  background-color: #f8f8f8;
   width: 100%;
-  padding: 0;
+  padding: 10px;
   box-sizing: border-box;
+  overflow: hidden;
 }
-.scroll {
-  background-color: #f4f5f6;
-  height: 37px;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
-}
-.scroll::-webkit-scrollbar {
-  display: none;
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  transition: height 0.5s;
 }
 .item {
-  color: #505050;
+  display: inline-block;
+  list-style: none;
+  width: 20%;
+  color: #333;
   box-sizing: border-box;
-  height: 37px;
-  line-height: 37px;
-  font-size: 17px;
-  margin: 5px 0 5px 5px;
-  padding: 0 10px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+.show {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: calc(20% - 2px);
+  z-index: 999;
+  height: 35px;
+  line-height: 35px;
+  color: #d43d3d;
+  background-color: #f8f8f8;
 }

@@ -9,9 +9,9 @@ function MobileIndex({pageData}) {
     <div className={styles.body}>
       <div className={styles.header}>
         <Header></Header>
-        <Menu></Menu>
       </div>
       <div className={styles.content}>
+        <Menu></Menu>
         <NewsList newsList={pageData.newsList}></NewsList>
       </div>
     </div>
