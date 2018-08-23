@@ -6,13 +6,17 @@ export default {
     currentKey: '',
     list: [],
     newsList: [],
-    show: true
+    show: true,
+    detail: null
   },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/mobile/') {
           dispatch({type: 'getMenuList'})
+        }
+        if (pathname === '/mobile/detail/') {
+          dispatch({type: 'getNewsDetail', payload: {id: query.id, key: query.key}})
         }
       })
     },
@@ -35,6 +39,17 @@ export default {
       if (result) {
         yield put({type: 'setNewsList', payload: {list: result}})
       }
+    },
+    *getNewsDetail({ payload: {id, key} }, { call, put, select }) {
+      yield put({type: 'setCurrentKey', payload: {key: key}})
+      const result = yield call(mobileService.getNewsList, {key: key})
+      if (result) {
+        const detail = result.find((item) => {
+          return item.id.toString() === id.toString()
+        })
+        yield put({type: 'setNewsDetail', payload: {detail}})
+        yield put({type: 'setNewsList', payload: {list: result}})
+      }
     }
   },
   reducers: {
@@ -50,6 +65,9 @@ export default {
     },
     setNewsList(state, { payload: { list } }) {
       return { ...state, newsList: list }
+    },
+    setNewsDetail(state, { payload: { detail } }) {
+      return { ...state, detail }
     },
     changeMenu(state, { payload: { show } }) {
       return { ...state, show }

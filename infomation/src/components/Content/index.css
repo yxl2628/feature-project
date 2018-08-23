@@ -7,11 +7,12 @@
 .content {
   padding: 15px 10px 5px;
 }
-.title {
+.title a{
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 0.3px;
   color: #222;
+  text-decoration: none;
 }
 .footer {
   margin-top: 5px;
