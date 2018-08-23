@@ -20,6 +20,7 @@ body {
 .iconfont {
   font-size: 18px;
 }
-.icon-open,.icon-shouqi_m {
-  font-size: 16px;
+.icon-open,.icon-shouqi_m{
+  font-size: 15px;
+  margin-left: 4px;
 }
