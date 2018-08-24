@@ -99,3 +99,57 @@
 .newsTitle {
   padding: 10px 0;
 }
+.footer {
+  margin-top: 5px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  color: #aaa;
+  font-size: 14px;
+  display: flex;
+  line-height: 20px;
+  box-sizing: border-box;
+}
+.left {
+  display: inline-block;
+}
+.news {
+  font-size: 10px;
+  color: #b145b8;
+  border: 1px solid #b145b8;
+  border-radius: 10px;
+  padding: 2px 6px;
+}
+.jiagou {
+  font-size: 10px;
+  color: #29bbc0;
+  border: 1px solid #29bbc0;
+  border-radius: 10px;
+  padding: 1px 5px;
+}
+.ai {
+  font-size: 10px;
+  color: #ee5757;
+  border: 1px solid #ee5757;
+  border-radius: 10px;
+  padding: 2px 6px;
+}
+.qukuailian {
+  font-size: 10px;
+  color: #43ad32;
+  border: 1px solid #43ad32;
+  border-radius: 10px;
+  padding: 2px 6px;
+}
+.right {
+  font-size: 12px;
+  display: inline-block;
+  margin-left: 15px;
+  line-height: 23px;
+  color: #999;
+}
+.right span:not(:last-child){
+  margin-right: 15px;
+}
+.right .source {
+  margin-right: 25px;
+}

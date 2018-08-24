@@ -16,6 +16,14 @@ function NewsDetail({pageData: {detail, newsList}}) {
             <div className={styles.navbar}><NavLink to='/mobile/'>首页</NavLink> / {detail.type}</div>
             <div className={styles.currentNews}>
               <div className={styles.currentNewsTitle}>{detail.title}</div>
+              <div className={styles.footer}>
+                <div className={styles.left}>
+                  {detail.type ? <span className={styles[detail.key]}>{detail.type}</span> : ''}
+                </div>
+                <div className={styles.right}>
+                  <span className={styles.source}>{detail.source}</span>
+                </div>
+              </div>
               <div className={styles.btngroup}>
                 <span className={styles.read}><i className="iconfont icon-yuedu"></i>{detail.read}</span>
                 <span className={styles.zan}><i className="iconfont icon-zan1"></i>{detail.zan}</span>
