@@ -23,24 +23,29 @@
   box-sizing: border-box;
 }
 .navbar {
-  background-color: #fff;
   color: #555;
-  padding: 20px;
-  border-bottom: 1px solid rgba(221, 221, 221, 0.6);
+  padding: 20px 10px 15px;
+  font-size: 16px;
 }
 .navbar a {
+  font-size: 16px;
   color: #555;
   text-decoration: none;
 }
-.currentNews {
-  color: #222;
-  padding: 15px 20px 40px;
-  font-size: 22px;
-  line-height: 25px;
-  background-color: #fff;
+.navbar .iconfont {
+  color: #555;
 }
-.currentNewsTitle {
-  margin-bottom: 10px;
+.arrow {
+  padding: 0 10px;
+}
+.currentNews {
+  display: flex;
+  align-items: center;
+  color: #222;
+  padding: 15px 10px;
+  font-size: 16px;
+  line-height: 19px;
+  background-color: #fff;
 }
 .read i, .zan i{
   margin-right: 5px;
@@ -60,44 +65,44 @@
   margin-left: 15px;
 }
 .view {
-  position: absolute;
-  top: 0;
-  right: 10px;
+  width: 70px;
 }
 .otherNews {
-  padding-top: 15px;
+  margin-top: 8px;
   background-color: #fff;
-  border-top: 1px solid rgba(221, 221, 221, 0.6);
 }
 .otherHeader {
+  position: relative;
+  background-color: #fff;
   line-height: 25px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   color: #d43d3d;
+  font-size: 16px;
+  font-family: PingFangSC-Regular,Microsoft YaHei,Helvetica;
+  padding: 20px 10px 0;
+  font-weight: 700;
 }
 .otherTitle {
   display: inline-block;
-}
-.otherTitle::before {
-  content: '';
-  width: 4px;
-  height: 18px;
-  border-radius: 1px;
-  margin-right: 10px;
-  background-color: #d43d3d;
-  display: inline-block;
-  vertical-align: sub;
 }
 .list {
   padding: 10px 0;
 }
 .item {
+  display: flex;
+  align-items: center;
   background-color: #fff;
-  padding: 20px;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 19px;
+  color: #333;
+}
+.item:not(:last-child) {
   border-bottom: 1px solid rgba(221, 221, 221, 0.6);
 }
 .newsTitle {
-  padding: 10px 0;
+  padding: 10px 0 0;
 }
 .footer {
   margin-top: 5px;
@@ -128,15 +133,15 @@
 }
 .ai {
   font-size: 10px;
-  color: #ee5757;
-  border: 1px solid #ee5757;
+  color: #43ad32;
+  border: 1px solid #43ad32;
   border-radius: 10px;
   padding: 2px 6px;
 }
 .qukuailian {
   font-size: 10px;
-  color: #43ad32;
-  border: 1px solid #43ad32;
+  color: #ee5757;
+  border: 1px solid #ee5757;
   border-radius: 10px;
   padding: 2px 6px;
 }
@@ -152,4 +157,19 @@
 }
 .right .source {
   margin-right: 25px;
+}
+.share {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #d43d3d;
+  color: #fff;
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  padding: 1px 6px;
+  border-radius: 5px;
 }

@@ -25,10 +25,10 @@ function Content({item}) {
         <div className={styles.title}><NavLink to={`detail/?id=${item.id}&key=${item.key}`}>{item.title}</NavLink></div>
         <div className={styles.footer}>
           <div className={styles.left}>
-            {item.type ? <span className={styles[item.key]}>{item.type}</span> : ''}
+            {item.id%2 !== 0 ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.source}</span>
           </div>
           <div className={styles.right}>
-            <span className={styles.source}>{item.source}</span>
+            {item.type ? <span className={styles[item.key]}>{item.type}</span> : ''}
           </div>
         </div>
       </div>

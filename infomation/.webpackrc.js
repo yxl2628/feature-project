@@ -1,10 +1,10 @@
 export default {
   'publicPath': '/static/',
   'theme': {
-    'brand-primary': '#cc6666',
+    'brand-primary': '#d43d3d',
     'brand-primary-tap': '#d43d3d',
-    'button-height-sm': '25px',
-    'button-font-size-sm': '11px'
+    'button-height-sm': '24px',
+    'button-font-size-sm': '13px'
   },
   'copy': [
     {
