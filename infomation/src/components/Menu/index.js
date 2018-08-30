@@ -18,7 +18,7 @@ function Menu ({dispatch, pageData}){
   }
   return (
     <div className={styles.menu}>
-      <ul className={styles.list} style={{height: pageData.show ? '70px': '105px'}}>
+      <ul className={styles.list} style={{height: pageData.show ? '68px': '105px'}}>
         {pageData.list.map((item) => (<li className={styles.item} onClick={() => {
           setCurrentKey(item.key)
         }} style={pageData.currentKey === item.key ? {color : '#d43d3d'} : {}} key={item.key}>{item.name}</li>))}

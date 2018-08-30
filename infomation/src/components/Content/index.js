@@ -1,23 +1,11 @@
 import React from 'react'
 import styles from './index.css'
-// import NativeShare from 'nativeshare'
 import NavLink from 'umi/navlink'
 
-// const nativeShare = new NativeShare()
-
-function Content({item}) {
+function Content({item, shareNews}) {
   const share = (item) => {
-    // nativeShare.setShareData({
-    //   title: item.title,
-    //   desc: 'duanbao123.com 优质且有价值的信息',
-    //   link: window.location.origin + '/mobile/detail/?id=' + item.id
-    // })
-    // try {
-	  //   nativeShare.call()
-    // } catch(err) {
-    //   // 如果不支持，你可以在这里做降级处理
-    //   alert('浏览器不支持分享功能，请使用浏览器自带的分享功能')
-    // }
+    item.url = `detail/?id=${item.id}&key=${item.key}`
+    shareNews(item)
   }
   return (
     <div className={styles.body}>

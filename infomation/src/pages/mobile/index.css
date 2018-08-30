@@ -11,6 +11,7 @@
   width: 100%;
   margin-top: -45px;
   height: 45px;
+  z-index: 99999;
 }
 .content {
   height: 100%;
@@ -172,4 +173,7 @@
   line-height: 22px;
   padding: 1px 6px;
   border-radius: 5px;
+}
+.bodyLeft a{
+  text-decoration: none;
 }
