@@ -4,7 +4,7 @@ import NavLink from 'umi/navlink'
 
 function Content({item, shareNews}) {
   const share = (item) => {
-    item.url = `detail/?id=${item.id}&key=${item.key}`
+    item.url = window.location.href + `detail/?id=${item.id}&key=${item.key}`
     shareNews(item)
   }
   return (

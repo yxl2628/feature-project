@@ -11,8 +11,8 @@ const nativeShare = new NativeShare()
 function MobileIndex({pageData}) {
   const shareNews = (item) => {
     nativeShare.setShareData({
-      icon: 'https://pic3.zhimg.com/v2-080267af84aa0e97c66d5f12e311c3d6_xl.jpg',
-      link: window.location.href,
+      icon: '//47.92.104.253:5656/static/logo.jpg',
+      link: item.url,
       title: item.title,
       desc: 'xuan123.com - 每天看一点最有价值的信息',
       from: 'xuan123.com'
@@ -31,7 +31,7 @@ function MobileIndex({pageData}) {
         ActionSheet.showShareActionSheetWithOptions({
           options: [],
           title: '长按复制，分享给好友吧',
-          message: window.location.href
+          message: item.url,
         })
       }
     }

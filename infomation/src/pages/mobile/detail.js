@@ -11,7 +11,7 @@ function NewsDetail({ pageData: { detail, newsList }}) {
   const shareNews = (item) => {
     item.url = window.location.href
     nativeShare.setShareData({
-      icon: 'https://pic3.zhimg.com/v2-080267af84aa0e97c66d5f12e311c3d6_xl.jpg',
+      icon: '//47.92.104.253:5656/static/logo.jpg',
       link: item.url,
       title: item.title,
       desc: 'xuan123.com - 每天看一点最有价值的信息',
