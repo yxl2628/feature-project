@@ -7,7 +7,7 @@
 .content {
   padding: 15px 10px 5px;
 }
-.title a{
+.title, .title a{
   display: block;
   font-size: 16px;
   line-height: 19px;
@@ -28,6 +28,9 @@
   display: flex;
   line-height: 20px;
   box-sizing: border-box;
+}
+.desc {
+  line-height: 1.8;
 }
 .left {
   position: relative;
@@ -98,7 +101,7 @@
   display: flex;
   align-items: center;
   background-color: #d43d3d;
-  color: #fff;
+  color: #fff !important;
   font-size: 12px;
   height: 22px;
   line-height: 22px;

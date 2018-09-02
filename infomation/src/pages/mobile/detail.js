@@ -14,8 +14,8 @@ function NewsDetail({ pageData: { detail, newsList }}) {
       icon: '//47.92.104.253:5656/static/logo.jpg',
       link: item.url,
       title: item.title,
-      desc: 'xuan123.com - 每天看一点最有价值的信息',
-      from: 'xuan123.com'
+      desc: 'xuanchabao123.com - 每天看一点最有价值的信息',
+      from: 'xuanchabao123.com'
     })
     try {
       nativeShare.call()

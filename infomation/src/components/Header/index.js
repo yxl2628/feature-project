@@ -4,7 +4,7 @@ import styles from './index.css'
 function Header (){
   return (
     <div className={styles.header}>
-      <img src={require('../../assets/logo.jpg')} className={styles.logo} alt="xuan123.com"/>
+      <img src={require('../../assets/logo.jpg')} className={styles.logo} alt="chabaochabao123.com"/>
     </div>
   )
 }

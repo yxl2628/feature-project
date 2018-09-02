@@ -13,7 +13,7 @@ function Vote({item, shareNews}) {
         <div className={styles.title}><NavLink to={`detail/?id=${item.id}&key=${item.key}`}>{item.title}</NavLink></div>
       </div>
       <div className={styles.vote}>
-        <span><span className={styles.defaultBtn}>已有{item.zan}人参与，点击查看投票结果 >>></span></span>
+        <span><NavLink to={`vote/?id=${item.id}&key=${item.key}`}  className={styles.defaultBtn}>已有{item.zan}人参与，点击查看投票结果 >>></NavLink></span>
       </div>
     </div>
   )
