@@ -15,7 +15,7 @@ export default {
         if (pathname === '/mobile/') {
           dispatch({type: 'getMenuList'})
         }
-        if (pathname === '/mobile/detail/') {
+        if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
           dispatch({type: 'getNewsDetail', payload: {id: query.id, key: query.key}})
         }
       })
