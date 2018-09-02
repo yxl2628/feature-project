@@ -92,3 +92,26 @@
   font-size: 14px;
   padding: 5px 15px 5px;
 }
+.defaultBtn {
+  display: flex;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  background-color: #d43d3d;
+  color: #fff;
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+.vote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+.vote .defaultBtn {
+  padding: 5px 10px;
+}

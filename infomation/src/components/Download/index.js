@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 
-function Content({item, shareNews}) {
+function Download({item, shareNews}) {
   const share = (item) => {
     item.url = window.location.href + `detail/?id=${item.id}&key=${item.key}`
     shareNews(item)
@@ -12,26 +12,19 @@ function Content({item, shareNews}) {
       <div className={styles.content}>
         <div className={styles.title}><NavLink to={`detail/?id=${item.id}&key=${item.key}`}>{item.title}</NavLink></div>
         <div className={styles.footer}>
-          <div className={styles.left}>
-            {item.id%2 !== 0 ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.source}</span>
-          </div>
-          <div className={styles.right}>
-            {item.type ? <span className={styles[item.key]}>{item.type}</span> : ''}
-          </div>
+          <div>{item.desc}</div>
         </div>
       </div>
       <div className={styles.btngroup}>
         <span className={styles.read}><i className="iconfont icon-yuedu"></i>{item.read}</span>
         <span className={styles.zan}><i className="iconfont icon-zan1"></i>{item.zan}</span>
-        <span className={styles.share} onClick={() => {
-            share(item)
-          }}><i className="iconfont icon-fenxiang1"></i>8972</span>
+        <span className={styles.defaultBtn}>获取下载方式</span>
       </div>
     </div>
   )
 }
 
-Content.propTypes = {
+Download.propTypes = {
 }
 
-export default Content
+export default Download
