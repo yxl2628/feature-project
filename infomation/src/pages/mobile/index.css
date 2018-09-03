@@ -177,3 +177,27 @@
 .bodyLeft a{
   text-decoration: none;
 }
+.downloadDesc {
+  padding: 10px 10px;
+  line-height: 25px;
+  font-size: 14px;
+  color: #555;
+}
+.downloadTitle {
+  font-weight: normal;
+}
+.downlaodDetail {
+  background: #fff;
+  padding: 0px 10px 20px;
+  font-size: 14px;
+  color: #555;
+  line-height: 25px;
+}
+.step2 {
+  padding-left: 10px;
+}
+.step2 img {
+  display: block;
+  width: 50%;
+  padding: 10px 20px;
+}
