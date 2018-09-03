@@ -3,10 +3,6 @@ import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 
 function Vote({item, shareNews}) {
-  const share = (item) => {
-    item.url = window.location.href + `detail/?id=${item.id}&key=${item.key}`
-    shareNews(item)
-  }
   return (
     <div className={styles.body}>
       <div className={styles.content}>
