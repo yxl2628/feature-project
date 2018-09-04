@@ -178,20 +178,26 @@
   text-decoration: none;
 }
 .downloadDesc {
-  padding: 10px 10px;
-  line-height: 25px;
+  padding: 10px 20px 20px;
+  line-height: 28px;
   font-size: 14px;
-  color: #555;
+  color: #222;
+  letter-spacing: 1px;
 }
 .downloadTitle {
   font-weight: normal;
 }
 .downlaodDetail {
   background: #fff;
-  padding: 0px 10px 20px;
+  padding: 15px 10px 20px;
   font-size: 14px;
-  color: #555;
+  color: #222;
   line-height: 25px;
+  letter-spacing: 0.6px;
+}
+.stepTitle {
+  color: #2B7FD8;
+  font-weight: 700;
 }
 .step2 {
   padding-left: 10px;
@@ -200,4 +206,9 @@
   display: block;
   width: 50%;
   padding: 10px 20px;
+}
+.keyword {
+  font-size: 16px;
+  color: #d43d3d;
+  font-weight: 600;
 }

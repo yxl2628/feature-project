@@ -15,7 +15,7 @@ function Download({item, shareNews}) {
       <div className={styles.content}>
         <div className={styles.download}>
           <div className={styles.title}>{item.title}</div>
-          <div><NavLink to={`download/?id=${item.id}&key=${item.key}`} className={styles.defaultBtn}>获取下载方式</NavLink></div>
+          <div><NavLink to={`download/?id=${item.id}&key=${item.key}`} className={styles.defaultBtn}>点击下载</NavLink></div>
         </div>
         <div className={styles.footer}>
           <div className={styles.desc} dangerouslySetInnerHTML={descHtml()}></div>
