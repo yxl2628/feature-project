@@ -164,8 +164,6 @@
   display: flex;
   align-items: center;
   right: 10px;
-  display: flex;
-  align-items: center;
   background-color: #d43d3d;
   color: #fff;
   font-size: 12px;
@@ -187,13 +185,16 @@
 .downloadTitle {
   font-weight: normal;
 }
-.downlaodDetail {
+.downlaodDetail, .voteDetail {
   background: #fff;
   padding: 15px 10px 20px;
   font-size: 14px;
   color: #222;
   line-height: 25px;
   letter-spacing: 0.6px;
+}
+.voteDetail {
+  text-indent: 25px;
 }
 .stepTitle {
   color: #2B7FD8;
@@ -211,4 +212,18 @@
   font-size: 16px;
   color: #d43d3d;
   font-weight: 600;
+}
+.currentTitle {
+  display: inline-block;
+  padding-right: 90px;
+}
+.voteList {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+.voteItem {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.6);
 }
