@@ -48,11 +48,16 @@ function VoteDetail({ pageData: { detail, newsList }}) {
               <i className="iconfont icon-shouye"></i>返回首页</NavLink>
             <span className={styles.arrow}>></span>{detail.type}</div>
           <div className={styles.otherHeader}>
-            <div className={styles.currentTitle}>投票：{detail.title}</div>
+            <div className={styles.currentTitle}>投票求职网站：</div>
             <div className={styles.share} onClick={() => {
                 shareNews(detail)
               }}>
               <i className="iconfont icon-fenxiang1 detail-fenxiang"></i>分享投票</div>
+          </div>
+          <div className={styles.currentNews}>
+            <div className={styles.bodyLeft}>
+              <div className={styles.currentNewsTitle}>{detail.title}</div>
+            </div>
           </div>
           <div className={styles.voteDetail}>
             {detail.desc}
@@ -67,7 +72,7 @@ function VoteDetail({ pageData: { detail, newsList }}) {
                   return (
                     <div className={styles.voteItem}>
                       <div className={styles.title}>{index + 1}. {item.title}</div>
-                      <div className={styles.zan}><i className="iconfont icon-zan1" style={{color: '#d43d3d'}}></i> {item.zan}</div>
+                      <div className={styles.zan}><i className="iconfont icon-zan1" style={{color: '#d43d3d', fontSize: '21px'}}></i> {item.zan}</div>
                     </div>
                   )
                 })
