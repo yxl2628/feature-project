@@ -10,10 +10,15 @@ function Vote({item, shareNews}) {
   return (
     <div className={styles.body}>
       <div className={styles.content}>
-        <div className={styles.title}><NavLink to={`detail/?id=${item.id}&key=${item.key}`}>{item.title}</NavLink></div>
-      </div>
-      <div className={styles.vote}>
-        <span><NavLink to={`vote/?id=${item.id}&key=${item.key}`}  className={styles.defaultBtn}>已有{item.zan}人参与，点击查看投票结果 >>></NavLink></span>
+        <div className={styles.download}>
+          <div className={styles.title}>{item.title}</div>
+          <div><NavLink to={`vote/?id=${item.id}&key=${item.key}`} className={styles.defaultBtn}>点击投票</NavLink></div>
+        </div>
+        <div className={styles.footer}>
+          <div className={styles.left}>
+            <span className={styles.vote_zt}>已有2.8万人参与投票</span>
+          </div>
+        </div>
       </div>
       <div className={styles.btngroup}>
         <span className={styles.read}><i className="iconfont icon-yuedu"></i>{item.read}</span>

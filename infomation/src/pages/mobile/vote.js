@@ -67,7 +67,7 @@ function VoteDetail({ pageData: { detail, newsList }}) {
                   return (
                     <div className={styles.voteItem}>
                       <div className={styles.title}>{index + 1}. {item.title}</div>
-                      <div className={styles.zan}><i className="iconfont icon-zan1"></i> {item.zan}</div>
+                      <div className={styles.zan}><i className="iconfont icon-zan1" style={{color: '#d43d3d'}}></i> {item.zan}</div>
                     </div>
                   )
                 })

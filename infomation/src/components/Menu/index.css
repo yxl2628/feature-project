@@ -13,28 +13,28 @@
   padding: 0;
   list-style-type: none;
   transition: height 0.5s;
+  margin-left: 10px;
 }
 .item {
   display: inline-block;
   list-style: none;
-  width: calc(20% - 20px);
+  width: 16.666666%;
   color: #333;
   box-sizing: border-box;
   height: 35px;
   line-height: 35px;
-  font-size: 16px;
+  font-size: 15px;
   white-space: nowrap;
-  margin-left: 20px;
 }
 .show {
   position: absolute;
-  right: 0;
+  right: 5px;
   bottom: 10px;
-  width: calc(20% - 12px);
+  width: 16.666666%;
   z-index: 999;
   height: 35px;
   line-height: 35px;
-  font-size: 16px;
+  font-size: 15px;
   color: #d43d3d;
   background-color: #f8f8f8;
 }
