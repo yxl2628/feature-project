@@ -56,11 +56,8 @@ function VoteDetail({ pageData: { detail, newsList }}) {
           </div>
           <div className={styles.currentNews}>
             <div className={styles.bodyLeft}>
-              <div className={styles.currentNewsTitle}>{detail.title}</div>
+              <div className={styles.voteTitle}>{detail.title}</div>
             </div>
-          </div>
-          <div className={styles.voteDetail}>
-            {detail.desc}
           </div>
           <div className={styles.otherNews}>
             <div className={styles.otherHeader}>
