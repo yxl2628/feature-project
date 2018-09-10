@@ -64,7 +64,7 @@ function MobileIndex({dispatch, pageData}) {
           ActionSheet.showShareActionSheetWithOptions({
             options: [],
             title: '收藏本站',
-            message: <ShareMessage show="点击浏览器菜单，将本站加入收藏，方便下次查看"/>,
+            message: <ShareMessage show="点击浏览器下方的菜单->加入书签，收藏本站，方便下次查看"/>,
           })
         }}><i className="iconfont icon-shoucang2"></i></div>
       </div>
