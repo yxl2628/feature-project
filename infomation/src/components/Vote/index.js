@@ -4,7 +4,7 @@ import NavLink from 'umi/navlink'
 
 function Vote({item, shareNews}) {
   const share = (item) => {
-    item.url = window.location.href + `detail/?id=${item.id}&key=${item.key}`
+    item.url = window.location.href + `vote/?id=${item.id}&key=${item.key}`
     shareNews(item)
   }
   return (

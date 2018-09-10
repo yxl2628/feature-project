@@ -38,3 +38,17 @@ a:-webkit-any-link {
   height: 0;
   padding: 5px;
 }
+.am-action-sheet.am-action-sheet-share {
+  background-color: #fff;
+}
+.am-action-sheet-share-list::before {
+  height: 0;
+}
+.icon-top{
+  font-size: 40px;
+  color: #d43d3d;
+}
+.icon-shoucang1, .icon-shoucang2 {
+  font-size: 35px;
+  color: #d43d3d;
+}

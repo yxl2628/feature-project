@@ -5,10 +5,11 @@ import styles from './index.css'
 import { connect } from 'dva'
 import NativeShare from 'nativeshare'
 import {ActionSheet} from 'antd-mobile'
+import ShareMessage from '../../components/ShareMessage'
 
 const nativeShare = new NativeShare()
 
-function MobileIndex({pageData}) {
+function MobileIndex({dispatch, pageData}) {
   const shareNews = (item) => {
     nativeShare.setShareData({
       icon: '//47.92.104.253:5656/static/logo.jpg',
@@ -31,11 +32,20 @@ function MobileIndex({pageData}) {
         ActionSheet.showShareActionSheetWithOptions({
           options: [],
           title: '长按复制，分享给好友吧',
-          message: item.url,
+          message: <ShareMessage show={item.url}/>,
         })
       }
     }
   }
+  window.onscroll=function(){
+    const scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+    const showFixed = scrollTop > 50 ? 'block' : 'none'
+    dispatch({
+      type: 'mobile/setFixedMenu',
+      payload: { showFixed }
+    })
+  }
+
   return (
     <div className={styles.body}>
       <div className={styles.header}>
@@ -44,6 +54,19 @@ function MobileIndex({pageData}) {
       <div className={styles.content}>
         <Menu></Menu>
         <NewsList newsList={pageData.newsList} shareNews={shareNews}></NewsList>
+      </div>
+      <div className={styles.fixedMenu} style={{display: pageData.showFixed}}>
+        <div className={styles.top} onClick={()=>{
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+        }}><i className="iconfont icon-top"></i></div>
+        <div className={styles.top} onClick={()=> {
+          ActionSheet.showShareActionSheetWithOptions({
+            options: [],
+            title: '收藏本站',
+            message: <ShareMessage show="点击浏览器菜单，将本站加入收藏，方便下次查看"/>,
+          })
+        }}><i className="iconfont icon-shoucang2"></i></div>
       </div>
     </div>
 

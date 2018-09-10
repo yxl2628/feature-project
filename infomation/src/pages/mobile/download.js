@@ -4,6 +4,7 @@ import {connect} from 'dva'
 import NavLink from 'umi/navlink'
 import NativeShare from 'nativeshare'
 import {ActionSheet} from 'antd-mobile'
+import ShareMessage from '../../components/ShareMessage'
 
 const nativeShare = new NativeShare()
 
@@ -34,7 +35,7 @@ function DownlaodDetail({ pageData: { detail, newsList }}) {
         ActionSheet.showShareActionSheetWithOptions({
           options: [],
           title: '长按复制，分享给好友吧',
-          message: item.url
+          message: <ShareMessage show={item.url}/>
         })
       }
     }

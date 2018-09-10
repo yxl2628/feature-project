@@ -7,7 +7,8 @@ export default {
     list: [],
     newsList: [],
     show: true,
-    detail: null
+    detail: null,
+    showFixed: 'none'
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -71,6 +72,9 @@ export default {
     },
     changeMenu(state, { payload: { show } }) {
       return { ...state, show }
+    },
+    setFixedMenu(state, { payload: { showFixed } }) {
+      return { ...state, showFixed }
     }
   },
 }
