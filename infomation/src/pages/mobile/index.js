@@ -61,11 +61,15 @@ function MobileIndex({dispatch, pageData}) {
           document.body.scrollTop = 0
         }}><i className="iconfont icon-top"></i></div>
         <div className={styles.top} onClick={()=> {
-          ActionSheet.showShareActionSheetWithOptions({
-            options: [],
-            title: '收藏本站',
-            message: <ShareMessage show="点击浏览器下方的菜单->加入书签，收藏本站，方便下次查看"/>,
-          })
+          if(window.navigator.userAgent.indexOf('UCBrowser') > -1) {
+            window.location.href = 'ext:add_favorite'
+          } else {
+            ActionSheet.showShareActionSheetWithOptions({
+              options: [],
+              title: '收藏本站',
+              message: <ShareMessage show="点击浏览器下方的菜单->加入书签，收藏本站，方便下次查看"/>,
+            })
+          }
         }}><i className="iconfont icon-shoucang2"></i></div>
       </div>
     </div>
