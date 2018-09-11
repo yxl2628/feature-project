@@ -44,11 +44,7 @@ a:-webkit-any-link {
 .am-action-sheet-share-list::before {
   height: 0;
 }
-.icon-top{
-  font-size: 40px;
-  color: #d43d3d;
-}
-.icon-shoucang1, .icon-shoucang2 {
-  font-size: 35px;
+.icon-top, .icon-shoucang1, .icon-shoucang2{
+  font-size: 20px;
   color: #d43d3d;
 }
