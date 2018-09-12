@@ -264,7 +264,6 @@
   padding-top: 2px;
 }
 .fixedMenu {
-  display: none;
   position: fixed;
   right: 20px;
   bottom: 50px;
@@ -272,8 +271,18 @@
 }
 .top {
   padding: 4px 5px;
+  border-radius: 3px;
   background-color: rgba(255, 255, 255, 1);
   margin-bottom: 10px;
   border: 1px solid rgba(212, 61, 61, 0.4);
   background-color: #fff;
+}
+.top:first-child {
+  display: none;
+}
+.collection {
+  color: #d43d3d;
+  font-size: 9px;
+  padding: 0;
+  margin: 0 auto;
 }

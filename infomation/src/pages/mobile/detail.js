@@ -2,40 +2,12 @@ import Header from '../../components/Header'
 import styles from './index.css'
 import {connect} from 'dva'
 import NavLink from 'umi/navlink'
-import NativeShare from 'nativeshare'
-import {ActionSheet} from 'antd-mobile'
-import ShareMessage from '../../components/ShareMessage'
-
-const nativeShare = new NativeShare()
+import utils from '../../utils'
 
 function NewsDetail({ pageData: { detail, newsList }}) {
   const shareNews = (item) => {
     item.url = window.location.href
-    nativeShare.setShareData({
-      icon: '//47.92.104.253:5656/static/logo.jpg',
-      link: item.url,
-      title: item.title,
-      desc: 'xuanchabao123.com - 每天看一点最有价值的信息',
-      from: 'xuanchabao123.com'
-    })
-    try {
-      nativeShare.call()
-    } catch (err) {
-      const a = window.navigator.appVersion.toLowerCase();
-      if (a.match(/MicroMessenger/i) === "micromessenger") {
-        ActionSheet.showShareActionSheetWithOptions({
-          options: [],
-          title: '点击右上角分享给好友',
-          message: item.title
-        })
-      } else {
-        ActionSheet.showShareActionSheetWithOptions({
-          options: [],
-          title: '长按复制，分享给好友吧',
-          message: <ShareMessage show={item.url}/>
-        })
-      }
-    }
+    utils.share(item)
   }
   return (<div className={styles.body}>
     <div className={styles.header}>

@@ -1,5 +1,5 @@
 import fetch from 'dva/fetch'
-import { handleError } from './index'
+import utils from './index'
 
 function checkStatus(response) {
   if (response.status === 200) {
@@ -10,7 +10,7 @@ function checkStatus(response) {
     return response.text().then(res => {
       const result = JSON.parse(res)
       if (result.code) {
-        console.error({content: handleError(result.code), className: 'error-confirm-content'})
+        console.error({content: utils.handleError(result.code), className: 'error-confirm-content'})
       } else {
         const error = new Error(response.status)
         error.response = response
