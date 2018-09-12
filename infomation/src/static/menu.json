@@ -4,7 +4,7 @@
     "key": "tuijian"
   },
   {
-    "name": "区块链",
+    "name": "创业管理",
     "key": "qukuailian"
   },
   {
@@ -12,43 +12,39 @@
     "key": "yunying"
   },
   {
-    "name": "架构",
+    "name": "下载",
     "key": "jiagou"
   },
   {
-    "name": "资料",
+    "name": "区块链",
     "key": "xiazai"
   },
   {
-    "name": "大数据",
+    "name": "人工智能",
     "key": "ai"
   },
   {
-    "name": "前端",
+    "name": "架构",
     "key": "fe"
   },
   {
-    "name": "架构",
+    "name": "服务端",
     "key": "jiagou1"
   },
   {
-    "name": "运营",
+    "name": "前端",
     "key": "yunying1"
   },
   {
-    "name": "区块链",
+    "name": "运维",
     "key": "qukuailian1"
   },
   {
-    "name": "资料",
+    "name": "Android",
     "key": "xiazai1"
   },
   {
-    "name": "大数据",
+    "name": "投票",
     "key": "ai1"
-  },
-  {
-    "name": "前端",
-    "key": "fe1"
   }
 ]

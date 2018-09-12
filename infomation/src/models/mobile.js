@@ -1,4 +1,5 @@
 import * as mobileService from '../services/mobile'
+import { ActionSheet } from 'antd-mobile'
 
 export default {
   namespace: 'mobile',
@@ -13,6 +14,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
+        ActionSheet.close()
         if (pathname === '/mobile/') {
           dispatch({type: 'getMenuList'})
         }
