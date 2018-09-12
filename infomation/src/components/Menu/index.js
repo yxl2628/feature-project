@@ -23,10 +23,15 @@ function Menu ({dispatch, pageData}){
           setCurrentKey(item.key)
         }} style={pageData.currentKey === item.key ? {color : '#d43d3d'} : {}} key={item.key}>{item.name}</li>))}
       </ul>
-      <div className={styles.show} onClick={show}>{
-        pageData.show ? <span>更多<i className="iconfont icon-open"></i></span> :
-        <span>收起<i className="iconfont icon-shouqi_m"></i></span>
-      }</div>
+      {
+        pageData.list.length > 12 ? (
+          <div className={styles.show} onClick={show}>{
+            pageData.show ? <span>更多<i className="iconfont icon-open"></i></span> :
+            <span>收起<i className="iconfont icon-shouqi_m"></i></span>
+          }</div>
+        ) : ''
+      }
+
     </div>
   )
 }

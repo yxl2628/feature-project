@@ -1,5 +1,5 @@
 import request from '../utils/request'
-import { baseURL, api } from '../utils/config'
+import { baseURL} from '../utils/config'
 
 /**
  * 用户登录
@@ -8,14 +8,14 @@ import { baseURL, api } from '../utils/config'
  */
 export function getMenuList() {
   return request({
-    url: baseURL + api.getMenuList,
+    url: baseURL + '/menu.json?v=' + new Date().getTime(),
     method: 'GET',
     params:{}
   })
 }
 export function getNewsList({key}) {
   return request({
-    url: baseURL + '/' + key + '.json',
+    url: baseURL + '/' + key + '.json?v=' + new Date().getTime(),
     method: 'GET',
     params:{}
   })
