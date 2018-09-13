@@ -54,4 +54,5 @@ html:not([data-scale]) .am-action-sheet-share-list::before {
 }
 .am-action-sheet-share-cancel-button {
   color: #d43d3d;
+  font-weight: 700;
 }

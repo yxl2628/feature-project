@@ -13,30 +13,32 @@
   padding: 0;
   list-style-type: none;
   transition: height 0.5s;
-  margin-left: 10px;
+  margin-left: -10px;
 }
 .item {
   display: inline-block;
   list-style: none;
-  width: 16.666666%;
+  width: 20%;
   color: #333;
   box-sizing: border-box;
   height: 35px;
   line-height: 35px;
   font-size: 15px;
   white-space: nowrap;
+  text-align: center;
 }
 .show {
   position: absolute;
   right: 5px;
   bottom: 10px;
-  width: 16.666666%;
+  width: 20%;
   z-index: 999;
   height: 35px;
   line-height: 35px;
   font-size: 15px;
   color: #d43d3d;
   background-color: #f8f8f8;
+  text-align: center;
 }
 .show span {
   white-space: nowrap;

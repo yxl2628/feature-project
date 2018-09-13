@@ -24,7 +24,7 @@ function Menu ({dispatch, pageData}){
         }} style={pageData.currentKey === item.key ? {color : '#d43d3d'} : {}} key={item.key}>{item.name}</li>))}
       </ul>
       {
-        pageData.list.length > 12 ? (
+        pageData.list.length > 10 ? (
           <div className={styles.show} onClick={show}>{
             pageData.show ? <span>更多<i className="iconfont icon-open"></i></span> :
             <span>收起<i className="iconfont icon-shouqi_m"></i></span>
