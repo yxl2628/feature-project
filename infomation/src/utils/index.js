@@ -45,7 +45,7 @@ function handleError(code){
 
 function share(item) {
   nativeShare.setShareData({
-    icon: '//www.chabao123.com:5656/static/share_logo.jpg',
+    icon: '//www.chabao123.com:/static/share_logo.jpg',
     link: item.url,
     title: item.title,
     desc: 'www.chabao123.com - 每天看一点最有价值的信息',

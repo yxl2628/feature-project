@@ -4,67 +4,69 @@ import { ActionSheet } from 'antd-mobile'
 export default {
   namespace: 'mobile',
   state: {
-    currentKey: '',
+    current: '',
     list: [],
     newsList: [],
     show: true,
     detail: null,
-    showFixed: 'none'
+    showFixed: 'none',
+    color: {},
+    json: {}
   },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         ActionSheet.close()
         if (pathname === '/mobile/') {
-          dispatch({type: 'getMenuList'})
+          dispatch({type: 'getNewsList', payload: {category: query.category}})
         }
         if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
-          dispatch({type: 'getNewsDetail', payload: {id: query.id, key: query.key}})
+          dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category}})
         }
       })
     },
   },
   effects: {
-    *getMenuList({ payload }, { call, put }) {
-      const result = yield call(mobileService.getMenuList)
-      if (result) {
-        yield put({type: 'setMenuList', payload: {list: result}})
-        yield put({type: 'getNewsList', payload: {}})
-      }
+    *getNewsList({ payload: {category} }, { call, put, select }) {
+      const list = yield call(mobileService.getMenuList)
+      yield put({type: 'setMenuList', payload: {list}})
+      const json = yield select(state => state.mobile.json)
+      yield put({type: 'setCurrent', payload: {category: category}})
+      const result = yield call(mobileService.getNewsList, {enName: json[category]})
+      yield put({type: 'getInfoPraiseReading', payload: {category: category}})
+      yield put({type: 'setNewsList', payload: {list: result}})
     },
-    *getNewsList({ payload: {key} }, { call, put, select }) {
-      let currentKey = yield select(state => state.mobile.currentKey)
-      if (key !== undefined && key) {
-        currentKey = key
-      }
-      yield put({type: 'setCurrentKey', payload: {key: currentKey}})
-      const result = yield call(mobileService.getNewsList, {key: currentKey})
-      if (result) {
-        yield put({type: 'setNewsList', payload: {list: result}})
-      }
-    },
-    *getNewsDetail({ payload: {id, key} }, { call, put, select }) {
-      yield put({type: 'setCurrentKey', payload: {key: key}})
-      const result = yield call(mobileService.getNewsList, {key: key})
+    *getNewsDetail({ payload: {id, category} }, { call, put, select }) {
+      const list = yield call(mobileService.getMenuList)
+      yield put({type: 'setMenuList', payload: {list}})
+      const json = yield select(state=>state.mobile.json)
+      yield put({type: 'setCurrent', payload: {category: category}})
+      const result = yield call(mobileService.getNewsList, {enName: json[category]})
       if (result) {
         const detail = result.find((item) => {
-          return item.id.toString() === id.toString()
+          return item.code.toString() === id.toString()
         })
         yield put({type: 'setNewsDetail', payload: {detail}})
         yield put({type: 'setNewsList', payload: {list: result}})
       }
-    }
+    },
+    *getInfoPraiseReading({ payload: {category} }, { call, put, select }) {
+      const result = yield call(mobileService.getInfoPraiseReading, {category: category})
+      console.log(result)
+    },
   },
   reducers: {
     setMenuList(state, { payload: { list } }) {
-      let currentKey = ''
-      if (list && list.length > 0) {
-        currentKey = list[0].key
+      const color = {}, json = {}
+      for(let i in list) {
+        const item = list[i]
+        color[item.code] = item.color
+        json[item.code] = item.enName
       }
-      return { ...state, list, currentKey }
+      return { ...state, list, color, json }
     },
-    setCurrentKey(state, { payload: { key } }) {
-      return { ...state, currentKey: key }
+    setCurrent(state, { payload: { category } }) {
+      return { ...state, current: category }
     },
     setNewsList(state, { payload: { list } }) {
       return { ...state, newsList: list }

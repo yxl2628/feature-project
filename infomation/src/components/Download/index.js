@@ -4,18 +4,18 @@ import NavLink from 'umi/navlink'
 
 function Download({item, shareNews}) {
   const share = (item) => {
-    item.url = window.location.href + `download/?id=${item.id}&key=${item.key}`
+    item.url = window.location.href + `download/?id=${item.code}&category=${item.belongCategoryCode}`
     shareNews(item)
   }
   const descHtml = () => {
-    return {__html: item.desc}
+    return {__html: item.detail.replace(/\n/gm, '<br />')}
   }
   return (
     <div className={styles.body}>
       <div className={styles.content}>
         <div className={styles.download}>
           <div className={styles.title}>{item.title}</div>
-          <div><NavLink to={`download/?id=${item.id}&key=${item.key}`} className={styles.defaultBtn}>点击下载</NavLink></div>
+          <div><NavLink to={`download/?id=${item.code}&category=${item.belongCategoryCode}`} className={styles.defaultBtn}>点击下载</NavLink></div>
         </div>
         <div className={styles.footer}>
           <div className={styles.desc} dangerouslySetInnerHTML={descHtml()}></div>

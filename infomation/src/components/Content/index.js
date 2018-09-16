@@ -2,21 +2,25 @@ import React from 'react'
 import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 
-function Content({item, shareNews}) {
+function Content({item, shareNews, color}) {
   const share = (item) => {
-    item.url = window.location.href + `detail/?id=${item.id}&key=${item.key}`
+    item.url = window.location.href + `detail/?id=${item.code}&category=${item.belongCategoryCode}`
     shareNews(item)
+  }
+  const ztStyle = {
+    color: `${color[item.belongCategoryCode]}`,
+    border: `1px solid ${color[item.belongCategoryCode]}`
   }
   return (
     <div className={styles.body}>
       <div className={styles.content}>
-        <div className={styles.title}><NavLink to={`detail/?id=${item.id}&key=${item.key}`}>{item.title}</NavLink></div>
+        <div className={styles.title}><NavLink to={item.type === '0' ? item.detail :`detail/?id=${item.code}&category=${item.belongCategoryCode}`}>{item.title}</NavLink></div>
         <div className={styles.footer}>
           <div className={styles.left}>
-            {item.id%2 !== 0 ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.source}</span>
+            {item.type === '1' ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.source} {item.actor}</span>
           </div>
           <div className={styles.right}>
-            {item.type ? <span className={styles[item.key]}>{item.type}</span> : ''}
+            <span className={styles.type} style={ztStyle}>{item.belongCategoryName}</span>
           </div>
         </div>
       </div>

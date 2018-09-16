@@ -6,9 +6,9 @@ import utils from '../../utils'
 import {ActionSheet} from 'antd-mobile'
 import ShareMessage from '../../components/ShareMessage'
 
-function DownlaodDetail({ pageData: { detail, newsList }}) {
+function DownlaodDetail({ pageData: { detail, newsList, current }}) {
   const descHtml = () => {
-    return {__html: detail.desc}
+    return {__html: detail.detail.replace(/\n/gm, '<br />')}
   }
   const shareNews = (item) => {
     item.url = window.location.href
@@ -22,9 +22,9 @@ function DownlaodDetail({ pageData: { detail, newsList }}) {
       detail
         ? (<div className={styles.detail}>
           <div className={styles.navbar}>
-            <NavLink to='/mobile/'>
+            <NavLink to={`/mobile/?category=${current}`}>
               <i className="iconfont icon-shouye"></i>返回首页</NavLink>
-            <span className={styles.arrow}>></span>{detail.type}</div>
+            <span className={styles.arrow}>></span>{detail.belongCategoryName}</div>
           <div className={styles.otherHeader}>
             <span className={styles.currentTitle}>文章下载步骤如下：</span>
             <span className={styles.share} onClick={() => {
@@ -41,7 +41,7 @@ function DownlaodDetail({ pageData: { detail, newsList }}) {
                 <img src={require('../../assets/qrcode.png')} className={styles.qrcode} alt=""/>
               </div>
             </div>
-            <div className={styles.step}><span className={styles.stepTitle}>第二步：</span>在公众号后台回复“<span className={styles.keyword}>大数据</span>”三个关键字</div>
+            <div className={styles.step}><span className={styles.stepTitle}>第二步：</span>在公众号后台回复“<span className={styles.keyword}>{detail.typeDes}</span>”三个关键字</div>
           </div>
           <div className={styles.otherNews}>
             <div className={styles.otherHeader}>
@@ -67,7 +67,7 @@ function DownlaodDetail({ pageData: { detail, newsList }}) {
         <div className={styles.collection}>收藏</div>
         <div className={styles.collection}>本站</div>
       </div>
-    </div>  
+    </div>
   </div>)
 }
 

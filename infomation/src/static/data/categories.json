@@ -1,0 +1,61 @@
+[{
+  "code": "a",
+  "name": "推荐",
+  "enName": "category_a",
+  "color": "#ffffff"
+}, {
+  "code": "b",
+  "name": "创业管理",
+  "enName": "category_b",
+  "color": "#FF0000"
+}, {
+  "code": "c",
+  "name": "运营",
+  "enName": "category_c",
+  "color": "#FF60AF"
+}, {
+  "code": "d",
+  "name": "下载",
+  "enName": "category_d",
+  "color": "#B15BFF"
+}, {
+  "code": "e",
+  "name": "区块链",
+  "enName": "category_e",
+  "color": "#2828FF"
+}, {
+  "code": "f",
+  "name": "人工智能",
+  "enName": "category_f",
+  "color": "#3C3C3C"
+}, {
+  "code": "g",
+  "name": "架构",
+  "enName": "category_g",
+  "color": "#3D7878"
+}, {
+  "code": "h",
+  "name": "服务端",
+  "enName": "category_h",
+  "color": "#F9F900"
+}, {
+  "code": "l",
+  "name": "前端",
+  "enName": "category_l",
+  "color": "#BB5E00"
+}, {
+  "code": "m",
+  "name": "运维",
+  "enName": "category_m",
+  "color": "#AD5A5A"
+}, {
+  "code": "n",
+  "name": "Android",
+  "enName": "category_n",
+  "color": "#006000"
+}, {
+  "code": "o",
+  "name": "投票",
+  "enName": "vote_o",
+  "color": "#9F0050"
+}]

@@ -6,7 +6,7 @@ import utils from '../../utils'
 import {ActionSheet} from 'antd-mobile'
 import ShareMessage from '../../components/ShareMessage'
 
-function VoteDetail({ pageData: { detail, newsList }}) {
+function VoteDetail({ pageData: { detail, newsList, current }}) {
   const shareNews = (item) => {
     item.url = window.location.href
     utils.share(item)
@@ -19,9 +19,9 @@ function VoteDetail({ pageData: { detail, newsList }}) {
       detail
         ? (<div className={styles.detail}>
           <div className={styles.navbar}>
-            <NavLink to='/mobile/'>
+            <NavLink to={`/mobile/?category=${current}`}>
               <i className="iconfont icon-shouye"></i>返回首页</NavLink>
-            <span className={styles.arrow}>></span>{detail.type}</div>
+            <span className={styles.arrow}>></span>{detail.belongCategoryName}</div>
           <div className={styles.otherHeader}>
             <div className={styles.currentTitle}>投票主题：</div>
             <div className={styles.share} onClick={() => {
@@ -31,7 +31,7 @@ function VoteDetail({ pageData: { detail, newsList }}) {
           </div>
           <div className={styles.currentNews}>
             <div className={styles.bodyLeft}>
-              <div className={styles.voteTitle}>{detail.title}</div>
+              <div className={styles.voteTitle}>{detail.subtitle}</div>
             </div>
           </div>
           <div className={styles.otherNews}>
@@ -40,9 +40,9 @@ function VoteDetail({ pageData: { detail, newsList }}) {
             </div>
             <div className={styles.voteList}>
               {
-                detail.voteList && detail.voteList.map((item, index)=> {
+                detail.voteItems.map((item, index)=> {
                   return (
-                    <div className={styles.voteItem}>
+                    <div key={item.code} className={styles.voteItem}>
                       <div className={styles.index}>{index + 1}.</div>
                       <div className={styles.title}>{item.title}</div>
                       <div className={styles.zan}><i className="iconfont icon-zan1" style={{color: '#d43d3d', fontSize: '21px'}}></i> <span className={styles.voteZan}>{item.zan}</span></div>

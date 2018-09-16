@@ -4,17 +4,17 @@ import Download from '../Download'
 import Vote from '../Vote'
 import styles from './index.css'
 
-function NewsList({newsList, shareNews}) {
+function NewsList({newsList, shareNews, color}) {
   return (
     <div className={styles.list}>
       {
         newsList.map((item) => {
-          if (item.key === 'xiazai') {
-            return (<Download key={item.id} item={item} shareNews={shareNews}></Download>)
-          } else if (item.key === 'toupiao') {
-            return (<Vote key={item.id} item={item} shareNews={shareNews}></Vote>)
+          if (item.type === '2') {
+            return (<Download key={item.code} item={item} shareNews={shareNews}></Download>)
+          } else if (item.type === '3') {
+            return (<Vote key={item.code} item={item} shareNews={shareNews}></Vote>)
           } else {
-            return (<Content key={item.id} item={item} shareNews={shareNews}></Content>)
+            return (<Content key={item.code} item={item} shareNews={shareNews} color={color}></Content>)
           }
         })
       }

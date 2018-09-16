@@ -6,10 +6,14 @@ import utils from '../../utils'
 import {ActionSheet} from 'antd-mobile'
 import ShareMessage from '../../components/ShareMessage'
 
-function NewsDetail({ pageData: { detail, newsList }}) {
+function NewsDetail({ pageData: { detail, newsList, current, color }}) {
   const shareNews = (item) => {
     item.url = window.location.href
     utils.share(item)
+  }
+  const ztStyle = {
+    color: `${color[current]}`,
+    border: `1px solid ${color[current]}`
   }
   return (<div className={styles.body}>
     <div className={styles.header}>
@@ -19,9 +23,9 @@ function NewsDetail({ pageData: { detail, newsList }}) {
       detail
         ? (<div className={styles.detail}>
           <div className={styles.navbar}>
-            <NavLink to='/mobile/'>
+            <NavLink to={`/mobile/?category=${current}`}>
               <i className="iconfont icon-shouye"></i>返回首页</NavLink>
-            <span className={styles.arrow}>></span>{detail.type}</div>
+            <span className={styles.arrow}>></span>{detail.belongCategoryName}</div>
           <div className={styles.otherHeader}>
             <span className={styles.currentTitle}>本次想看的文章</span>
             <span className={styles.share} onClick={() => {
@@ -34,14 +38,10 @@ function NewsDetail({ pageData: { detail, newsList }}) {
               <div className={styles.currentNewsTitle}>{detail.title}</div>
               <div className={styles.footer}>
                 <div className={styles.left}>
-                  {
-                    detail.type
-                      ? <span className={styles[detail.key]}>{detail.type}</span>
-                      : ''
-                  }
+                  <span className={styles.type} style={ztStyle}>{detail.belongCategoryName}</span>
                 </div>
                 <div className={styles.right}>
-                  <span className={styles.source}>{detail.source}</span>
+                  <span className={styles.source}>{detail.source} {detail.actor}</span>
                 </div>
               </div>
             </div>
@@ -53,20 +53,16 @@ function NewsDetail({ pageData: { detail, newsList }}) {
             <div className={styles.list}>
               {
                 newsList.map((item => (
-                  item.id !== detail.id
-                  ? <div key={item.id} className={styles.item}>
-                    <NavLink to={`${item.url}`} className={styles.bodyLeft}>
+                  item.code !== detail.code
+                  ? <div key={item.code} className={styles.item}>
+                    <NavLink to={item.type === '0' ? item.detail :`/mobile/detail/?id=${item.code}&category=${item.belongCategoryCode}`} className={styles.bodyLeft}>
                       <div className={styles.newsTitle}>{item.title}</div>
                       <div className={styles.footer}>
                         <div className={styles.left}>
-                          {
-                            detail.type
-                              ? <span className={styles[detail.key]}>{detail.type}</span>
-                              : ''
-                          }
+                          <span className={styles.type} style={ztStyle}>{item.belongCategoryName}</span>
                         </div>
                         <div className={styles.right}>
-                          <span className={styles.source}>{detail.source}</span>
+                          <span className={styles.source}>{item.source} {item.actor}</span>
                         </div>
                       </div>
                     </NavLink>

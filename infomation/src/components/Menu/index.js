@@ -1,15 +1,10 @@
 import React from 'react'
 import styles from './index.css'
 import { connect } from 'dva'
+import NavLink from 'umi/navlink'
 
 
 function Menu ({dispatch, pageData}){
-  const setCurrentKey = (key) => {
-    dispatch({
-      type: 'mobile/getNewsList',
-      payload: { key }
-    })
-  }
   const show = () => {
     dispatch({
       type: 'mobile/changeMenu',
@@ -19,9 +14,7 @@ function Menu ({dispatch, pageData}){
   return (
     <div className={styles.menu}>
       <ul className={styles.list} style={{height: pageData.show ? '68px': '105px'}}>
-        {pageData.list.map((item) => (<li className={styles.item} onClick={() => {
-          setCurrentKey(item.key)
-        }} style={pageData.currentKey === item.key ? {color : '#d43d3d'} : {}} key={item.key}>{item.name}</li>))}
+        {pageData.list.map((item) => (<NavLink to={`/mobile/?category=${item.code}`} className={styles.item} style={pageData.current === item.code ? {color : '#d43d3d'} : {}} key={item.code}>{item.name}</NavLink>))}
       </ul>
       {
         pageData.list.length > 10 ? (
