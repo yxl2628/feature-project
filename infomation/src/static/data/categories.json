@@ -2,52 +2,52 @@
   "code": "a",
   "name": "推荐",
   "enName": "category_a",
-  "color": "#ffffff"
+  "color": "#b145b8"
 }, {
   "code": "b",
   "name": "创业管理",
   "enName": "category_b",
-  "color": "#FF0000"
+  "color": "#29bbc0"
 }, {
   "code": "c",
   "name": "运营",
   "enName": "category_c",
-  "color": "#FF60AF"
+  "color": "#dda23c"
 }, {
   "code": "d",
   "name": "下载",
   "enName": "category_d",
-  "color": "#B15BFF"
+  "color": "#ee5757"
 }, {
   "code": "e",
   "name": "区块链",
   "enName": "category_e",
-  "color": "#2828FF"
+  "color": "#303842"
 }, {
   "code": "f",
   "name": "人工智能",
   "enName": "category_f",
-  "color": "#3C3C3C"
+  "color": "#43ad32"
 }, {
   "code": "g",
   "name": "架构",
   "enName": "category_g",
-  "color": "#3D7878"
+  "color": "#6e2fd8"
 }, {
   "code": "h",
   "name": "服务端",
   "enName": "category_h",
-  "color": "#F9F900"
+  "color": "#dda23c"
 }, {
   "code": "l",
   "name": "前端",
   "enName": "category_l",
-  "color": "#BB5E00"
+  "color": "#376ce4"
 }, {
   "code": "m",
   "name": "运维",
   "enName": "category_m",
-  "color": "#AD5A5A"
+  "color": "#303842"
 }, {
   "code": "n",
   "name": "Android",
