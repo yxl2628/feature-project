@@ -11,7 +11,8 @@ export default {
     detail: null,
     showFixed: 'none',
     color: {},
-    json: {}
+    json: {},
+    name: {}
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -21,7 +22,7 @@ export default {
           dispatch({type: 'getNewsList', payload: {category: query.category}})
         }
         if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
-          dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category}})
+          dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, from: query.from}})
         }
       })
     },
@@ -36,11 +37,11 @@ export default {
       yield put({type: 'getInfoPraiseReading', payload: {category: category}})
       yield put({type: 'setNewsList', payload: {list: result}})
     },
-    *getNewsDetail({ payload: {id, category} }, { call, put, select }) {
+    *getNewsDetail({ payload: {id, category, from} }, { call, put, select }) {
       const list = yield call(mobileService.getMenuList)
       yield put({type: 'setMenuList', payload: {list}})
       const json = yield select(state=>state.mobile.json)
-      yield put({type: 'setCurrent', payload: {category: category}})
+      yield put({type: 'setCurrent', payload: {category: from}})
       const result = yield call(mobileService.getNewsList, {enName: json[category]})
       if (result) {
         const detail = result.find((item) => {
@@ -57,13 +58,17 @@ export default {
   },
   reducers: {
     setMenuList(state, { payload: { list } }) {
-      const color = {}, json = {}
+      const color = {}, json = {}, name = {}, newList = []
       for(let i in list) {
         const item = list[i]
         color[item.code] = item.color
         json[item.code] = item.enName
+        name[item.code] = item.name
+        if (item.code !== 'o') {
+          newList.push(item)
+        }
       }
-      return { ...state, list, color, json }
+      return { ...state, list: newList, color, json, name }
     },
     setCurrent(state, { payload: { category } }) {
       return { ...state, current: category }

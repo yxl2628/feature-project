@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 
-function Vote({item, shareNews}) {
+function Vote({item, shareNews, current}) {
   // const share = (item) => {
   //   item.url = window.location.href + `vote/?id=${item.code}&category=${item.belongCategoryCode}`
   //   shareNews(item)
@@ -12,7 +12,7 @@ function Vote({item, shareNews}) {
       <div className={styles.content}>
         <div className={styles.download}>
           <div className={styles.title}>{item.title}</div>
-          <div><NavLink to={`vote/?id=${item.code}&category=${item.belongCategoryCode}`} className={styles.defaultBtn}>点击投票</NavLink></div>
+          <div><NavLink to={`vote/?id=${item.code}&category=${item.belongCategoryCode}&from=${current}`} className={styles.defaultBtn}>点击投票</NavLink></div>
         </div>
         <div className={styles.footer}>
           <div className={styles.left}>

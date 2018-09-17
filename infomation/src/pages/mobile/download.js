@@ -6,7 +6,7 @@ import utils from '../../utils'
 import {ActionSheet} from 'antd-mobile'
 import ShareMessage from '../../components/ShareMessage'
 
-function DownlaodDetail({ pageData: { detail, newsList, current }}) {
+function DownlaodDetail({ pageData: { detail, newsList, current, name }}) {
   const descHtml = () => {
     return {__html: detail.detail.replace(/\n/gm, '<br />')}
   }
@@ -24,7 +24,7 @@ function DownlaodDetail({ pageData: { detail, newsList, current }}) {
           <div className={styles.navbar}>
             <NavLink to={`/mobile/?category=${current}`}>
               <i className="iconfont icon-shouye"></i>返回首页</NavLink>
-            <span className={styles.arrow}>></span>{detail.belongCategoryName}</div>
+            <span className={styles.arrow}>></span>{name[current]}</div>
           <div className={styles.otherHeader}>
             <span className={styles.currentTitle}>文章下载步骤如下：</span>
             <span className={styles.share} onClick={() => {

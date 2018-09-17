@@ -2,9 +2,9 @@ import React from 'react'
 import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 
-function Download({item, shareNews}) {
+function Download({item, shareNews, current}) {
   const share = (item) => {
-    item.url = window.location.href + `download/?id=${item.code}&category=${item.belongCategoryCode}`
+    item.url = window.location.href + `download/?id=${item.code}&category=${item.belongCategoryCode}&from=${current}`
     shareNews(item)
   }
   const descHtml = () => {
@@ -15,7 +15,7 @@ function Download({item, shareNews}) {
       <div className={styles.content}>
         <div className={styles.download}>
           <div className={styles.title}>{item.title}</div>
-          <div><NavLink to={`download/?id=${item.code}&category=${item.belongCategoryCode}`} className={styles.defaultBtn}>点击下载</NavLink></div>
+          <div><NavLink to={`download/?id=${item.code}&category=${item.belongCategoryCode}&from=${current}`} className={styles.defaultBtn}>点击下载</NavLink></div>
         </div>
         <div className={styles.footer}>
           <div className={styles.desc} dangerouslySetInnerHTML={descHtml()}></div>

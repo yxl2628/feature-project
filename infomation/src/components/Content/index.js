@@ -14,7 +14,7 @@ function Content({item, shareNews, color, current}) {
   return (
     <div className={styles.body}>
       <div className={styles.content}>
-        <div className={styles.title}><NavLink to={item.type === '0' ? item.detail :`detail/?id=${item.code}&category=${item.belongCategoryCode}`}>{item.title}</NavLink></div>
+        <div className={styles.title}><NavLink to={item.type === '0' ? item.detail :`detail/?id=${item.code}&category=${item.belongCategoryCode}&from=${current}`}>{item.title}</NavLink></div>
         <div className={styles.footer}>
           <div className={styles.left}>
             {item.type === '1' ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.source} {item.actor}</span>

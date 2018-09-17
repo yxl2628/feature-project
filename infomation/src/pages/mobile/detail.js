@@ -6,7 +6,7 @@ import utils from '../../utils'
 import {ActionSheet} from 'antd-mobile'
 import ShareMessage from '../../components/ShareMessage'
 
-function NewsDetail({ pageData: { detail, newsList, current, color }}) {
+function NewsDetail({ pageData: { detail, newsList, current, color, name }}) {
   const shareNews = (item) => {
     item.url = window.location.href
     utils.share(item)
@@ -25,7 +25,7 @@ function NewsDetail({ pageData: { detail, newsList, current, color }}) {
           <div className={styles.navbar}>
             <NavLink to={`/mobile/?category=${current}`}>
               <i className="iconfont icon-shouye"></i>返回首页</NavLink>
-            <span className={styles.arrow}>></span>{detail.belongCategoryName}</div>
+            <span className={styles.arrow}>></span>{name[current]}</div>
           <div className={styles.otherHeader}>
             <span className={styles.currentTitle}>本次想看的文章</span>
             <span className={styles.share} onClick={() => {
