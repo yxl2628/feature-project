@@ -21,12 +21,11 @@ export function getNewsList({enName}) {
   })
 }
 export function getInfoPraiseReading({category}) {
-  console.log(111111, category)
   return request({
     url: apiURL + '/info/praise-reading',
     method: 'POST',
     params:{
-      code: category
+      categoryIdAndInfoIds: category
     }
   })
 }

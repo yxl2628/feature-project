@@ -1,2 +1,2 @@
 window.baseURL = '/static'
-window.apiURL = '/gyapi'
+window.apiURL = '/gyinfo'

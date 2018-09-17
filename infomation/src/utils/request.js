@@ -57,5 +57,7 @@ export default function request(arr) {
     real_url = real_url.substr(0, real_url.length - 1)
   }
   return fetch(real_url, options)
-    .then(checkStatus)
+    .then(checkStatus).catch(e=>{
+      console.log(e)
+    })
 }

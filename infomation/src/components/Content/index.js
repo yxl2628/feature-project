@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 
-function Content({item, shareNews, color}) {
+function Content({item, shareNews, color, current}) {
   const share = (item) => {
     item.url = window.location.href + `detail/?id=${item.code}&category=${item.belongCategoryCode}`
     shareNews(item)

@@ -35,7 +35,7 @@ function NewsDetail({ pageData: { detail, newsList, current, color }}) {
           </div>
           <div className={styles.currentNews}>
             <div className={styles.bodyLeft}>
-              <div className={styles.currentNewsTitle}>{detail.title}</div>
+              <div className={styles.currentNewsTitle}><a href={detail.detail}>{detail.title}</a></div>
               <div className={styles.footer}>
                 <div className={styles.left}>
                   <span className={styles.type} style={ztStyle}>{detail.belongCategoryName}</span>
@@ -55,7 +55,7 @@ function NewsDetail({ pageData: { detail, newsList, current, color }}) {
                 newsList.map((item => (
                   item.code !== detail.code
                   ? <div key={item.code} className={styles.item}>
-                    <NavLink to={item.type === '0' ? item.detail :`/mobile/detail/?id=${item.code}&category=${item.belongCategoryCode}`} className={styles.bodyLeft}>
+                    <a href={item.detail} className={styles.bodyLeft}>
                       <div className={styles.newsTitle}>{item.title}</div>
                       <div className={styles.footer}>
                         <div className={styles.left}>
@@ -65,7 +65,7 @@ function NewsDetail({ pageData: { detail, newsList, current, color }}) {
                           <span className={styles.source}>{item.source} {item.actor}</span>
                         </div>
                       </div>
-                    </NavLink>
+                    </a>
                   </div>
                   : '')))
               }

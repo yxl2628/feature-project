@@ -4,7 +4,7 @@ import Download from '../Download'
 import Vote from '../Vote'
 import styles from './index.css'
 
-function NewsList({newsList, shareNews, color}) {
+function NewsList({newsList, shareNews, color, current}) {
   return (
     <div className={styles.list}>
       {
@@ -14,7 +14,7 @@ function NewsList({newsList, shareNews, color}) {
           } else if (item.type === '3') {
             return (<Vote key={item.code} item={item} shareNews={shareNews}></Vote>)
           } else {
-            return (<Content key={item.code} item={item} shareNews={shareNews} color={color}></Content>)
+            return (<Content key={item.code} item={item} shareNews={shareNews} color={color} current={current}></Content>)
           }
         })
       }
