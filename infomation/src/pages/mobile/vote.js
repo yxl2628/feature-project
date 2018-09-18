@@ -6,10 +6,19 @@ import utils from '../../utils'
 import {ActionSheet} from 'antd-mobile'
 import ShareMessage from '../../components/ShareMessage'
 
-function VoteDetail({ pageData: { detail, newsList, current, name }}) {
+function VoteDetail({ pageData: { detail, newsList, current, name }, dispatch}) {
   const shareNews = (item) => {
     item.url = window.location.href
     utils.share(item)
+  }
+  const voteItem = (itemCode) => {
+    dispatch({
+      type: 'mobile/voteItems',
+      payload: {
+        voteCode: detail.code,
+        itemCode: itemCode
+      }
+    })
   }
   return (<div className={styles.body}>
     <div className={styles.header}>
@@ -45,7 +54,9 @@ function VoteDetail({ pageData: { detail, newsList, current, name }}) {
                     <div key={item.code} className={styles.voteItem}>
                       <div className={styles.index}>{index + 1}.</div>
                       <div className={styles.title}>{item.title}</div>
-                      <div className={styles.zan}><i className="iconfont icon-zan1" style={{color: '#d43d3d', fontSize: '21px'}}></i> <span className={styles.voteZan}>{item.zan}</span></div>
+                      <div className={styles.zan} onClick={()=>{
+                        voteItem(item.code)
+                      }}><i className="iconfont icon-zan1" style={{color: '#d43d3d', fontSize: '21px'}}></i> <span className={styles.voteZan}>{item.praise}</span></div>
                     </div>
                   )
                 })

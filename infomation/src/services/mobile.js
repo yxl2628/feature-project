@@ -1,5 +1,5 @@
 import request from '../utils/request'
-import { baseURL, apiURL} from '../utils/config'
+import {baseURL, apiURL} from '../utils/config'
 
 /**
  * 用户登录
@@ -10,22 +10,46 @@ export function getMenuList() {
   return request({
     url: baseURL + '/data/categories.json?v=' + new Date().getTime(),
     method: 'GET',
-    params:{}
+    params: {}
   })
 }
 export function getNewsList({enName}) {
   return request({
     url: baseURL + '/data/' + enName + '.json?v=' + new Date().getTime(),
     method: 'GET',
-    params:{}
+    params: {}
   })
 }
 export function getInfoPraiseReading({category}) {
   return request({
-    url: apiURL + '/info/praise-reading',
+    url: apiURL + '/info/praise-reading/',
     method: 'POST',
-    params:{
-      categoryIdAndInfoIds: category
-    }
+    body: [
+      {
+        "categoryCode": category,
+        "infoCodes": []
+      }
+    ]
+  })
+}
+export function infoPraiseReadingShare({category, id, type}) {
+  return request({
+    url: apiURL + `/info/praise/reading/?categoryCode=${category}&infoCode=${id}&type=${type}&terminalType=wap`,
+    method: 'POST',
+    params: {}
+  })
+}
+export function getVoteItems({ids}) {
+  return request({
+    url: apiURL + `/vote/vote-items/?ids=${ids}`,
+    method: 'GET',
+    params: {}
+  })
+}
+export function voteItems({voteCode, itemCode}) {
+  return request({
+    url: apiURL + `/vote/${voteCode}/vote-items/${itemCode}`,
+    method: 'POST',
+    params: {}
   })
 }

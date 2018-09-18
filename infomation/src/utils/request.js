@@ -1,5 +1,4 @@
 import fetch from 'dva/fetch'
-import utils from './index'
 
 function checkStatus(response) {
   if (response.status === 200) {
@@ -7,16 +6,8 @@ function checkStatus(response) {
   } else if (response.status === 204) {
     return 204
   } else {
-    return response.text().then(res => {
-      const result = JSON.parse(res)
-      if (result.code) {
-        console.error({content: utils.handleError(result.code), className: 'error-confirm-content'})
-      } else {
-        const error = new Error(response.status)
-        error.response = response
-        console.error({content: error, className: 'error-confirm-content'})
-      }
-    })
+    console.log('network error')
+    return 400
   }
 }
 
@@ -34,13 +25,8 @@ export default function request(arr) {
     mode: 'cors',
     headers: {
       "Content-Type": "application/json;charset=utf-8",
-      "Accept": "application/json;charset=utf-8",
-      //"x-b-userid": 1,
+      "Accept": "application/json;charset=utf-8"
     }
-  }
-  if (arr.params.token) {
-    options.headers.Authorization = 'Bearer ' + arr.params.token
-    delete arr.params.token
   }
   let real_url = arr.url
   if (arr.method === 'POST' || arr.method === 'PUT') {
@@ -57,7 +43,5 @@ export default function request(arr) {
     real_url = real_url.substr(0, real_url.length - 1)
   }
   return fetch(real_url, options)
-    .then(checkStatus).catch(e=>{
-      console.log(e)
-    })
+    .then(checkStatus)
 }

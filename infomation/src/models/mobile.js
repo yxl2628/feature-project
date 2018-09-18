@@ -23,6 +23,9 @@ export default {
         }
         if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
           dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory}})
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+          // dispatch({type: 'infoPraiseReadingShare', payload: {id: query.id, category: query.fromCategory, type: 'reading'}})
         }
       })
     },
@@ -49,11 +52,22 @@ export default {
         })
         yield put({type: 'setNewsDetail', payload: {detail}})
         yield put({type: 'setNewsList', payload: {list: result}})
+        yield put({type: 'getVoteItems', payload: {ids: detail.code}})
       }
     },
     *getInfoPraiseReading({ payload: {category} }, { call, put, select }) {
       const result = yield call(mobileService.getInfoPraiseReading, {category: category})
-      console.log(result)
+      yield put({type: 'setReadingPraiseReading', payload: {list: result}})
+    },
+    *infoPraiseReadingShare({ payload: {category, id, type} }, { call, put, select }) {
+      yield call(mobileService.infoPraiseReadingShare, {category, id, type})
+    },
+    *getVoteItems({ payload: {ids} }, { call, put, select }) {
+      const result = yield call(mobileService.getVoteItems, {ids: ids})
+      yield put({type: 'setVoteItems', payload: {result}})
+    },
+    *voteItems({ payload: {voteCode, itemCode} }, { call, put, select }) {
+      yield call(mobileService.voteItems, {voteCode, itemCode})
     },
   },
   reducers: {
@@ -84,6 +98,30 @@ export default {
     },
     setFixedMenu(state, { payload: { showFixed } }) {
       return { ...state, showFixed }
-    }
+    },
+    setReadingPraiseReading(state, { payload: { result } }) {
+      const newsList = state.newsList
+      result && result.forEach(item=>{
+        console.log(item)
+      })
+      newsList.forEach(item => {
+        item.read = 0
+        item.praise = 0
+        item.share = 0
+      })
+      return { ...state, newsList }
+    },
+    setVoteItems(state, { payload: { result } }) {
+      const detail = state.detail, vote = {}
+      result && result.forEach(item => {
+        item.voteItems.forEach(child => {
+          vote[item.code + child.code] = child.vote
+        })
+      })
+      detail.voteItems && detail.voteItems.forEach(item => {
+        item.praise = vote[detail.code + item.code] || 0
+      })
+      return { ...state, detail }
+    },
   },
 }
