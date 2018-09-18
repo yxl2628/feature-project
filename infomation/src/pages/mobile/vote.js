@@ -40,7 +40,7 @@ function VoteDetail({ pageData: { detail, newsList, current, name }}) {
             </div>
             <div className={styles.voteList}>
               {
-                detail.voteItems.map((item, index)=> {
+                detail.voteItems && detail.voteItems.map((item, index)=> {
                   return (
                     <div key={item.code} className={styles.voteItem}>
                       <div className={styles.index}>{index + 1}.</div>

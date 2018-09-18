@@ -22,7 +22,7 @@ export default {
           dispatch({type: 'getNewsList', payload: {category: query.category}})
         }
         if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
-          dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, from: query.from}})
+          dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory}})
         }
       })
     },
@@ -37,11 +37,11 @@ export default {
       yield put({type: 'getInfoPraiseReading', payload: {category: category}})
       yield put({type: 'setNewsList', payload: {list: result}})
     },
-    *getNewsDetail({ payload: {id, category, from} }, { call, put, select }) {
+    *getNewsDetail({ payload: {id, category, fromCategory} }, { call, put, select }) {
       const list = yield call(mobileService.getMenuList)
       yield put({type: 'setMenuList', payload: {list}})
       const json = yield select(state=>state.mobile.json)
-      yield put({type: 'setCurrent', payload: {category: from}})
+      yield put({type: 'setCurrent', payload: {category: fromCategory}})
       const result = yield call(mobileService.getNewsList, {enName: json[category]})
       if (result) {
         const detail = result.find((item) => {

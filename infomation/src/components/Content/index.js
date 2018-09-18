@@ -3,8 +3,9 @@ import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 
 function Content({item, shareNews, color, current}) {
+  const url = `detail/?id=${item.code}&category=${item.belongCategoryCode}&fromCategory=${current}`
   const share = (item) => {
-    item.url = window.location.href + `detail/?id=${item.code}&category=${item.belongCategoryCode}`
+    item.url = window.location.origin + window.location.pathname + url
     shareNews(item)
   }
   const ztStyle = {
@@ -14,10 +15,10 @@ function Content({item, shareNews, color, current}) {
   return (
     <div className={styles.body}>
       <div className={styles.content}>
-        <div className={styles.title}><NavLink to={item.type === '0' ? item.detail :`detail/?id=${item.code}&category=${item.belongCategoryCode}&from=${current}`}>{item.title}</NavLink></div>
+        <div className={styles.title}><NavLink to={item.type === '0' ? item.detail : url}>{item.title}</NavLink></div>
         <div className={styles.footer}>
           <div className={styles.left}>
-            {item.type === '1' ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.source} {item.actor}</span>
+            {item.type === '1' ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.actor}</span>
           </div>
           <div className={styles.right}>
             <span className={styles.type} style={ztStyle}>{item.belongCategoryName}</span>

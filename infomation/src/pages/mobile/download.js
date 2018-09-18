@@ -8,7 +8,12 @@ import ShareMessage from '../../components/ShareMessage'
 
 function DownlaodDetail({ pageData: { detail, newsList, current, name }}) {
   const descHtml = () => {
-    return {__html: detail.detail.replace(/\n/gm, '<br />')}
+    if (detail.detail) {
+      return {__html: detail.detail.replace(/\n/gm, '<br />')}
+    } else {
+      return {__html: detail.detail}
+    }
+
   }
   const shareNews = (item) => {
     item.url = window.location.href

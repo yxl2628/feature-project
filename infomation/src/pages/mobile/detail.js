@@ -62,7 +62,7 @@ function NewsDetail({ pageData: { detail, newsList, current, color, name }}) {
                           <span className={styles.type} style={ztStyle}>{item.belongCategoryName}</span>
                         </div>
                         <div className={styles.right}>
-                          <span className={styles.source}>{item.source} {item.actor}</span>
+                          <span className={styles.source}>{item.actor}</span>
                         </div>
                       </div>
                     </a>
