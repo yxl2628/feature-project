@@ -240,27 +240,3 @@
 .voteItem .voteZan {
   padding-top: 2px;
 }
-.fixedMenu {
-  position: fixed;
-  right: 20px;
-  bottom: 40px;
-  z-index: 999;
-}
-.top {
-  padding: 7px 0;
-  box-sizing: border-box;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 1);
-  margin-bottom: 10px;
-  background-color: rgba(0,0,0,.5);
-  text-align: center;
-}
-.collection {
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 1px 0 0;
-  margin: 0 auto;
-}

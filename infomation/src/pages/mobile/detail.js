@@ -3,11 +3,10 @@ import styles from './index.css'
 import {connect} from 'dva'
 import NavLink from 'umi/navlink'
 import utils from '../../utils'
-import {ActionSheet} from 'antd-mobile'
-import ShareMessage from '../../components/ShareMessage'
+import FixedMenu from '../../components/FixedMenu'
 
 function NewsDetail(props) {
-  const { pageData: { detail, newsList, current, color, name }, location: {query}} = props
+  const { pageData: { detail, newsList, current, color, name, showFixed }, location: {query}, dispatch} = props
 
   const shareNews = (item) => {
     item.url = window.location.href
@@ -78,22 +77,7 @@ function NewsDetail(props) {
         </div>)
         : ''
     }
-    <div className={styles.fixedMenu}>
-      <div className={styles.top} onClick={()=> {
-        if(window.navigator.userAgent.indexOf('UCBrowser') > -1) {
-          window.location.href = 'ext:add_favorite'
-        } else {
-          ActionSheet.showShareActionSheetWithOptions({
-            options: [],
-            title: '收藏本站，方便下次查看',
-            message: <ShareMessage show="1.点击浏览器下方菜单栏 -> 2. 点击“添加书签”"/>,
-          })
-        }
-      }}>
-        <div className={styles.collection}>收藏</div>
-        <div className={styles.collection}>本站</div>
-      </div>
-    </div>
+    <FixedMenu showFixed={showFixed} dispatch={dispatch}></FixedMenu>
   </div>)
 }
 
