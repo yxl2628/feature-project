@@ -6,14 +6,16 @@ import utils from '../../utils'
 import {ActionSheet} from 'antd-mobile'
 import ShareMessage from '../../components/ShareMessage'
 
-function NewsDetail({ pageData: { detail, newsList, current, color, name }}) {
+function NewsDetail(props) {
+  const { pageData: { detail, newsList, current, color, name }, location: {query}} = props
+
   const shareNews = (item) => {
     item.url = window.location.href
     utils.share(item)
   }
   const ztStyle = {
-    color: `${color[current]}`,
-    border: `1px solid ${color[current]}`
+    color: `${color[query.category]}`,
+    border: `1px solid ${color[query.category]}`
   }
   return (<div className={styles.body}>
     <div className={styles.header}>
@@ -34,17 +36,19 @@ function NewsDetail({ pageData: { detail, newsList, current, color, name }}) {
               <i className="iconfont icon-fenxiang1 detail-fenxiang"></i>分享文章</span>
           </div>
           <div className={styles.currentNews}>
-            <div className={styles.bodyLeft}>
-              <div className={styles.currentNewsTitle}><a href={detail.detail}>{detail.title}</a></div>
-              <div className={styles.footer}>
-                <div className={styles.left}>
-                  <span className={styles.type} style={ztStyle}>{detail.belongCategoryName}</span>
-                </div>
-                <div className={styles.right}>
-                  <span className={styles.source}>{detail.source} {detail.actor}</span>
+            <a href={detail.detail}>
+              <div className={styles.bodyLeft}>
+                <div className={styles.currentNewsTitle}>{detail.title}</div>
+                <div className={styles.footer}>
+                  <div className={styles.left}>
+                    <span className={styles.type} style={ztStyle}>{detail.belongCategoryName}</span>
+                  </div>
+                  <div className={styles.right}>
+                    <span className={styles.source}>{detail.actor}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
           <div className={styles.otherNews}>
             <div className={styles.otherHeader}>

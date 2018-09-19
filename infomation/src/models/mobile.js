@@ -25,7 +25,7 @@ export default {
           dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory}})
           document.documentElement.scrollTop = 0
           document.body.scrollTop = 0
-          // dispatch({type: 'infoPraiseReadingShare', payload: {id: query.id, category: query.fromCategory, type: 'reading'}})
+          dispatch({type: 'infoPraiseReadingShare', payload: {id: query.id, category: query.fromCategory, type: 'reading'}})
         }
       })
     },
@@ -37,7 +37,14 @@ export default {
       const json = yield select(state => state.mobile.json)
       yield put({type: 'setCurrent', payload: {category: category}})
       const result = yield call(mobileService.getNewsList, {enName: json[category]})
-      yield put({type: 'getInfoPraiseReading', payload: {category: category}})
+      let infoCodes = []
+      result&&result.forEach(item => {
+        item.read = 0
+        item.praise = 0
+        item.share = 0
+        infoCodes.push(item.code)
+      })
+      yield put({type: 'getInfoPraiseReading', payload: {category, infoCodes}})
       yield put({type: 'setNewsList', payload: {list: result}})
     },
     *getNewsDetail({ payload: {id, category, fromCategory} }, { call, put, select }) {
@@ -55,9 +62,9 @@ export default {
         yield put({type: 'getVoteItems', payload: {ids: detail.code}})
       }
     },
-    *getInfoPraiseReading({ payload: {category} }, { call, put, select }) {
-      const result = yield call(mobileService.getInfoPraiseReading, {category: category})
-      yield put({type: 'setReadingPraiseReading', payload: {list: result}})
+    *getInfoPraiseReading({ payload: {category, infoCodes} }, { call, put, select }) {
+      const result = yield call(mobileService.getInfoPraiseReading, {category, infoCodes})
+      yield put({type: 'setReadingPraiseReading', payload: {result}})
     },
     *infoPraiseReadingShare({ payload: {category, id, type} }, { call, put, select }) {
       yield call(mobileService.infoPraiseReadingShare, {category, id, type})
@@ -100,14 +107,22 @@ export default {
       return { ...state, showFixed }
     },
     setReadingPraiseReading(state, { payload: { result } }) {
-      const newsList = state.newsList
+      const {newsList, current} = state, infoCode = {}
       result && result.forEach(item=>{
-        console.log(item)
+        item && item.infoDTOS && item.infoDTOS.forEach(info => {
+          infoCode[item.categoryCode + info.code] = {
+            praise: info.praise,
+            reading: info.reading,
+            sharing: info.sharing
+          }
+        })
       })
-      newsList.forEach(item => {
-        item.read = 0
-        item.praise = 0
-        item.share = 0
+      newsList && newsList.forEach(item => {
+        if (infoCode[current + item.code]) {
+          item.praise = infoCode[current + item.code].praise
+          item.read = infoCode[current + item.code].reading
+          item.share = infoCode[current + item.code].sharing
+        }
       })
       return { ...state, newsList }
     },

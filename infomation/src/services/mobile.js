@@ -20,14 +20,14 @@ export function getNewsList({enName}) {
     params: {}
   })
 }
-export function getInfoPraiseReading({category}) {
+export function getInfoPraiseReading({category, infoCodes}) {
   return request({
     url: apiURL + '/info/praise-reading/',
     method: 'POST',
     body: [
       {
         "categoryCode": category,
-        "infoCodes": []
+        "infoCodes": infoCodes
       }
     ]
   })
