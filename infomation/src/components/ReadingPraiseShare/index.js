@@ -15,14 +15,14 @@ function ReadingPraiseShare({item, current, share, dispatch}) {
   }
   return (
     <div className={styles.btngroup}>
-      <span className={styles.read}><i className="iconfont icon-yuedu"></i>{item.read}</span>
-      <span className={styles.zan} onClick={() => {
+      <a className={styles.read}><i className="iconfont icon-yuedu"></i>{item.read}</a>
+      <a className={styles.zan} onClick={() => {
         add('praise')
-      }}><i className="iconfont icon-zan1"></i>{item.praise}</span>
-      <span className={styles.share} onClick={() => {
+      }}><i className="iconfont icon-zan1"></i>{item.praise}</a>
+      <a className={styles.share} onClick={() => {
           share(item)
           add('sharing')
-        }}><i className="iconfont icon-fenxiang1"></i>{item.share}</span>
+        }}><i className="iconfont icon-fenxiang1"></i>{item.share}</a>
     </div>
   )
 }

@@ -67,7 +67,8 @@ export default {
       yield put({type: 'setReadingPraiseReading', payload: {result}})
     },
     *infoPraiseReadingShare({ payload: {category, id, type} }, { call, put, select }) {
-      yield call(mobileService.infoPraiseReadingShare, {category, id, type})
+      const result = yield call(mobileService.infoPraiseReadingShare, {category, id, type})
+      yield put({type: 'updateItem', payload: {current: result}})
     },
     *getVoteItems({ payload: {ids} }, { call, put, select }) {
       const result = yield call(mobileService.getVoteItems, {ids: ids})
@@ -75,6 +76,7 @@ export default {
     },
     *voteItems({ payload: {voteCode, itemCode} }, { call, put, select }) {
       yield call(mobileService.voteItems, {voteCode, itemCode})
+      yield put({type: 'getVoteItems', payload: {ids: voteCode}})
     },
   },
   reducers: {
@@ -85,7 +87,7 @@ export default {
         color[item.code] = item.color
         json[item.code] = item.enName
         name[item.code] = item.name
-        if (item.code !== 'o') {
+        if (item.name !== '投票') {
           newList.push(item)
         }
       }
@@ -137,6 +139,17 @@ export default {
         item.praise = vote[detail.code + item.code] || 0
       })
       return { ...state, detail }
+    },
+    updateItem(state, { payload: { current } }) {
+      const newsList = state.newsList
+      newsList && newsList.forEach(item => {
+        if (item.code === current.code) {
+          item.praise = current.praise
+          item.read = current.reading
+          item.share = current.sharing
+        }
+      })
+      return { ...state, newsList }
     },
   },
 }

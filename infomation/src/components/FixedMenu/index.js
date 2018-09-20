@@ -18,19 +18,23 @@ function FixedMenu({showFixed, dispatch}) {
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
       }} style={{display: showFixed}}><i className="iconfont icon-top"></i></div>
-      { window.navigator.userAgent.indexOf('MicroMessenger') < 0 ? (
-        <div className={styles.top} onClick={()=> {
-          if(window.navigator.userAgent.indexOf('UCBrowser') > -1) {
-            window.location.href = 'ext:add_favorite'
-          } else {
-            ActionSheet.showShareActionSheetWithOptions({
-              options: [],
-              title: '收藏本站，方便下次查看',
-              message: <ShareMessage show="1.点击浏览器下方菜单栏 -> 2. 点击“添加书签”"/>,
-            })
-          }
-        }}><div className={styles.collection}>收藏</div><div className={styles.collection}>本站</div></div>
-      ) : ''}
+      <div className={styles.top} onClick={()=> {
+        if(window.navigator.userAgent.indexOf('UCBrowser') > -1) {
+          window.location.href = 'ext:add_favorite'
+        } else {
+          ActionSheet.showShareActionSheetWithOptions({
+            options: [],
+            title: '收藏本站，方便下次查看',
+            message: <ShareMessage show={<div>
+              <div>1.在手机浏览器中打开此网站</div>
+              <div style={{height: '50px'}}><i className="iconfont icon-duobianxing"></i></div>
+              <div>2.点击浏览器下方的菜单栏</div>
+              <div style={{height: '50px'}}><i className="iconfont icon-duobianxing"></i></div>
+              <div>3.点击“收藏书签”或“收藏网址”</div>
+            </div>}/>,
+          })
+        }
+      }}><div className={styles.collection}>收藏</div><div className={styles.collection}>本站</div></div>
     </div>
   )
 }
