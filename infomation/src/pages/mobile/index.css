@@ -42,11 +42,15 @@
 .currentNews {
   display: flex;
   align-items: center;
-  color: #222;
   padding: 15px 10px;
-  font-size: 16px;
-  line-height: 19px;
   background-color: #fff;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.3px;
+  color: #222;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .read i, .zan i{
   margin-right: 5px;
@@ -104,6 +108,14 @@
 }
 .newsTitle {
   padding: 10px 0 0;
+  background-color: #fff;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.3px;
+  color: #222;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .footer {
   margin-top: 5px;

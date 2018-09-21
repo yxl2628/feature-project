@@ -16,6 +16,7 @@ function NewsDetail(props) {
     color: `${color[query.category]}`,
     border: `1px solid ${color[query.category]}`
   }
+  
   return (<div className={styles.body}>
     <div className={styles.header}>
       <Header></Header>
@@ -35,7 +36,13 @@ function NewsDetail(props) {
               <i className="iconfont icon-fenxiang1 detail-fenxiang"></i>分享文章</span>
           </div>
           <div className={styles.currentNews}>
-            <a href={detail.detail}>
+            <a onClick={()=> {
+              dispatch({
+                type: 'mobile/infoPraiseReadingShare',
+                payload: {id: detail.code, category: query.fromCategory, type: 'reading'}
+              })
+              window.location.href = detail.detail
+            }}>
               <div className={styles.bodyLeft}>
                 <div className={styles.currentNewsTitle}>{detail.title}</div>
                 <div className={styles.footer}>
@@ -58,7 +65,13 @@ function NewsDetail(props) {
                 newsList.map((item => (
                   item.code !== detail.code
                   ? <div key={item.code} className={styles.item}>
-                    <a href={item.detail} className={styles.bodyLeft}>
+                    <a className={styles.bodyLeft} onClick={()=> {
+                      dispatch({
+                        type: 'mobile/infoPraiseReadingShare',
+                        payload: {id: item.code, category: query.fromCategory, type: 'reading'}
+                      })
+                      window.location.href = item.detail
+                    }}>
                       <div className={styles.newsTitle}>{item.title}</div>
                       <div className={styles.footer}>
                         <div className={styles.left}>

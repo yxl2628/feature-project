@@ -23,9 +23,6 @@ export default {
         }
         if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
           dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory}})
-          document.documentElement.scrollTop = 0
-          document.body.scrollTop = 0
-          dispatch({type: 'infoPraiseReadingShare', payload: {id: query.id, category: query.fromCategory, type: 'reading'}})
         }
       })
     },
@@ -100,6 +97,10 @@ export default {
       return { ...state, newsList: list }
     },
     setNewsDetail(state, { payload: { detail } }) {
+      setTimeout(function() {
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+      }, 100)
       return { ...state, detail }
     },
     changeMenu(state, { payload: { show } }) {
