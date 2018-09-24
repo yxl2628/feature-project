@@ -8,7 +8,7 @@ export default {
     list: [],
     newsList: [],
     show: true,
-    detail: null,
+    detail: {},
     showFixed: 'none',
     color: {},
     json: {},
@@ -34,14 +34,19 @@ export default {
       const json = yield select(state => state.mobile.json)
       yield put({type: 'setCurrent', payload: {category: category}})
       const result = yield call(mobileService.getNewsList, {enName: json[category]})
-      let infoCodes = []
+      let infoCodes = [], voteCodes = []
       result&&result.forEach(item => {
         item.read = 0
         item.praise = 0
         item.share = 0
-        infoCodes.push(item.code)
+        if (item.type === '3') {
+          voteCodes.push(item.code)
+        } else {
+          infoCodes.push(item.code)
+        }
       })
       yield put({type: 'getInfoPraiseReading', payload: {category, infoCodes}})
+      yield put({type: 'getVoteItems', payload: {ids: voteCodes}})
       yield put({type: 'setNewsList', payload: {list: result}})
     },
     *getNewsDetail({ payload: {id, category, fromCategory} }, { call, put, select }) {
@@ -132,6 +137,7 @@ export default {
     setVoteItems(state, { payload: { result } }) {
       const detail = state.detail, vote = {}
       result && result.forEach(item => {
+        vote[item.code] = item.total
         item.voteItems.forEach(child => {
           vote[item.code + child.code] = child.vote
         })
@@ -139,7 +145,7 @@ export default {
       detail.voteItems && detail.voteItems.forEach(item => {
         item.praise = vote[detail.code + item.code] || 0
       })
-      return { ...state, detail }
+      return { ...state, detail, vote }
     },
     updateItem(state, { payload: { current } }) {
       const newsList = state.newsList

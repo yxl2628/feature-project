@@ -17,7 +17,7 @@ function MobileIndex({dispatch, pageData}) {
       </div>
       <div className={styles.content}>
         <Menu></Menu>
-        <NewsList color={pageData.color} newsList={pageData.newsList} shareNews={shareNews} current={pageData.current}></NewsList>
+        <NewsList color={pageData.color} newsList={pageData.newsList} shareNews={shareNews} current={pageData.current} vote={pageData.vote}></NewsList>
       </div>
       <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
     </div>

@@ -3,12 +3,13 @@ import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 //import ReadingPraiseShare from '../ReadingPraiseShare'
 
-function Vote({item, shareNews, current}) {
+function Vote({item, shareNews, current, vote}) {
   const url = `vote/?id=${item.code}&category=${item.belongCategoryCode}&fromCategory=${current}`
   // const share = (item) => {
   //   item.url = window.location.origin + window.location.pathname + url
   //   shareNews(item)
   // }
+  const total = vote && vote[item.code] || 0
   return (
     <div className={styles.body}>
       <div className={styles.content}>
@@ -18,7 +19,7 @@ function Vote({item, shareNews, current}) {
         </div>
         <div className={styles.footer}>
           <div className={styles.left}>
-            <span className={styles.vote_zt}>已有2.8万人参与投票</span>
+            <span className={styles.vote_zt}>已有{total}人参与投票</span>
           </div>
         </div>
       </div>

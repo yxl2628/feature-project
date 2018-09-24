@@ -25,12 +25,12 @@ function FixedMenu({showFixed, dispatch}) {
           ActionSheet.showShareActionSheetWithOptions({
             options: [],
             title: '收藏本站，方便下次查看',
-            message: <ShareMessage show={<div>
-              <div>1.在手机浏览器中打开此网站</div>
-              <div style={{height: '50px'}}><i className="iconfont icon-duobianxing"></i></div>
-              <div>2.点击浏览器下方的菜单栏</div>
-              <div style={{height: '50px'}}><i className="iconfont icon-duobianxing"></i></div>
-              <div>3.点击“收藏书签”或“收藏网址”</div>
+            message: <ShareMessage show={<div className={styles.scList}>
+              <div className={styles.sc}>1.在手机浏览器中打开此网站</div>
+              <div style={{height: '30px'}}><i className="iconfont icon-duobianxing"></i></div>
+              <div className={styles.sc}>2.点击浏览器下方的菜单栏</div>
+              <div style={{height: '30px'}}><i className="iconfont icon-duobianxing"></i></div>
+              <div className={styles.sc}>3.点击“收藏书签”或“收藏网址”</div>
             </div>}/>,
           })
         }
