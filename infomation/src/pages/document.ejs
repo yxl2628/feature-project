@@ -10,11 +10,23 @@
     <!-- <link rel="stylesheet" href="/static/iconfont/iconfont.css" /> -->
     <script src="/static/conf.js" charset="utf-8"></script>
     <script type="text/javascript">
+      // ;(function () {
+      //   var src = '/static/eruda.min.js';
+      //   if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+      //   document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+      //   document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+      // })();
       ;(function () {
-        var src = '/static/eruda.min.js';
-        if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
-        document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-        document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+        var sUserAgent = window.navigator.userAgent;
+        if (sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('iPhone') > -1 || sUserAgent.indexOf('iPad') > -1 || sUserAgent.indexOf('iPod') > -1 || sUserAgent.indexOf('Symbian') > -1) {
+          if (location.href.indexOf('/pc/') >= 0) {
+            location.href = location.href.replace('/pc/', '/mobile/')
+          }
+        } else {
+          if (location.href.indexOf('/mobile/') >= 0) {
+            location.href = location.href.replace('/mobile/', '/pc/')
+          }
+        }
       })();
     </script>
   </head>

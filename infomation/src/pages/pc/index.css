@@ -1,0 +1,16 @@
+.content{
+  width: 100%;
+  height: 100%;
+}
+.body {
+  width: 1092px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+}
+.menu {
+  width: 200px;
+}
+.news {
+  width: 100%;
+}

@@ -18,7 +18,7 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         ActionSheet.close()
-        if (pathname === '/mobile/') {
+        if (pathname === '/mobile/' || pathname === '/pc/') {
           dispatch({type: 'getNewsList', payload: {category: query.category}})
         }
         if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
