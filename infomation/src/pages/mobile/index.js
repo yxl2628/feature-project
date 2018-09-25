@@ -6,7 +6,7 @@ import { connect } from 'dva'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
 
-function MobileIndex({dispatch, pageData}) {
+function MobileIndex({dispatch, pageData, location: {query}}) {
   const shareNews = (item) => {
     utils.share(item)
   }
@@ -17,7 +17,7 @@ function MobileIndex({dispatch, pageData}) {
       </div>
       <div className={styles.content}>
         <Menu></Menu>
-        <NewsList color={pageData.color} newsList={pageData.newsList} shareNews={shareNews} current={pageData.current} vote={pageData.vote}></NewsList>
+        <NewsList {...pageData} dispatch={dispatch} query={query} shareNews={shareNews}></NewsList>
       </div>
       <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
     </div>

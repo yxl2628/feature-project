@@ -30,7 +30,7 @@ function FixedMenu({showFixed, dispatch}) {
               <div style={{height: '30px'}}><i className="iconfont icon-duobianxing"></i></div>
               <div className={styles.sc}>2.点击浏览器下方的菜单栏</div>
               <div style={{height: '30px'}}><i className="iconfont icon-duobianxing"></i></div>
-              <div className={styles.sc}>3.点击“收藏书签”或“收藏网址”</div>
+              <div className={styles.sc}>3.点击“添加书签”或“收藏网址”</div>
             </div>}/>,
           })
         }

@@ -77,6 +77,9 @@
 .read i, .zan i, .share i{
   margin-right: 5px;
 }
+.zan {
+  position: relative;
+}
 .btngroup {
   display: flex;
   align-items: flex-end;

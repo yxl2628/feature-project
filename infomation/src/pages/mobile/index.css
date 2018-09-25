@@ -241,6 +241,7 @@
   color: #666;
   font-size: 14px;
   margin-left: 0;
+  min-width: 55px;
   white-space: nowrap;
   margin-left: 10px;
   margin-top: -2px;
