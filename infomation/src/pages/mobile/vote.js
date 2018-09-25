@@ -4,20 +4,12 @@ import {connect} from 'dva'
 import NavLink from 'umi/navlink'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
+import VoteItem from '../../components/VoteItem'
 
 function VoteDetail({ pageData: { detail, newsList, current, name, showFixed }, dispatch}) {
   const shareNews = (item) => {
     item.url = window.location.href
     utils.share(item)
-  }
-  const voteItem = (itemCode) => {
-    dispatch({
-      type: 'mobile/voteItems',
-      payload: {
-        voteCode: detail.code,
-        itemCode: itemCode
-      }
-    })
   }
   return (<div className={styles.body}>
     <div className={styles.header}>
@@ -46,21 +38,9 @@ function VoteDetail({ pageData: { detail, newsList, current, name, showFixed }, 
             <div className={styles.otherHeader}>
               <span className={styles.otherTitle}>投票列表：</span>
             </div>
-            <div className={styles.voteList}>
-              {
-                detail.voteItems && detail.voteItems.map((item, index)=> {
-                  return (
-                    <div key={item.code} className={styles.voteItem}>
-                      <div className={styles.index}>{index + 1}.</div>
-                      <div className={styles.title}>{item.title}</div>
-                      <div className={styles.zan} onClick={()=>{
-                        voteItem(item.code)
-                      }}><i className="iconfont icon-zan1" style={{color: '#d43d3d', fontSize: '21px'}}></i> <span className={styles.voteZan}>{item.praise}</span></div>
-                    </div>
-                  )
-                })
-              }
-            </div>
+            {detail.voteItems ? (
+              <VoteItem code={detail.code} voteItems={detail.voteItems} dispatch={dispatch}></VoteItem>
+            ) : ''}
           </div>
         </div>)
         : ''

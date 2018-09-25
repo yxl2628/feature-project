@@ -30,7 +30,6 @@ class ReadingPraiseShare extends React.Component {
   }
   render() {
     const {item, current, share, dispatch} = this.props
-    console.log(item.code, this.state.show)
     return (
       <div className={styles.btngroup}>
         <a className={styles.read}><i className="iconfont icon-yuedu"></i>{item.read}</a>
