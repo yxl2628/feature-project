@@ -1,7 +1,7 @@
 import React from 'react'
-import Content from '../Content'
-import Download from '../Download'
-import Vote from '../Vote'
+import Content from '../PCContent'
+import Download from '../PCDownload'
+import Vote from '../PCVote'
 import styles from './index.css'
 
 function NewsList({newsList, shareNews, color, current, vote}) {

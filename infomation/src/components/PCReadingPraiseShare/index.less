@@ -1,0 +1,54 @@
+.btngroup {
+  margin-top: 5px;
+  font-size: 13px;
+  .read {
+    cursor: pointer;
+    margin-right: 15px;
+  }
+  .num {
+    color: #3399ea;
+  }
+  .text {
+    color: #8a8a8a;
+    &:hover {
+      color: #3399ea;
+    }
+  }
+  .zan {
+    position: relative;
+    cursor: pointer;
+    color: #8a8a8a;
+    margin-right: 15px;
+    & i {
+      margin-right: 3px;
+    }
+    &:hover {
+      color: #3399ea;
+    }
+    .add1 {
+      position: absolute;
+      font-size: 14px;
+      top: -20px;
+      left: 50%;
+      color: #d43d3d;
+      font-weight: 600;
+      animation: add 3s ease-out;
+      white-space: nowrap;
+    }
+    @keyframes add
+    {
+        from {opacity: 1; top: -20px;}
+        to {opacity: 0; top: -60px;}
+    }
+  }
+  .share {
+    cursor: pointer;
+    color: #8a8a8a;
+    &:hover {
+      color: #3399ea;
+    }
+    & i {
+      margin-right: 3px;
+    }
+  }
+}
