@@ -1,27 +1,40 @@
+import React from 'react'
 import Header from '../../components/Header'
-import Menu from '../../components/Menu'
 import NewsList from '../../components/NewsList'
 import styles from './index.css'
 import { connect } from 'dva'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
+import Menu from '../../components/Menu'
 import Footer from '../../components/Footer'
 
-function MobileIndex({dispatch, pageData, location: {query}}) {
-  const shareNews = (item) => {
+class MobileIndex extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      refreshing: false
+    }
+  }
+  shareNews(item) {
     utils.share(item)
   }
-  return (
-    <div className={styles.body}>
-      <div className={styles.header}>
-        <Header></Header>
+  componentDidMount() {
+
+  }
+  render() {
+    const {dispatch, pageData} = this.props
+    return (
+      <div className={styles.body}>
+        <div className={styles.header}>
+          <Header></Header>
+        </div>
+        <Menu></Menu>
+        <NewsList {...pageData} shareNews={this.shareNews}></NewsList>
+        <Footer></Footer>
+        <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
       </div>
-      <Menu></Menu>
-      <NewsList {...pageData} dispatch={dispatch} query={query} shareNews={shareNews}></NewsList>
-      <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
-      <Footer show={true}></Footer>
-    </div>
-  )
+    )
+  }
 }
 
 MobileIndex.propTypes = {

@@ -3,13 +3,11 @@ html {
   font-family: PingFangSC-Regular,Microsoft YaHei,Helvetica;
   -webkit-text-size-adjust: none;
   word-break: break-word;
-  height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 #root {

@@ -16,12 +16,7 @@
   color: #777;
   text-align: center;
 }
-.link {
-  display: block;
-  color: #ccc !important;
-}
-.link img {
-  width: 12px;
-  vertical-align: middle;
-  margin-bottom: 2px;
+.copyright {
+  text-align: center;
+  color: #ccc;
 }

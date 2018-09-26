@@ -1,5 +1,4 @@
 .body {
-  height: 100%;
   box-sizing: border-box;
   flex: column;
   flex-direction: column;
@@ -8,7 +7,7 @@
 }
 .header {
   width: 100%;
-  height: 45px;
+  height: 55px;
   z-index: 99999;
 }
 .content {
@@ -24,7 +23,7 @@
 }
 .navbar {
   color: #555;
-  padding: 20px 10px 15px;
+  padding: 10px 10px 15px;
   font-size: 15px;
 }
 .navbar a {
