@@ -54,7 +54,7 @@ function share(item) {
       icon: '//www.chabao123.com/static/share_logo.jpg',
       link: item.url,
       title: item.title,
-      desc: 'www.chabao123.com - 每天看一点最有价值的信息',
+      desc: 'www.chabao123.com - 每个人都最值得阅读的高品质科技信息',
       from: 'www.chabao123.com'
     })
     try {

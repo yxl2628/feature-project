@@ -5,6 +5,7 @@ import styles from './index.css'
 import { connect } from 'dva'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
+import Footer from '../../components/Footer'
 
 function MobileIndex({dispatch, pageData, location: {query}}) {
   const shareNews = (item) => {
@@ -15,11 +16,10 @@ function MobileIndex({dispatch, pageData, location: {query}}) {
       <div className={styles.header}>
         <Header></Header>
       </div>
-      <div className={styles.content}>
-        <Menu></Menu>
-        <NewsList {...pageData} dispatch={dispatch} query={query} shareNews={shareNews}></NewsList>
-      </div>
+      <Menu></Menu>
+      <NewsList {...pageData} dispatch={dispatch} query={query} shareNews={shareNews}></NewsList>
       <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
+      <Footer show={true}></Footer>
     </div>
   )
 }

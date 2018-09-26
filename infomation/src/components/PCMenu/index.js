@@ -5,12 +5,6 @@ import NavLink from 'umi/navlink'
 
 
 function Menu ({dispatch, pageData}){
-  const show = () => {
-    dispatch({
-      type: 'mobile/changeMenu',
-      payload: { show: !pageData.show }
-    })
-  }
   return (
     <div className={styles.menu}>
       <ul className={styles.list}>

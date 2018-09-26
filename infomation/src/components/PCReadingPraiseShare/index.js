@@ -10,7 +10,7 @@ class ReadingPraiseShare extends React.Component {
     }
   }
   add (type) {
-    const {item, current, share, dispatch} = this.props
+    const {item, current, dispatch} = this.props
     dispatch({
       type: 'mobile/infoPraiseReadingShare',
       payload: {
@@ -28,7 +28,7 @@ class ReadingPraiseShare extends React.Component {
     }, 3000)
   }
   render() {
-    const {item, current, share, dispatch} = this.props
+    const {item, share} = this.props
     return (
       <div className={styles.btngroup}>
         <a className={styles.read}><span className={styles.num}>{item.read}</span> <span className={styles.text}>阅读</span></a>

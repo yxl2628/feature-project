@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './index.css'
-import addStyles from '../ReadingPraiseShare/index.css'
 import Item from './Item'
 
 function VoteItem({code, voteItems, dispatch}) {

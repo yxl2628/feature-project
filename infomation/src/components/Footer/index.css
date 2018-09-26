@@ -1,0 +1,27 @@
+.footer {
+  background-color: #f2f2f2;
+  text-align: center;
+  line-height: 24px;
+  padding: 10px 0;
+  font-size: 12px;
+}
+.title {
+  text-align: center;
+}
+.title img{
+  height: 28px;
+}
+.desc {
+  letter-spacing: 1px;
+  color: #777;
+  text-align: center;
+}
+.link {
+  display: block;
+  color: #ccc !important;
+}
+.link img {
+  width: 12px;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}

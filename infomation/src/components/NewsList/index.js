@@ -4,6 +4,7 @@ import Download from '../Download'
 import Vote from '../Vote'
 import styles from './index.css'
 import {PullToRefresh} from 'antd-mobile'
+import Footer from '../Footer'
 
 class NewsList extends React.Component {
   constructor(props) {
@@ -16,15 +17,18 @@ class NewsList extends React.Component {
   }
 
   render() {
-    const {newsList, shareNews, color, current, vote,  dispatch, query} = this.props
+    const {newsList, shareNews, color, current, vote,  dispatch, query, show} = this.props
+    const menuHeight = show ? 68 : 105
     return (
-      <PullToRefresh  damping={60} ref={el => this.ptr = el} style={{
-          height: this.state.height,
-          overflow: 'auto',
-        }} indicator={this.state.down ? {} : { deactivate: '上拉可以刷新' }} refreshing={this.state.refreshing}
-        onRefresh={() => {
-          dispatch({type: 'mobile/getNewsList', payload: {category: query.category}})
-        }}>
+      // <PullToRefresh  damping={60} ref={el => this.ptr = el} style={{
+      //     height: this.state.height - menuHeight,
+      //     overflow: 'auto',
+      //   }} indicator={this.state.down ? {} : { deactivate: '上拉可以刷新' }} refreshing={this.state.refreshing}
+      //   onRefresh={() => {
+      //     document.documentElement.scrollTop = 0
+      //     document.body.scrollTop = 0
+      //     dispatch({type: 'mobile/getNewsList', payload: {category: query.category}})
+      //   }}>
         <div className={styles.list}>
           {
             newsList.map((item,index) => {
@@ -38,7 +42,7 @@ class NewsList extends React.Component {
             })
           }
         </div>
-      </PullToRefresh>
+      // </PullToRefresh>
     )
   }
 }
