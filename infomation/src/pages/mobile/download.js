@@ -4,6 +4,7 @@ import {connect} from 'dva'
 import NavLink from 'umi/navlink'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
+import Footer from '../../components/Footer'
 
 function DownlaodDetail({ pageData: { detail, newsList, current, name, showFixed }, dispatch}) {
   const descHtml = () => {
@@ -56,6 +57,7 @@ function DownlaodDetail({ pageData: { detail, newsList, current, name, showFixed
         </div>)
         : ''
     }
+    <Footer></Footer>
     <FixedMenu showFixed={showFixed} dispatch={dispatch}></FixedMenu>
   </div>)
 }

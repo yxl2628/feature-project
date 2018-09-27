@@ -7,7 +7,8 @@ class ReadingPraiseShare extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false
+      show: false,
+      canClick: true
     }
   }
   add (type) {
@@ -22,7 +23,7 @@ class ReadingPraiseShare extends React.Component {
     })
   }
   showAnimate () {
-    this.setState({show: true})
+    this.setState({show: true, canClick: false})
     const _this = this
     setTimeout(function(){
       _this.setState({show: false})
@@ -34,8 +35,10 @@ class ReadingPraiseShare extends React.Component {
       <div className={styles.btngroup}>
         <a className={styles.read}><i className="iconfont icon-yuedu"></i>{item.read}</a>
         <a className={styles.zan} onClick={() => {
-            this.add('praise')
-            this.showAnimate()
+            if (this.state.canClick) {
+              this.add('praise')
+              this.showAnimate()
+            }
           }}><i className="iconfont icon-zan1"></i>{item.praise}
           {this.state.show ? <div className={customStyles.add1}>+1</div> : ''}
       </a>

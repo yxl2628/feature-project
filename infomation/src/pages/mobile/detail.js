@@ -4,6 +4,7 @@ import {connect} from 'dva'
 import NavLink from 'umi/navlink'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
+import Footer from '../../components/Footer'
 
 function NewsDetail(props) {
   const { pageData: { detail, newsList, current, color, name, showFixed }, location: {query}, dispatch} = props
@@ -16,7 +17,7 @@ function NewsDetail(props) {
     color: `${color[query.category]}`,
     border: `1px solid ${color[query.category]}`
   }
-  
+
   return (<div className={styles.body}>
     <div className={styles.header}>
       <Header></Header>
@@ -90,6 +91,7 @@ function NewsDetail(props) {
         </div>)
         : ''
     }
+    <Footer></Footer>
     <FixedMenu showFixed={showFixed} dispatch={dispatch}></FixedMenu>
   </div>)
 }
