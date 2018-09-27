@@ -2,8 +2,11 @@
   background-color: #f2f2f2;
   text-align: center;
   line-height: 24px;
-  padding: 10px 0;
+  padding: 10px 0 10px;
   font-size: 12px;
+}
+.title, .desc, .copyright {
+  margin: 10px auto;
 }
 .title {
   text-align: center;

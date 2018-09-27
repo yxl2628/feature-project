@@ -6,7 +6,8 @@ class VoteItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false
+      show: false,
+      canClick: true
     }
   }
   voteItem(itemCode) {
@@ -19,7 +20,7 @@ class VoteItem extends React.Component {
     })
   }
   showAnimate () {
-    this.setState({show: true})
+    this.setState({show: true, canClick: false})
     const _this = this
     setTimeout(function(){
       _this.setState({show: false})
@@ -32,8 +33,10 @@ class VoteItem extends React.Component {
         <div className={styles.index}>{index + 1}.</div>
         <div className={styles.title}>{item.title}</div>
         <div className={styles.zan} onClick={()=>{
-          this.voteItem(item.code)
-          this.showAnimate()
+          if(this.state.canClick) {
+            this.voteItem(item.code)
+            this.showAnimate()
+          }
         }}>
           <i className="iconfont icon-zan1" style={{color: '#d43d3d', fontSize: '21px'}}></i>
           <span className={styles.voteZan}>{item.praise}</span>

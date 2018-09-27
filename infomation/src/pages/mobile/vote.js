@@ -5,6 +5,7 @@ import NavLink from 'umi/navlink'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
 import VoteItem from '../../components/VoteItem'
+import Footer from '../../components/Footer'
 
 function VoteDetail({ pageData: { detail, newsList, current, name, showFixed }, dispatch}) {
   const shareNews = (item) => {
@@ -45,6 +46,7 @@ function VoteDetail({ pageData: { detail, newsList, current, name, showFixed }, 
         </div>)
         : ''
     }
+    <Footer></Footer>
     <FixedMenu showFixed={showFixed} dispatch={dispatch}></FixedMenu>
   </div>)
 }

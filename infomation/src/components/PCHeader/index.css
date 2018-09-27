@@ -21,12 +21,15 @@
 }
 .logo img {
   vertical-align: middle;
-  height: 40px;
+  height: 37px;
   display: block;
   font-size: 0;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .title {
   display: inline-block;
   margin-left: 10px;
+  font-size: 14px;
+  font-family: "microsoft yahei",Arial;
+  letter-spacing: 0.5px;
 }
