@@ -214,3 +214,15 @@
   display: inline-block;
   padding-right: 90px;
 }
+.loading {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  margin-left: -20px;
+  z-index: 999999;
+  animation: loading-animation 1.5s ease-in infinite;
+}
+@keyframes loading-animation {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
+}

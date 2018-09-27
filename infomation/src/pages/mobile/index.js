@@ -14,17 +14,47 @@ class MobileIndex extends React.Component {
     this.state = {
       refreshing: false
     }
+    this.start = 0
+    this.end = 0
   }
   shareNews(item) {
     utils.share(item)
   }
   componentDidMount() {
-
+    document.addEventListener('touchstart', this.touchstart, false)
+    document.addEventListener('touchend', this.touchend, false)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('touchstart', this.touchstart)
+    document.removeEventListener('touchend', this.touchend)
+  }
+  touchstart = (event) => {
+    if (window.pageYOffset < 10) {
+      this.start = event.changedTouches[0].pageY
+    }
+  }
+  touchend = (event) => {
+    if (window.pageYOffset < 10) {
+      this.end = event.changedTouches[0].pageY
+      if (this.end - this.start > 150) {
+        this.setState({refreshing: true})
+        this.props.dispatch({type: 'mobile/getNewsList', payload: {category: this.props.location.query.category}})
+        const _this = this
+        setTimeout(function() {
+          _this.setState({refreshing: false})
+          _this.start = 0
+          _this.end = 0
+        }, 2000)
+      }
+    }
   }
   render() {
     const {dispatch, pageData} = this.props
     return (
       <div className={styles.body}>
+        <div className={styles.loading} style={{display: this.state.refreshing ? 'block' : 'none'}}>
+          <i className="iconfont icon-jiazai" style={{fontSize: 40, color: '#d43d3d'}}></i>
+        </div>
         <div className={styles.header}>
           <Header></Header>
         </div>

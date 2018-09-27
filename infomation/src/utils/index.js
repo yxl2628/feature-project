@@ -49,6 +49,9 @@ function share(item) {
     div.setAttribute('class', 'share_wechat')
     div.innerHTML = '<img src="/static/share_wechat.png" />'
     document.body.appendChild(div)
+    div.addEventListener('click', function() {
+      this.parentNode.removeChild(this)
+    })
   } else {
     nativeShare.setShareData({
       icon: '//www.chabao123.com/static/share_logo.jpg',
