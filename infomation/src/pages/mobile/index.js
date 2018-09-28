@@ -29,16 +29,13 @@ class MobileIndex extends React.Component {
     document.removeEventListener('touchend', this.touchend)
   }
   touchstart = (event) => {
-    event.preventDefault()
     if (window.pageYOffset < 10) {
       this.start = event.changedTouches[0].pageY
     }
   }
   touchend = (event) => {
-    event.preventDefault()
     const _this = this
     if (window.pageYOffset < 10) {
-      this.setState({refreshing: true})
       this.end = event.changedTouches[0].pageY
       if (this.end - this.start > 150) {
         this.setState({refreshing: true})
