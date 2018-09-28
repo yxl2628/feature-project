@@ -3,6 +3,7 @@ import Header from '../../components/PCHeader'
 import Footer from '../../components/PCFooter'
 import Menu from '../../components/PCMenu'
 import NewsList from '../../components/PCNewsList'
+import FixedMenu from '../../components/PCFixedMenu'
 import { connect } from 'dva'
 import utils from '../../utils'
 
@@ -22,6 +23,7 @@ function PCIndex({dispatch, pageData}) {
         </div>
       </div>
       <Footer></Footer>
+      <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
     </div>
   )
 }

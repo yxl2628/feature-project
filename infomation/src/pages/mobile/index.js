@@ -35,17 +35,17 @@ class MobileIndex extends React.Component {
   }
   touchend = (event) => {
     const _this = this
-    if (window.pageYOffset < 10) {
+    if (window.pageYOffset < 10 && this.start >= 10) {
       this.end = event.changedTouches[0].pageY
-      if (this.end - this.start > 150) {
+      if (this.end - this.start > 50) {
         this.setState({refreshing: true})
         this.props.dispatch({type: 'mobile/getNewsList', payload: {category: this.props.location.query.category}})
       }
     }
+    this.start = 0
+    this.end = 0
     setTimeout(function() {
       _this.setState({refreshing: false})
-      _this.start = 0
-      _this.end = 0
     }, 1500)
   }
   render() {

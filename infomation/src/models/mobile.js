@@ -20,6 +20,7 @@ export default {
         ActionSheet.close()
         if (pathname === '/mobile/' || pathname === '/pc/') {
           dispatch({type: 'getNewsList', payload: {category: query.category}})
+          document.title = 'chabao123.com-每个人都最值得阅读的高品质科技信息！'
         }
         if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
           dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory}})
@@ -106,6 +107,7 @@ export default {
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
       }, 100)
+      document.title = detail.title
       return { ...state, detail }
     },
     changeMenu(state, { payload: { show } }) {

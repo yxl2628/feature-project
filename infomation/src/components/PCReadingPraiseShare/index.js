@@ -35,13 +35,13 @@ class ReadingPraiseShare extends React.Component {
         <a className={styles.zan} onClick={() => {
             this.add('praise')
             this.showAnimate()
-          }}><i className="iconfont icon-zan1"></i>{item.praise}
+          }}><i className="iconfont icon-dianzan1"></i><span className={styles.num}>{item.praise}</span>
           {this.state.show ? <div className={styles.add1}>+1</div> : ''}
       </a>
         <a className={styles.share} onClick={() => {
             share(item)
             this.add('sharing')
-          }}><i className="iconfont icon-fenxiang1"></i>{item.share}
+          }}><i className="iconfont icon-fenxiang2"></i><span className={styles.num}>{item.share}</span>
         </a>
       </div>
     )

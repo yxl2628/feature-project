@@ -1,6 +1,6 @@
 .content{
   width: 100%;
-  background: #f5f6f7;
+  /* background: #f5f6f7; */
 }
 .body {
   width: 960px;
@@ -9,8 +9,10 @@
   display: flex;
 }
 .menu {
-  width: 150px;
+  width: 250px;
+  margin-top: 20px;
 }
 .news {
   width: 100%;
+  padding: 0 30px;
 }
