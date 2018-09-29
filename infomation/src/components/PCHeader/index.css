@@ -22,7 +22,8 @@
 }
 .logo img {
   vertical-align: middle;
-  height: 22px;
+  height: 40px;
+  margin-left: -15px;
   display: block;
   font-size: 0;
 }
