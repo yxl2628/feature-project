@@ -1,10 +1,13 @@
 .header {
+  position: fixed;
+  top: 0;
   width: 100%;
   min-width: 1092px;
   height: 55px;
   line-height: 55px;
   background: #fff;
   border: 1px solid rgba(221, 221, 221, 0.6);
+  z-index: 999;
 }
 .center {
   width: 960px;
@@ -19,7 +22,7 @@
 }
 .logo img {
   vertical-align: middle;
-  height: 34px;
+  height: 22px;
   display: block;
   font-size: 0;
 }

@@ -13,7 +13,9 @@ function PCIndex({dispatch, pageData}) {
   }
   return (
     <div className={styles.content}>
-      <Header></Header>
+      <div className={styles.header}>
+        <Header></Header>
+      </div>
       <div className={styles.body}>
         <div className={styles.menu}>
           <Menu></Menu>

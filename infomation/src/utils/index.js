@@ -44,13 +44,32 @@ function handleError(code){
 // }
 
 function share(item) {
-  const div = document.createElement("div")
-  div.setAttribute('class', 'share_wechat')
-  div.innerHTML = '<img src="/static/share_wechat.png" /><div class="close">关闭</div>'
-  document.body.appendChild(div)
-  div.addEventListener('click', function() {
-    this.parentNode.removeChild(this)
-  })
+  if (window.navigator.userAgent.indexOf('MicroMessenger') >= 0) {
+    const div = document.createElement("div")
+    div.setAttribute('class', 'share_wechat')
+    div.innerHTML = '<img src="/static/share_wechat.png" /><div class="close">关闭</div>'
+    document.body.appendChild(div)
+    div.addEventListener('click', function() {
+      this.parentNode.removeChild(this)
+    })
+  } else {
+    nativeShare.setShareData({
+      icon: '//www.chabao123.com/static/share_logo.jpg',
+      link: item.url,
+      title: item.title,
+      desc: 'www.chabao123.com - 每个人都最值得阅读的高品质科技信息',
+      from: 'www.chabao123.com'
+    })
+    try {
+      nativeShare.call()
+    } catch (err) {
+      ActionSheet.showShareActionSheetWithOptions({
+        options: [],
+        title: '长按复制，分享给好友吧',
+        message: <ShareMessage show={item.url}/>,
+      })
+    }
+  }
 }
 
 export default {

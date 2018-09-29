@@ -8,6 +8,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 #root {
@@ -77,13 +78,17 @@ html:not([data-scale]) .am-action-sheet-share-list::before {
   width: 80px;
   height: 35px;
   line-height: 37px;
-  top: 45%;
+  top: 50%;
   left: 50%;
   margin-left: -40px;
   color: #fff;
   text-align: center;
   font-weight: 700;
+  letter-spacing:0.5px;
 }
-.icon-dianzan1, .icon-fenxiang2 {
+.icon-dianzan1, .icon-fenxiang3 {
   font-size: 13px;
+}
+.icon-iconfontxiangshang {
+  color: #fff;
 }

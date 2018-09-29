@@ -5,7 +5,7 @@ function Footer (){
   return (
     <div className={styles.footer}>
       <div className={styles.center}>
-        @copyright 2018
+        copyright ©2018 www.chabao123.com
         <a className={styles.link} href="http://www.miitbeian.gov.cn/">
           京ICP备18045058号
         </a>

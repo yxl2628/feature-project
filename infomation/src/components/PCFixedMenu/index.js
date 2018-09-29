@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from './index.less'
-import ShareMessage from '../ShareMessage'
-import {ActionSheet} from 'antd-mobile'
 
 function FixedMenu({showFixed, dispatch}) {
   window.onscroll=function(){
@@ -17,7 +15,7 @@ function FixedMenu({showFixed, dispatch}) {
       <div className={styles.top} onClick={()=>{
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
-      }} style={{display: showFixed, height: '38px'}}><i className="iconfont icon-top"></i></div>
+      }} style={{display: showFixed, height: '38px', paddingTop: '12px'}}><i className="iconfont icon-iconfontxiangshang"></i></div>
       <div className={styles.top}
         ><div className={styles.collection}>收藏</div><div className={styles.collection}>本站</div>
       </div>

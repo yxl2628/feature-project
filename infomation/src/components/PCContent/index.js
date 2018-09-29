@@ -10,8 +10,9 @@ function Content({item, shareNews, color, current}) {
     shareNews(item)
   }
   const ztStyle = {
-    background: `${color[item.belongCategoryCode]}`,
-    border: `1px solid ${color[item.belongCategoryCode]}`
+    color: `${color[item.belongCategoryCode]}`,
+    // background: `${color[item.belongCategoryCode]}`,
+    // border: `1px solid ${color[item.belongCategoryCode]}`
   }
   return (
     <div className={styles.body}>

@@ -41,7 +41,7 @@ class ReadingPraiseShare extends React.Component {
         <a className={styles.share} onClick={() => {
             share(item)
             this.add('sharing')
-          }}><i className="iconfont icon-fenxiang2"></i><span className={styles.num}>{item.share}</span>
+          }}><i className="iconfont icon-fenxiang3"></i><span className={styles.num}>{item.share}</span>
         </a>
       </div>
     )
