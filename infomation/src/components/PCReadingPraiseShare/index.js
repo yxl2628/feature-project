@@ -43,7 +43,7 @@ class ReadingPraiseShare extends React.Component {
         </a>
         <a className={styles.share} onClick={(event) => {
           const _this = this
-            QRCode.toDataURL(url, function(err, dataURL) {
+            QRCode.toDataURL(window.location.origin + window.location.pathname + url, function(err, dataURL) {
               _this.setState({share: true, url: dataURL})
             })
             this.add('sharing')
