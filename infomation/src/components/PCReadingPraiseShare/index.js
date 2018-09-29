@@ -31,7 +31,7 @@ class ReadingPraiseShare extends React.Component {
     }, 3000)
   }
   render() {
-    const {item, url, dispatch} = this.props
+    const {item, url} = this.props
     console.log(url)
     return (
       <div className={styles.btngroup}>
