@@ -32,7 +32,6 @@ class ReadingPraiseShare extends React.Component {
   }
   render() {
     const {item, url} = this.props
-    console.log(url)
     return (
       <div className={styles.btngroup}>
         <a className={styles.read}><span className={styles.num}>{item.read}</span> <span className={styles.text}>阅读</span></a>
@@ -44,8 +43,8 @@ class ReadingPraiseShare extends React.Component {
         </a>
         <a className={styles.share} onClick={(event) => {
           const _this = this
-            QRCode.toDataURL(window.location.href, function(err, url) {
-              _this.setState({share: true, url: url})
+            QRCode.toDataURL(url, function(err, dataURL) {
+              _this.setState({share: true, url: dataURL})
             })
             this.add('sharing')
           }}><i className="iconfont icon-fenxiang3"></i><span className={styles.num}>{item.share}</span>
