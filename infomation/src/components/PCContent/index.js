@@ -3,12 +3,8 @@ import styles from './index.less'
 import NavLink from 'umi/navlink'
 import ReadingPraiseShare from '../PCReadingPraiseShare'
 
-function Content({item, shareNews, color, current}) {
+function Content({item, color, current}) {
   const url = `detail/?id=${item.code}&category=${item.belongCategoryCode}&fromCategory=${current}`
-  const share = (item) => {
-    item.url = window.location.origin + window.location.pathname + url
-    shareNews(item)
-  }
   const ztStyle = {
     color: `${color[item.belongCategoryCode]}`,
     // background: `${color[item.belongCategoryCode]}`,
@@ -24,7 +20,7 @@ function Content({item, shareNews, color, current}) {
           <span className={styles.type} style={ztStyle}>{item.belongCategoryName}</span>
         </div>
       </div>
-      <ReadingPraiseShare item={item} current={current} share={share}></ReadingPraiseShare>
+      <ReadingPraiseShare item={item} current={current} url={url}></ReadingPraiseShare>
     </div>
   )
 }

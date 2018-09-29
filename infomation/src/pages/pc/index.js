@@ -5,12 +5,8 @@ import Menu from '../../components/PCMenu'
 import NewsList from '../../components/PCNewsList'
 import FixedMenu from '../../components/PCFixedMenu'
 import { connect } from 'dva'
-import utils from '../../utils'
 
 function PCIndex({dispatch, pageData}) {
-  const shareNews = (item) => {
-    utils.share(item)
-  }
   return (
     <div className={styles.content}>
       <div className={styles.header}>
@@ -21,7 +17,7 @@ function PCIndex({dispatch, pageData}) {
           <Menu></Menu>
         </div>
         <div className={styles.news}>
-          <NewsList color={pageData.color} newsList={pageData.newsList} shareNews={shareNews} current={pageData.current} vote={pageData.vote}></NewsList>
+          <NewsList color={pageData.color} newsList={pageData.newsList} current={pageData.current} vote={pageData.vote}></NewsList>
         </div>
       </div>
       <Footer></Footer>

@@ -3,12 +3,8 @@ import styles from './index.less'
 import NavLink from 'umi/navlink'
 import ReadingPraiseShare from '../PCReadingPraiseShare'
 
-function Download({item, shareNews, current}) {
+function Download({item, current}) {
   const url = `download/?id=${item.code}&category=${item.belongCategoryCode}&fromCategory=${current}`
-  const share = (item) => {
-    item.url = window.location.origin + window.location.pathname + url
-    shareNews(item)
-  }
   const descHtml = () => {
     return {__html: item.detail.replace(/\n/gm, '<br />')}
   }
@@ -23,7 +19,7 @@ function Download({item, shareNews, current}) {
           <div className={styles.desc} dangerouslySetInnerHTML={descHtml()}></div>
         </div>
       </div>
-      <ReadingPraiseShare item={item} current={current} share={share}></ReadingPraiseShare>
+      <ReadingPraiseShare item={item} current={current} url={url}></ReadingPraiseShare>
     </div>
   )
 }

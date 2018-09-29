@@ -6,10 +6,7 @@ import NavLink from 'umi/navlink'
 
 function Vote({item, shareNews, current, vote}) {
   const url = `vote/?id=${item.code}&category=${item.belongCategoryCode}&fromCategory=${current}`
-  // const share = (item) => {
-  //   item.url = window.location.origin + window.location.pathname + url
-  //   shareNews(item)
-  // }
+
   const total = vote && vote[item.code] || 0
   return (
     <div className={styles.body}>
@@ -24,7 +21,7 @@ function Vote({item, shareNews, current, vote}) {
           </div>
         </div>
       </div>
-      {/* <ReadingPraiseShare item={item} current={current} share={share}></ReadingPraiseShare>*/}
+      {/* <ReadingPraiseShare item={item} current={current} url={url}></ReadingPraiseShare>*/}
     </div>
   )
 }

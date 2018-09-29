@@ -6,6 +6,7 @@
   margin-left: 500px;
 }
 .top {
+  position: relative;
   padding: 7px 0;
   box-sizing: border-box;
   width: 40px;
@@ -31,4 +32,17 @@
 }
 .sc {
   line-height: 25px;
+}
+.top:hover .qrcode {
+  display: block;
+}
+.qrcode {
+  display: none;
+  position: absolute;
+  top: -50px;
+  left: -150px;;
+}
+.qrcode img {
+  width: 150px;
+  height: 150px;
 }
