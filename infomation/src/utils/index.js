@@ -54,7 +54,7 @@ function share(item) {
     })
   } else {
     nativeShare.setShareData({
-      icon: 'http://www.chabao123.com/static/share_logo.png',
+      icon: 'http://www.chabao123.com/static/share_logo_v1.png',
       link: item.url,
       title: item.title,
       desc: 'www.chabao123.com - 每个人都最值得阅读的高品质科技信息',
