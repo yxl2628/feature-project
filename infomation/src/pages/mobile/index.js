@@ -36,7 +36,6 @@ class MobileIndex extends React.Component {
   touchmove = (event) => {
     const _this = this
     this.end = event.touches[0].pageY - this.start
-    const viewHeight = document.documentElement.clientHeight
     const scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
     if (this.end > 0 && scrollTop === 0) {
       event.preventDefault()
