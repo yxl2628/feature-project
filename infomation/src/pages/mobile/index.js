@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../../components/Header'
 import NewsList from '../../components/NewsList'
 import styles from './index.css'
-import { connect } from 'dva'
+import {connect} from 'dva'
 import utils from '../../utils'
 import FixedMenu from '../../components/FixedMenu'
 import Menu from '../../components/Menu'
@@ -14,6 +14,7 @@ class MobileIndex extends React.Component {
     this.state = {
       refreshing: false
     }
+    this.el = null
     this.start = 0
     this.end = 0
   }
@@ -21,57 +22,66 @@ class MobileIndex extends React.Component {
     utils.share(item)
   }
   componentDidMount() {
-    document.addEventListener('touchstart', this.touchstart, false)
-    document.addEventListener('touchend', this.touchend, false)
+    this.el = document.getElementById('body')
+    this.el.addEventListener('touchstart', this.touchstart, false)
+    this.el.addEventListener('touchmove', this.touchmove, false)
   }
   componentWillUnmount() {
-    document.removeEventListener('touchstart', this.touchstart)
-    document.removeEventListener('touchend', this.touchend)
+    this.el.removeEventListener('touchstart', this.touchstart)
+    this.el.removeEventListener('touchmove', this.touchmove)
   }
   touchstart = (event) => {
-    if (window.pageYOffset < 10) {
-      this.start = event.changedTouches[0].pageY
-    }
+    this.start = event.touches[0].pageY
   }
-  touchend = (event) => {
+  touchmove = (event) => {
     const _this = this
-    if (window.pageYOffset < 10 && this.start >= 10) {
-      this.end = event.changedTouches[0].pageY
-      if (this.end - this.start > 50) {
-        this.setState({refreshing: true})
-        this.props.dispatch({type: 'mobile/getNewsList', payload: {category: this.props.location.query.category}})
-      }
+    this.end = event.touches[0].pageY - this.start
+    const viewHeight = document.documentElement.clientHeight
+    const scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+    if (this.end > 0 && scrollTop === 0) {
+      event.preventDefault()
     }
-    this.start = 0
-    this.end = 0
-    setTimeout(function() {
-      _this.setState({refreshing: false})
-    }, 1500)
+    if (!this.state.refreshing && this.end > 50 && window.pageYOffset < 10) {
+      this.setState({refreshing: true})
+      this.props.dispatch({
+        type: 'mobile/getNewsList',
+        payload: {
+          category: this.props.location.query.category
+        }
+      })
+      setTimeout(function() {
+        _this.setState({refreshing: false})
+      }, 1500)
+    }
   }
   render() {
     const {dispatch, pageData} = this.props
-    return (
-      <div className={styles.body}>
-        <div className={styles.loading} style={{display: this.state.refreshing ? 'block' : 'none'}}>
-          <i className="iconfont icon-jiazai" style={{fontSize: 40, color: '#d43d3d'}}></i>
-        </div>
-        <div className={styles.header}>
-          <Header></Header>
-        </div>
-        <Menu></Menu>
+    return (<div id="body" className={styles.body}>
+      <div className={styles.loading} style={{
+          display: this.state.refreshing
+            ? 'block'
+            : 'none'
+        }}>
+        <i className="iconfont icon-jiazai" style={{
+            fontSize: 40,
+            color: '#d43d3d'
+          }}></i>
+      </div>
+      <div className={styles.header}>
+        <Header></Header>
+      </div>
+      <Menu></Menu>
+      <div id="scroll">
         <NewsList {...pageData} shareNews={this.shareNews}></NewsList>
         <Footer></Footer>
-        <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
       </div>
-    )
+      <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>
+    </div>)
   }
 }
 
-MobileIndex.propTypes = {
-}
+MobileIndex.propTypes = {}
 
 export default connect(state => {
-    return {
-        pageData: state.mobile
-    }
+  return {pageData: state.mobile}
 })(MobileIndex)
