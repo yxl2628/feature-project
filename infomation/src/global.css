@@ -33,6 +33,11 @@ a:-webkit-any-link {
   margin-top: -2px;
   vertical-align: middle;
 }
+.pc-detail-fenxiang {
+  font-size: 17px;
+  margin-top: 6px;
+  margin-right: 5px;
+}
 .am-action-sheet-share-list {
   height: 0;
   padding: 5px;

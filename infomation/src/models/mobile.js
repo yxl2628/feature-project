@@ -22,7 +22,7 @@ export default {
           dispatch({type: 'getNewsList', payload: {category: query.category}})
           document.title = 'chabao123.com-每个人都最值得阅读的高品质科技信息！'
         }
-        if (pathname === '/mobile/detail/' || pathname === '/mobile/download/' || pathname === '/mobile/vote/') {
+        if (['/mobile/detail/', '/mobile/download/', '/mobile/vote/','/pc/detail/', '/pc/download/', '/pc/vote/'].indexOf(pathname) >= 0) {
           dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory}})
         }
       })

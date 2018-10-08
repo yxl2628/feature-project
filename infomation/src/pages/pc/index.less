@@ -1,0 +1,130 @@
+.content{
+  width: 100%;
+  /* background: #f5f6f7; */
+}
+.header {
+  width: 100%;
+  height: 55px;
+}
+.body {
+  width: 960px;
+  margin: 10px auto 0;
+  min-height: 100%;
+  display: flex;
+}
+.menu {
+  width: 250px;
+  margin-top: 20px;
+}
+.news {
+  width: 100%;
+  padding: 0 30px;
+}
+.detail{
+  width: 960px;
+  margin: 10px auto 0;
+  min-height: 100%;
+  padding: 0 50px;
+  .current {
+    width: 80%;
+    position: relative;
+    background-color: #fff;
+    line-height: 25px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    color: #d43d3d;
+    font-size: 16px;
+    padding: 20px 10px 0;
+    font-weight: 700;
+    .title, .share {
+      display: inline-block;
+    }
+  }
+  .item, .other {
+    padding: 20px 10px 0;
+    .title {
+      font-size: 17px;
+      font-weight: bold;
+      line-height: 24px;
+      display: inline-block;
+      letter-spacing: 0.6px;
+      & a {
+        color: #2e3135 !important;
+      }
+      & a:hover {
+        color: #ed4040 !important;
+      }
+    }
+    .footer {
+      margin-top: 5px;
+      font-size: 12px;
+      color: #8a8a8a;
+      line-height: 24px;
+      .zt {
+        color: #999;
+        font-weight: 700;
+        margin-right: 15px;
+      }
+      .source {
+        color: #999;
+        margin-right: 15px;
+      }
+      .type {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        margin-right: 10px;
+        line-height: 1;
+        height: 20px;
+        line-height: 20px;
+        padding: 0 10px;
+      }
+    }
+    .vote {
+      font-size: 17px;
+      line-height: 24px;
+      display: inline-block;
+      letter-spacing: 0.6px;
+      width: 100%;
+      padding-left: 35px;
+    }
+  }
+  .other {
+    .title {
+      font-size: 15px;
+      font-weight: normal;
+    }
+  }
+  .download {
+    padding: 15px 10px 20px;
+    font-size: 14px;
+    color: #222;
+    line-height: 25px;
+    letter-spacing: 0.6px;
+    .stepTitle {
+      color: #2B7FD8;
+      font-weight: 700;
+    }
+    .step2 {
+      padding-left: 10px;
+    }
+    .step2 img {
+      display: block;
+      width: 150px;
+      padding: 10px 20px;
+    }
+    .keyword {
+      font-size: 16px;
+      color: #d43d3d;
+      font-weight: 600;
+    }
+  }
+  .downloadDesc {
+    padding: 10px 20px 20px;
+    line-height: 28px;
+    font-size: 14px;
+    color: #222;
+    letter-spacing: 1px;
+  }
+}

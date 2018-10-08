@@ -1,4 +1,4 @@
-import styles from './index.css'
+import styles from './index.less'
 import Header from '../../components/PCHeader'
 import Footer from '../../components/PCFooter'
 import Menu from '../../components/PCMenu'

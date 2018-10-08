@@ -1,0 +1,33 @@
+.body {
+  position: relative;
+  .share {
+    display: flex;
+    align-items: center;
+    background-color: #d43d3d;
+    color: #fff;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    padding: 1px 10px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .qrcode {
+    position: absolute;
+    top: 30px;
+    left: -30px;
+    padding-top: 10px;
+    z-index: 999;
+    width: 150px;
+    font-size: 14px;
+    color: #8f969c;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 #e0e4e9;
+    border: 1px solid rgba(217,222,224,.99);
+    text-align: center;
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}

@@ -20,6 +20,7 @@
   width: 100%;
 }
 .voteItem .zan {
+  cursor: pointer;
   position: relative;
   color: #666;
   font-size: 14px;
