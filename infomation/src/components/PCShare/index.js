@@ -23,7 +23,7 @@ class PCShare extends React.Component {
     })
   }
   render() {
-    const {item, children} = this.props
+    const {children} = this.props
     return (
       <div className={styles.body}>
         <div className={styles.share} onClick={(event) => {
