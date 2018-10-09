@@ -35,7 +35,6 @@ a:-webkit-any-link {
 }
 .pc-detail-fenxiang {
   font-size: 17px;
-  margin-top: 6px;
   margin-right: 5px;
 }
 .am-action-sheet-share-list {
@@ -104,6 +103,6 @@ html:not([data-scale]) .am-action-sheet-share-list::before {
   right: 2px;
 }
 .icon-shouye1 {
-  margin-top: 6px;
+  font-size: 16px;
   margin-right: 5px;
 }
