@@ -1,5 +1,6 @@
 import * as mobileService from '../services/mobile'
 import { ActionSheet } from 'antd-mobile'
+import utils from '../utils'
 
 export default {
   namespace: 'mobile',
@@ -22,7 +23,10 @@ export default {
           dispatch({type: 'getNewsList', payload: {category: query.category}})
           document.title = 'chabao123.com-每个人都最值得阅读的高品质科技信息！'
         }
-        if (['/mobile/detail/', '/mobile/download/', '/mobile/vote/','/pc/detail/', '/pc/download/', '/pc/vote/'].indexOf(pathname) >= 0) {
+        if (['/mobile/detail/', '/mobile/download/', '/mobile/vote/'].indexOf(pathname) >= 0) {
+          dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory, share: query.share}})
+        }
+        if (['/pc/detail/', '/pc/download/', '/pc/vote/'].indexOf(pathname) >= 0) {
           dispatch({type: 'getNewsDetail', payload: {id: query.id, category: query.category, fromCategory: query.fromCategory}})
         }
       })
@@ -49,8 +53,12 @@ export default {
       yield put({type: 'getInfoPraiseReading', payload: {category, infoCodes}})
       yield put({type: 'getVoteItems', payload: {ids: voteCodes}})
       yield put({type: 'setNewsList', payload: {list: result}})
+      setTimeout(function() {
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+      }, 100)
     },
-    *getNewsDetail({ payload: {id, category, fromCategory} }, { call, put, select }) {
+    *getNewsDetail({ payload: {id, category, fromCategory, share} }, { call, put, select }) {
       const list = yield call(mobileService.getMenuList)
       yield put({type: 'setMenuList', payload: {list}})
       const json = yield select(state=>state.mobile.json)
@@ -60,7 +68,7 @@ export default {
         const detail = result.find((item) => {
           return item.code.toString() === id.toString()
         })
-        yield put({type: 'setNewsDetail', payload: {detail}})
+        yield put({type: 'setNewsDetail', payload: {detail, share}})
         yield put({type: 'setNewsList', payload: {list: result}})
         yield put({type: 'getVoteItems', payload: {ids: detail.code}})
       }
@@ -102,10 +110,14 @@ export default {
     setNewsList(state, { payload: { list } }) {
       return { ...state, newsList: list }
     },
-    setNewsDetail(state, { payload: { detail } }) {
+    setNewsDetail(state, { payload: { detail, share } }) {
       setTimeout(function() {
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
+        if (share) {
+          detail.url = window.location.href
+          utils.share(detail)
+        }
       }, 100)
       document.title = detail.title
       return { ...state, detail }
