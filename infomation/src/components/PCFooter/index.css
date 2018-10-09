@@ -16,6 +16,7 @@
   font-size: 14px;
 }
 .center .copyright .gohome {
+  margin-left: 5px;
   color: #3399ea !important;
   text-decoration: underline !important;
 }

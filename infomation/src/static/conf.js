@@ -1,3 +1,3 @@
 window.baseURL = '/static'
-window.apiURL = 'http://www.chabao123.com/gyinfo'
-window.dataURL = 'http://www.chabao123.com/getdata/'
+window.apiURL = '//www.chabao123.com/gyinfo'
+window.dataURL = '//www.chabao123.com/getdata/'

@@ -5,7 +5,7 @@ function Footer (){
   return (
     <div className={styles.footer}>
       <div className={styles.center}>
-        <span className={styles.copyright}>copyright ©2018 <a className={styles.gohome} href='/pc/?category=a'>www.chabao123.com</a></span>
+        <span className={styles.copyright}>copyright©2018<a className={styles.gohome} href='/pc/?category=a'>www.chabao123.com</a></span>
         <a className={styles.link} href="http://www.miitbeian.gov.cn/">
           京ICP备18045058号
         </a>
