@@ -103,3 +103,7 @@ html:not([data-scale]) .am-action-sheet-share-list::before {
   top: 3px;
   right: 2px;
 }
+.icon-pc-shouye {
+  margin-top: 8px;
+  margin-right: 5px;
+}

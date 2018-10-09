@@ -1,21 +1,16 @@
 import styles from './index.less'
-import Header from '../../components/PCHeader'
 import NavBar from '../../components/PCNavBar'
 import Share from '../../components/PCShare'
-import Footer from '../../components/PCFooter'
+import Footer from '../../components/PCSubFooter'
 import FixedMenu from '../../components/PCFixedMenu'
 import { connect } from 'dva'
 
 function PCDetail({ pageData: { detail, newsList, current, color, name, showFixed }, location: {query}, dispatch}) {
   const ztStyle = {
-    color: `${color[query.category]}`,
-    border: `1px solid ${color[query.category]}`
+    color: `${color[query.category]}`
   }
   return (
     <div className={styles.content}>
-      <div className={styles.header}>
-        <Header></Header>
-      </div>
       <NavBar current={current} name={name[current]}></NavBar>
       <div className={styles.detail}>
         <div className={styles.current}>
@@ -53,7 +48,7 @@ function PCDetail({ pageData: { detail, newsList, current, color, name, showFixe
         }
         </div>
       </div>
-      <Footer></Footer>
+      <Footer current={current}></Footer>
       <FixedMenu showFixed={showFixed} dispatch={dispatch}></FixedMenu>
     </div>
   )

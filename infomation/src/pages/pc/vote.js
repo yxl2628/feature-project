@@ -1,8 +1,7 @@
 import styles from './index.less'
-import Header from '../../components/PCHeader'
 import NavBar from '../../components/PCNavBar'
 import Share from '../../components/PCShare'
-import Footer from '../../components/PCFooter'
+import Footer from '../../components/PCSubFooter'
 import FixedMenu from '../../components/PCFixedMenu'
 import VoteItem from '../../components/VoteItem'
 import { connect } from 'dva'
@@ -10,9 +9,6 @@ import { connect } from 'dva'
 function PCVote({ pageData: { detail, newsList, current, color, name, showFixed }, location: {query}, dispatch}) {
   return (
     <div className={styles.content}>
-      <div className={styles.header}>
-        <Header></Header>
-      </div>
       <NavBar current={current} name={name[current]}></NavBar>
       <div className={styles.detail}>
         <div className={styles.current}>
@@ -31,7 +27,7 @@ function PCVote({ pageData: { detail, newsList, current, color, name, showFixed 
           <VoteItem code={detail.code} voteItems={detail.voteItems} dispatch={dispatch}></VoteItem>
         ) : ''}
       </div>
-      <Footer></Footer>
+      <Footer current={current}></Footer>
       <FixedMenu showFixed={showFixed} dispatch={dispatch}></FixedMenu>
     </div>
   )
