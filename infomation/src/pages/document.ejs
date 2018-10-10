@@ -9,23 +9,14 @@
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_799474_mqmjr3vaqtk.css" />
-    <!-- <link rel="stylesheet" href="/static/iconfont/iconfont.css" /> -->
     <script src="/static/conf.js?v=<%=new Date().getTime()%>" charset="utf-8"></script>
-    <!--[if gte IE 9]>
     <script src="/static/polyfill.min.js" charset="utf-8"></script>
-    <![endif]-->
     <script type="text/javascript">
       ;(function () {
-        // var src = '/static/eruda.min.js';
-        // if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
-        // document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-        // document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
-        // IE支持
-        if (!!window.ActiveXObject || "ActiveXObject" in window) {
-          var src = '/static/polyfill.min.js';
-          document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-          document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
-        }
+        var src = '/static/eruda.min.js';
+        if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+        document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
         // 自动跳转
         var sUserAgent = window.navigator.userAgent;
         if (sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('iPhone') > -1 || sUserAgent.indexOf('iPad') > -1 || sUserAgent.indexOf('iPod') > -1 || sUserAgent.indexOf('Symbian') > -1) {
@@ -39,6 +30,7 @@
         }
       })();
     </script>
+
   </head>
   <body>
   <div id="root"></div>
