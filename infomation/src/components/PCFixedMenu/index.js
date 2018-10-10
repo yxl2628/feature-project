@@ -45,8 +45,8 @@ function FixedMenu({showFixed, dispatch}) {
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
       }} style={{display: showFixed, height: '38px', paddingTop: '12px'}}><i className="iconfont icon-iconfontxiangshang"></i></div>
-      <div className={styles.top}>
-        <div className={styles.collection} onClick={addFavorite}>收藏</div><div className={styles.collection}>本站</div>
+      <div className={styles.top} onClick={addFavorite}>
+        <div className={styles.collection}>收藏</div><div className={styles.collection}>本站</div>
       </div>
       <div className={styles.top}>
         <div className={styles.collection}>手机</div><div className={styles.collection}>观看</div>
