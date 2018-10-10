@@ -1,6 +1,5 @@
 import errorCode from './error'
 import NativeShare from 'nativeshare'
-// import CryptoJS from 'crypto-js'
 import { ActionSheet } from 'antd-mobile'
 import ShareMessage from '../components/ShareMessage'
 

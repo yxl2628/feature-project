@@ -20,7 +20,7 @@ function FixedMenu({showFixed, dispatch}) {
       const title = document.title
       const ua = navigator.userAgent.toLowerCase()
       if (ua.indexOf("360se") > -1) {
-          alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！")
+          alert("您的浏览器不支持自动收藏，请按 Ctrl+D 手动收藏！")
       }
       else if (ua.indexOf("msie 8") > -1) {
           window.external.AddToFavoritesBar(url, title) //IE8
@@ -29,14 +29,14 @@ function FixedMenu({showFixed, dispatch}) {
         try{
          window.external.addFavorite(url, title)
         }catch(e){
-         alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!')
+         alert('您的浏览器不支持自动收藏,请按 Ctrl+D 手动收藏!')
         }
       }
       else if (window.sidebar) {//firfox等浏览器；
           window.sidebar.addPanel(title, url, "")
       }
       else {
-          alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!')
+          alert('您的浏览器不支持自动收藏,请按 Ctrl+D 手动收藏!')
       }
   }
   return (
