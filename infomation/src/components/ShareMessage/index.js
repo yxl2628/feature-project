@@ -1,8 +1,9 @@
 import styles from './index.css'
-export default ({show}) => {
+function ShowMessage({show}) {
   return (
     <div className={styles.shareInput}>
       {show}
     </div>
   )
 }
+export default ShowMessage

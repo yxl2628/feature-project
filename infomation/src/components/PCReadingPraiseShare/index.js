@@ -54,7 +54,7 @@ class ReadingPraiseShare extends React.Component {
         </a>
         {this.state.share ? (
           <div className={styles.qrcode}>
-            微信“扫一扫” <i className="iconfont icon-guanbi" onClick={(event)=>{
+            用微信扫描以下二维码，便可分享 <i className="iconfont icon-guanbi" onClick={(event)=>{
               event.preventDefault()
               this.setState({share: false})
             }}></i>

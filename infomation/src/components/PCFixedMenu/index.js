@@ -51,6 +51,7 @@ function FixedMenu({showFixed, dispatch}) {
       <div className={styles.top}>
         <div className={styles.collection}>手机</div><div className={styles.collection}>观看</div>
         <div className={styles.qrcode}>
+          <div className={styles.shareInfo}>用手机浏览器或者微信扫描以下二维码均可：</div>
           <img src={codeDataUrl} alt="" />
         </div>
       </div>

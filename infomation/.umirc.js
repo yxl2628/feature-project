@@ -28,6 +28,7 @@ export default {
       hardSource: true,
     }],
   ],
+  targets: { ie: 9 },
   hash: true,
   base: '/',
   publicPath: '/',
