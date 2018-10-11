@@ -24,7 +24,6 @@ export default {
       routes: {
         exclude: [],
       },
-      polyfills: ['ie9'],
       hardSource: true,
     }],
   ],
