@@ -133,9 +133,9 @@ export default {
       result && result.forEach(item=>{
         item && item.infoDTOS && item.infoDTOS.forEach(info => {
           infoCode[item.categoryCode + info.code] = {
-            praise: info.praise > 9999 ? Math.round(parseFloat(info.praise/1000)*10)/10 + '万' : info.praise,
-            reading: info.reading > 9999 ? Math.round(parseFloat(info.reading/1000)*10)/10 + '万' : info.reading,
-            sharing: info.sharing > 9999 ? Math.round(parseFloat(info.sharing/1000)*10)/10 + '万' : info.sharing
+            praise: info.praise > 9999 ? Math.round(parseFloat(info.praise/10000)*10)/10 + '万' : info.praise,
+            reading: info.reading > 9999 ? Math.round(parseFloat(info.reading/10000)*10)/10 + '万' : info.reading,
+            sharing: info.sharing > 9999 ? Math.round(parseFloat(info.sharing/10000)*10)/10 + '万' : info.sharing
           }
         })
       })
@@ -165,9 +165,9 @@ export default {
       const newsList = state.newsList
       newsList && newsList.forEach(item => {
         if (item.code === current.code) {
-          item.praise = current.praise > 9999 ? Math.round(parseFloat(current.praise/1000)*10)/10 + '万' : current.praise
-          item.read = current.reading > 9999 ? Math.round(parseFloat(current.reading/1000)*10)/10 + '万' : current.reading
-          item.share = current.sharing > 9999 ? Math.round(parseFloat(current.sharing/1000)*10)/10 + '万' : current.sharing
+          item.praise = current.praise > 9999 ? Math.round(parseFloat(current.praise/10000)*10)/10 + '万' : current.praise
+          item.read = current.reading > 9999 ? Math.round(parseFloat(current.reading/10000)*10)/10 + '万' : current.reading
+          item.share = current.sharing > 9999 ? Math.round(parseFloat(current.sharing/10000)*10)/10 + '万' : current.sharing
         }
       })
       return { ...state, newsList }
