@@ -39,8 +39,8 @@ function DownlaodDetail({ pageData: { detail, newsList, current, name, showFixed
           </div>
           <div className={styles.downlaodDetail}>
             <div className={styles.step}>
-              <span className={styles.stepTitle}>第一步：</span>关注公众号“机器森林”
-              <div className={styles.step2}>方式一：微信中搜索公众号“机器森林”，并关注</div>
+              <span className={styles.stepTitle}>第一步：</span>关注公众号“互联网IT信息”
+              <div className={styles.step2}>方式一：微信中搜索公众号“互联网IT信息”，并关注</div>
               <div className={styles.step2}>方式二：扫描下方二维码</div>
               <div className={styles.step2}>
                 <img src={require('../../assets/qrcode.jpg')} className={styles.qrcode} alt=""/>
