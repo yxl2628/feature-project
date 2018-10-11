@@ -3,7 +3,7 @@ import NavBar from '../../components/PCNavBar'
 import Share from '../../components/PCShare'
 import Footer from '../../components/PCSubFooter'
 import FixedMenu from '../../components/PCFixedMenu'
-import VoteItem from '../../components/VoteItem'
+import VoteItem from '../../components/PCVoteItem'
 import { connect } from 'dva'
 
 function PCVote({ pageData: { detail, newsList, current, color, name, showFixed }, location: {query}, dispatch}) {
