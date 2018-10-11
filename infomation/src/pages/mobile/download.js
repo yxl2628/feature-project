@@ -43,7 +43,7 @@ function DownlaodDetail({ pageData: { detail, newsList, current, name, showFixed
               <div className={styles.step2}>方式一：微信中搜索公众号“机器森林”，并关注</div>
               <div className={styles.step2}>方式二：扫描下方二维码</div>
               <div className={styles.step2}>
-                <img src={require('../../assets/qrcode.png')} className={styles.qrcode} alt=""/>
+                <img src={require('../../assets/qrcode.jpg')} className={styles.qrcode} alt=""/>
               </div>
             </div>
             <div className={styles.step}><span className={styles.stepTitle}>第二步：</span>在公众号后台回复“<span className={styles.keyword}>{detail.typeDes}</span>”三个关键字</div>
