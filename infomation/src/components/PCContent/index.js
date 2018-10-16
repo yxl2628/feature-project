@@ -13,7 +13,7 @@ function Content({item, color, current}) {
   return (
     <div className={styles.body}>
       <div className={styles.content}>
-        <div className={styles.title}><NavLink to={item.type === '0' ? item.detail : url}>{item.title}</NavLink></div>
+        <div className={styles.title}>{item.type === '0' ? <a href={item.detail}>{item.title}</a> : <NavLink to={url}>{item.title}</NavLink>}</div>
         <div className={styles.footer}>
           {item.type === '1' ? <span className={styles.zt}>专题</span> : ''}
           <span className={styles.source}>{item.actor}</span>
