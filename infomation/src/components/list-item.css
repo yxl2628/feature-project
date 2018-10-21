@@ -11,7 +11,7 @@
   display: block;
   font-size: 16px;
   line-height: 21px;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   color: #222;
   text-decoration: none;
   -webkit-user-select: none;
@@ -21,7 +21,7 @@
   outline: 0;
 }
 .footer {
-  margin-top: -2px;
+  margin-top: 1px;
   padding-right: 20px;
   color: #aaa;
   font-size: 14px;
