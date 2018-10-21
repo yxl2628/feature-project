@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="container">
+  <view wx:key="unique" class="btn" wx:for="{{menu}}" bindtap="getTestInfo">
+    {{item}}
+  </view>
+  <view wx:if="{{result}}">返回结果为：{{result}}</view>
+</view>

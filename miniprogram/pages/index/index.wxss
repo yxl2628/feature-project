@@ -1,0 +1,6 @@
+/**index.wxss**/
+.btn {
+  border: 1px solid #999;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
