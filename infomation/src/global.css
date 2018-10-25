@@ -17,6 +17,7 @@ body {
   background: #fff;
 }
 a:-webkit-any-link {
+  cursor: pointer;
   color: #333;
   text-decoration: none;
 }

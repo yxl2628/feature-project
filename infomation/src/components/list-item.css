@@ -16,6 +16,7 @@
   text-decoration: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 .title {
   outline: 0;

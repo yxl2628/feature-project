@@ -71,7 +71,7 @@ class MobileIndex extends React.Component {
       </div>
       <Menu></Menu>
       <div id="scroll">
-        <NewsList {...pageData} shareNews={this.shareNews}></NewsList>
+        <NewsList {...pageData} shareNews={this.shareNews} dispatch={dispatch}></NewsList>
         <Footer></Footer>
       </div>
       <FixedMenu showFixed={pageData.showFixed} dispatch={dispatch}></FixedMenu>

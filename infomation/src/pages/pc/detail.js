@@ -32,10 +32,10 @@ function PCDetail({ pageData: { detail, newsList, current, color, name, showFixe
         </div>
         <div className={styles.list}>
         {
-          newsList.map((item => (
+          newsList.map(((item, index) => (
             item.code !== detail.code
             ? (
-              <div key={item.code} className={styles.other}>
+              <div key={index + item.code} className={styles.other}>
                 <div className={styles.title}><a href={item.detail}>{item.title}</a></div>
                 <div className={styles.footer}>
                   {item.type === '1' ? <span className={styles.zt}>专题</span> : ''}

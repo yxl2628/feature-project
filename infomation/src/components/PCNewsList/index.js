@@ -4,7 +4,7 @@ import Download from '../PCDownload'
 import Vote from '../PCVote'
 import styles from './index.css'
 
-function NewsList({newsList, shareNews, color, current, vote}) {
+function NewsList({newsList, shareNews, color, current, vote, dispatch}) {
   return (
     <div className={styles.list}>
       {
@@ -14,7 +14,7 @@ function NewsList({newsList, shareNews, color, current, vote}) {
           } else if (item.type === '3') {
             return (<Vote key={`${item.code}-${index}`} item={item} shareNews={shareNews} current={current} vote={vote}></Vote>)
           } else {
-            return (<Content key={`${item.code}-${index}`} item={item} shareNews={shareNews} color={color} current={current}></Content>)
+            return (<Content key={`${item.code}-${index}`} item={item} shareNews={shareNews} color={color} current={current} dispatch={dispatch}></Content>)
           }
         })
       }

@@ -77,13 +77,18 @@ export default {
       const result = yield call(mobileService.getInfoPraiseReading, {category, infoCodes})
       yield put({type: 'setReadingPraiseReading', payload: {result}})
     },
-    *infoPraiseReadingShare({ payload: {category, id, type} }, { call, put, select }) {
+    *infoPraiseReadingShare({ payload: {category, id, type, goto} }, { call, put, select }) {
       const result = yield call(mobileService.infoPraiseReadingShare, {category, id, type})
+      if (goto) {
+        window.location.href = goto
+      }
       yield put({type: 'updateItem', payload: {current: result}})
     },
     *getVoteItems({ payload: {ids} }, { call, put, select }) {
-      const result = yield call(mobileService.getVoteItems, {ids: ids})
-      yield put({type: 'setVoteItems', payload: {result}})
+      if (ids) {
+        const result = yield call(mobileService.getVoteItems, {ids: ids})
+        yield put({type: 'setVoteItems', payload: {result}})
+      }
     },
     *voteItems({ payload: {voteCode, itemCode} }, { call, put, select }) {
       yield call(mobileService.voteItems, {voteCode, itemCode})

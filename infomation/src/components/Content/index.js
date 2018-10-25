@@ -3,7 +3,7 @@ import styles from '../list-item.css'
 import NavLink from 'umi/navlink'
 import ReadingPraiseShare from '../ReadingPraiseShare'
 
-function Content({item, shareNews, color, current}) {
+function Content({item, shareNews, color, current, dispatch}) {
   const url = `detail/?id=${item.code}&category=${item.belongCategoryCode}&fromCategory=${current}`
   const share = (item) => {
     item.url = window.location.origin + window.location.pathname + url
@@ -16,7 +16,12 @@ function Content({item, shareNews, color, current}) {
   return (
     <div className={styles.body}>
       <div className={styles.content}>
-        <div className={styles.title}>{item.type === '0' ? <a href={item.detail}>{item.title}</a> : <NavLink to={url}>{item.title}</NavLink>}</div>
+        <div className={styles.title}><a onClick={()=> {
+          dispatch({
+            type: 'mobile/infoPraiseReadingShare',
+            payload: {id: item.code, category: current, type: 'reading', goto: item.type === '0' ? item.detail : url}
+          })
+        }}>{item.title}</a></div>
         <div className={styles.footer}>
           <div className={styles.left}>
             {item.type === '1' ? <span className={styles.zt}>专题</span> : ''}<span className={styles.source}>{item.actor}</span>

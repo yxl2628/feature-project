@@ -17,7 +17,7 @@ function PCIndex({dispatch, pageData}) {
           <Menu></Menu>
         </div>
         <div className={styles.news}>
-          <NewsList color={pageData.color} newsList={pageData.newsList} current={pageData.current} vote={pageData.vote}></NewsList>
+          <NewsList color={pageData.color} newsList={pageData.newsList} current={pageData.current} vote={pageData.vote} dispatch={dispatch}></NewsList>
         </div>
       </div>
       <Footer></Footer>
